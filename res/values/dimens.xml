@@ -9,5 +9,8 @@
          https://developer.android.com/design/patterns/navigation-drawer.html
     -->
     <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="spinner_title">15dp</dimen>
+    <dimen name="spinner_subtitle">10dp</dimen>
+    <dimen name="spinner_dropdown_padding">10dp</dimen>
 
 </resources>

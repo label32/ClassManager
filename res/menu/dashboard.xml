@@ -1,17 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.licenta.classmanager.MainActivity" >
 
     <item
-        android:id="@+id/action_main"
-        android:title="@string/action_main"
+        android:id="@+id/action_dashboard"
+        android:title="@string/action_dashboard"
         app:showAsAction="withText|ifRoom"/>
-    
-    <!-- <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/> -->
 
 </menu>

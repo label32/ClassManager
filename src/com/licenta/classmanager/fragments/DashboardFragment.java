@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.MainActivity;
@@ -37,7 +41,22 @@ public class DashboardFragment extends Fragment {
 				.findViewById(R.id.section_label);
 		textView.setText(Integer.toString(getArguments().getInt(
 				ARG_SECTION_NUMBER)));
+		setHasOptionsMenu(true);
 		return rootView;
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	   inflater.inflate(R.menu.dashboard, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == R.id.action_dashboard) {
+			Toast.makeText(getActivity(), "Dashboard toast", Toast.LENGTH_SHORT).show();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.licenta.classmanager.MainActivity" >
+    
+    <!-- <item android:id="@+id/spinner_taskFilter"
+          android:title="@string/filter_tasks"
+          android:showAsAction="ifRoom"
+          android:actionProviderClass="android.widget.Spinner" /> -->
+    
+    <item
+        android:id="@+id/add_task"
+        android:title="@string/action_tasks"
+        app:showAsAction="withText|ifRoom"/>
+
+</menu>

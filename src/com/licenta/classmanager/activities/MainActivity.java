@@ -1,5 +1,6 @@
 package com.licenta.classmanager.activities;
 
+import android.app.ActionBar.OnNavigationListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -7,6 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.fragments.CalendarFragment;
@@ -44,74 +48,63 @@ public class MainActivity extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		
+
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		
-		switch(position) {
-		
-			/* Dashboard */
-		case 0: 
-		{
+
+		switch (position) {
+
+		/* Dashboard */
+		case 0: {
 			DashboardFragment dashboardFragment = new DashboardFragment();
 			dashboardFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							dashboardFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, dashboardFragment).commit();
 		}
 			break;
-		
-			/* Calendar */
+
+		/* Calendar */
 		case 1:
 			CalendarFragment calendarFragment = new CalendarFragment();
 			calendarFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							calendarFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, calendarFragment).commit();
 			break;
-			
+
 		case 2: /* Tasks */
 			TasksFragment tasksFragment = new TasksFragment();
 			tasksFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							tasksFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, tasksFragment).commit();
 			break;
-			
+
 		case 3: /* Notes */
 			NotesFragment notesFragment = new NotesFragment();
 			notesFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							notesFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, notesFragment).commit();
 			break;
-			
+
 		case 4: /* Classes */
 			ClassesFragment classesFragment = new ClassesFragment();
 			classesFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							classesFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, classesFragment).commit();
 			break;
-			
+
 		case 5: /* Settings */
 			SettingsFragment settingsFragment = new SettingsFragment();
 			settingsFragment.setData(position + 1);
-			fragmentManager
-					.beginTransaction()
-					.replace(R.id.container,
-							settingsFragment).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, settingsFragment).commit();
 			break;
 		}
-		
+
 	}
 
 	public void onSectionAttached(int number) {
@@ -146,11 +139,13 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		if (!mNavigationDrawerFragment.isDrawerOpen()) {
 			// Only show items in the action bar relevant to this screen
 			// if the drawer is not showing. Otherwise, let the drawer
 			// decide what to show in the action bar.
-			getMenuInflater().inflate(R.menu.main, menu);
+
+			// getMenuInflater().inflate(R.menu.main, menu);
 			restoreActionBar();
 			return true;
 		}
@@ -163,12 +158,12 @@ public class MainActivity extends ActionBarActivity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (id) {
+		// case R.id.spinner_taskFilter : {
+		//
+		// } break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	
 
 }
