@@ -53,8 +53,13 @@ public class DashboardFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if(id == R.id.action_dashboard) {
-			Toast.makeText(getActivity(), "Dashboard toast", Toast.LENGTH_SHORT).show();
+		switch(id) {
+		case R.id.action_add_task:  {
+				Toast.makeText(getActivity(), "Adding task...", Toast.LENGTH_SHORT).show();							
+			} break;
+		case R.id.action_add_note: {
+			Toast.makeText(getActivity(), "Adding note...", Toast.LENGTH_SHORT).show();
+			} break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

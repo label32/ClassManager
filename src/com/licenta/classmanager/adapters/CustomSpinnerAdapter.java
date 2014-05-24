@@ -15,11 +15,13 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String> {
 
 	private Context mContext;
 	private String[] options;
+	private String title;
 
-	public CustomSpinnerAdapter(Context context, int resource, String[] objects) {
+	public CustomSpinnerAdapter(Context context, int resource, String[] objects, String title) {
 		super(context, resource, objects);
 		mContext = context;
 		options = objects;
+		this.title = title;
 	}
 
 //	@Override
@@ -54,7 +56,7 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String> {
 				holder.txt_title = (TextView) convertView.findViewById(R.id.spinner_item_title);
 				holder.txt_subtitle = (TextView) convertView.findViewById(R.id.spinner_item_subtitle);
 				
-				holder.txt_title.setText("Tasks");
+				holder.txt_title.setText(title);
 				holder.txt_subtitle.setText(options[position].toUpperCase(Locale.getDefault()));
 			}
 

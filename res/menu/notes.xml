@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.licenta.classmanager.MainActivity" >
-
-    <item
-        android:id="@+id/action_add_task"
-        android:title="@string/add_task"
-        app:showAsAction="withText|ifRoom"/>
+    
+    <!-- <item android:id="@+id/spinner_taskFilter"
+          android:title="@string/filter_tasks"
+          android:showAsAction="ifRoom"
+          android:actionProviderClass="android.widget.Spinner" /> -->
     
     <item
         android:id="@+id/action_add_note"
@@ -15,3 +15,4 @@
         app:showAsAction="withText|ifRoom"/>
 
 </menu>
+

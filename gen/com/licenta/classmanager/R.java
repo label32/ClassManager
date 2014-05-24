@@ -17,7 +17,9 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
-        public static final int filter_options=0x7f0c0000;
+        public static final int classes_spinner_items=0x7f0c0002;
+        public static final int notes_spinner_items=0x7f0c0001;
+        public static final int tasks_spinner_items=0x7f0c0000;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1116,6 +1118,9 @@ containing a value of this type.
         public static final int ic_launcher=0x7f02005b;
     }
     public static final class id {
+        public static final int action_add_class=0x7f050046;
+        public static final int action_add_note=0x7f050048;
+        public static final int action_add_task=0x7f050047;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1124,14 +1129,12 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050023;
         public static final int action_bar_title=0x7f050022;
         public static final int action_context_bar=0x7f05001d;
-        public static final int action_dashboard=0x7f050043;
-        public static final int action_main=0x7f050045;
+        public static final int action_main=0x7f05004a;
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050044;
+        public static final int action_settings=0x7f050049;
         public static final int activity_chooser_view_content=0x7f050025;
-        public static final int add_task=0x7f050046;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int checkbox=0x7f05002d;
@@ -1158,6 +1161,8 @@ containing a value of this type.
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
+        public static final int pager=0x7f050040;
+        public static final int pager_title_strip=0x7f050041;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
@@ -1176,14 +1181,15 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
-        public static final int spinner_dropdown_title=0x7f050040;
-        public static final int spinner_item_subtitle=0x7f050042;
-        public static final int spinner_item_title=0x7f050041;
+        public static final int spinner_dropdown_title=0x7f050043;
+        public static final int spinner_item_subtitle=0x7f050045;
+        public static final int spinner_item_title=0x7f050044;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
+        public static final int txt_pagerCount=0x7f050042;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1239,18 +1245,23 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int fragment_main=0x7f030019;
-        public static final int fragment_navigation_drawer=0x7f03001a;
-        public static final int fragment_tasks=0x7f03001b;
-        public static final int spinner_dropdown_layout=0x7f03001c;
-        public static final int spinner_layout=0x7f03001d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int fragment_classes=0x7f030019;
+        public static final int fragment_main=0x7f03001a;
+        public static final int fragment_navigation_drawer=0x7f03001b;
+        public static final int fragment_notes=0x7f03001c;
+        public static final int fragment_tasks=0x7f03001d;
+        public static final int fragment_tasks_list=0x7f03001e;
+        public static final int spinner_dropdown_layout=0x7f03001f;
+        public static final int spinner_layout=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
-        public static final int dashboard=0x7f0d0000;
-        public static final int global=0x7f0d0001;
-        public static final int main=0x7f0d0002;
-        public static final int tasks=0x7f0d0003;
+        public static final int classes=0x7f0d0000;
+        public static final int dashboard=0x7f0d0001;
+        public static final int global=0x7f0d0002;
+        public static final int main=0x7f0d0003;
+        public static final int notes=0x7f0d0004;
+        public static final int tasks=0x7f0d0005;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1293,15 +1304,17 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int action_dashboard=0x7f0a0017;
         public static final int action_main=0x7f0a0016;
-        public static final int action_settings=0x7f0a0019;
-        public static final int action_tasks=0x7f0a0018;
+        public static final int action_settings=0x7f0a0018;
+        public static final int action_tasks=0x7f0a0017;
+        public static final int add_class=0x7f0a001d;
+        public static final int add_note=0x7f0a001b;
+        public static final int add_task=0x7f0a001c;
         public static final int app_name=0x7f0a000d;
         public static final int navigation_drawer_close=0x7f0a0015;
         public static final int navigation_drawer_open=0x7f0a0014;
-        public static final int sample_long=0x7f0a001b;
-        public static final int sample_short=0x7f0a001a;
+        public static final int sample_long=0x7f0a001a;
+        public static final int sample_short=0x7f0a0019;
         public static final int title_calendar=0x7f0a000f;
         public static final int title_classes=0x7f0a0012;
         public static final int title_dashboard=0x7f0a000e;
