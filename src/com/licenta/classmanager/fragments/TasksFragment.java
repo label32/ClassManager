@@ -2,6 +2,7 @@ package com.licenta.classmanager.fragments;
 
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.AddTaskActivity;
 import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.TasksPagerAdapter;
@@ -76,9 +78,18 @@ public class TasksFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_add_task) {
-			Toast.makeText(getActivity(), "Adding task...", Toast.LENGTH_SHORT).show();
+			Intent addTaskIntent = new Intent(getActivity(), AddTaskActivity.class);
+			startActivityForResult(addTaskIntent, AddTaskActivity.request_code);
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == AddTaskActivity.request_code) {
+			// do stuff...
+		}
 	}
 
 	@Override

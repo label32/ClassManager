@@ -1,6 +1,7 @@
 package com.licenta.classmanager.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.AddTaskActivity;
 import com.licenta.classmanager.activities.MainActivity;
 
 public class DashboardFragment extends Fragment {
@@ -55,13 +57,24 @@ public class DashboardFragment extends Fragment {
 		int id = item.getItemId();
 		switch(id) {
 		case R.id.action_add_task:  {
-				Toast.makeText(getActivity(), "Adding task...", Toast.LENGTH_SHORT).show();							
+				Intent addTaskIntent = new Intent(getActivity(), AddTaskActivity.class);
+				startActivityForResult(addTaskIntent, AddTaskActivity.request_code);
 			} break;
 		case R.id.action_add_note: {
 			Toast.makeText(getActivity(), "Adding note...", Toast.LENGTH_SHORT).show();
 			} break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		case AddTaskActivity.request_code: {
+				// do stuff
+			} break;
+		}
 	}
 
 	@Override
