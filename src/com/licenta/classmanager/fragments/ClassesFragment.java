@@ -1,31 +1,27 @@
 package com.licenta.classmanager.fragments;
 
-import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.MainActivity;
-import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
-
-import android.app.Activity;
 import android.app.ActionBar.OnNavigationListener;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class ClassesFragment extends Fragment {
-	/**
-	 * The fragment argument representing the section number for this fragment.
-	 */
-	private static final String ARG_SECTION_NUMBER = "section_number";
+import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.AddClassActivity;
+import com.licenta.classmanager.activities.MainActivity;
+import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 
-	/**
-	 * Returns a new instance of this fragment for the given section number.
-	 */
+public class ClassesFragment extends Fragment {
+
+	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	public ClassesFragment() {
 
@@ -71,5 +67,15 @@ public class ClassesFragment extends Fragment {
 		};
 
 		getActivity().getActionBar().setListNavigationCallbacks(mCustomSpinnerAdapter, mSpinnerOnNavigationListener);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == R.id.action_add_class) {
+			Intent intent = new Intent(getActivity(), AddClassActivity.class);
+			startActivityForResult(intent, AddClassActivity.request_code);
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

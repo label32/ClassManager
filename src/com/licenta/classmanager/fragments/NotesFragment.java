@@ -1,21 +1,23 @@
 package com.licenta.classmanager.fragments;
 
-import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.MainActivity;
-import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
-
-import android.app.Activity;
 import android.app.ActionBar.OnNavigationListener;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.AddNoteActivity;
+import com.licenta.classmanager.activities.MainActivity;
+import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 
 public class NotesFragment extends Fragment {
 	/**
@@ -71,5 +73,15 @@ public class NotesFragment extends Fragment {
 		};
 
 		getActivity().getActionBar().setListNavigationCallbacks(mCustomSpinnerAdapter, mSpinnerOnNavigationListener);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if(id == R.id.action_add_note) {
+			Intent addNoteIntent = new Intent(getActivity(), AddNoteActivity.class);
+			startActivityForResult(addNoteIntent, AddNoteActivity.request_code);
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

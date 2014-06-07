@@ -21,5 +21,9 @@
     <color name="navbar_color">#40795B</color>
     <color name="bright_border">#67D199</color>
     <color name="dark_border">#1E3A2B</color>
+    
+    <color name="app_blue_onblack">#008aad</color>
+    <color name="app_blue_onwhite">#017a99</color>
+    <color name="app_black">#212121</color>
 
 </resources>

@@ -11,9 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.AddNoteActivity;
 import com.licenta.classmanager.activities.AddTaskActivity;
 import com.licenta.classmanager.activities.MainActivity;
 
@@ -61,7 +61,8 @@ public class DashboardFragment extends Fragment {
 				startActivityForResult(addTaskIntent, AddTaskActivity.request_code);
 			} break;
 		case R.id.action_add_note: {
-			Toast.makeText(getActivity(), "Adding note...", Toast.LENGTH_SHORT).show();
+				Intent addNoteIntent = new Intent(getActivity(), AddNoteActivity.class);
+				startActivityForResult(addNoteIntent, AddNoteActivity.request_code);
 			} break;
 		}
 		return super.onOptionsItemSelected(item);

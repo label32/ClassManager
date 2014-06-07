@@ -7,14 +7,14 @@ import android.view.MenuInflater;
 
 import com.licenta.classmanager.R;
 
-public class AddTaskActivity extends ActionBarActivity {
-
-	public static final int request_code = 101;
+public class AddNoteActivity extends ActionBarActivity {
 	
+	public static final int request_code = 102;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_task);
+		setContentView(R.layout.activity_add_note);
 	}
 	
 	@Override

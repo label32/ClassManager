@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.licenta.classmanager.MainActivity" >
+
+    <item
+        android:id="@+id/action_dayview"
+        android:title="@string/str_dayview"
+        android:checkable="true"
+        android:checked="true"
+        app:showAsAction="withText|ifRoom"/>
+    
+    <item
+        android:id="@+id/action_monthview"
+        android:checkable="true"
+        android:title="@string/str_monthview"
+        app:showAsAction="withText|ifRoom"/>
+
+</menu>

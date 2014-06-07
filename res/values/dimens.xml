@@ -12,5 +12,6 @@
     <dimen name="spinner_title">15dp</dimen>
     <dimen name="spinner_subtitle">10dp</dimen>
     <dimen name="spinner_dropdown_padding">10dp</dimen>
+    <dimen name="component_header">20dp</dimen>
 
 </resources>
