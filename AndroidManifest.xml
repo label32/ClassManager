@@ -16,11 +16,6 @@
         <activity
             android:name="com.licenta.classmanager.activities.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.licenta.classmanager.activities.AddTaskActivity"
@@ -29,10 +24,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
-        </activity>
-        <activity
-            android:name="com.licenta.classmanager.activities.AddTaskActivity"
-            android:label="@string/title_activity_add_task" >
         </activity>
         <activity
             android:name="com.licenta.classmanager.activities.AddNoteActivity"
@@ -44,7 +35,12 @@
         </activity>
         <activity
             android:name="com.licenta.classmanager.activities.WelcomeActivity"
-            android:label="@string/title_activity_welcome" >
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.licenta.classmanager.activities.LoginActivity"

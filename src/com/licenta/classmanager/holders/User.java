@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -7800135208350955815L;
+	public final static String USER_ID = "com.stagiu.agenda.activities.USER_ID";
+	public final static String IS_STUDENT = "com.stagiu.agenda.activities.IS_STUDENT";
 	
 	private int id;
 	private int type;

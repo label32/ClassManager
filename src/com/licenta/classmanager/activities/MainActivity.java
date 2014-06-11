@@ -21,17 +21,11 @@ import com.licenta.classmanager.fragments.TasksFragment;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-	/**
-	 * Fragment managing the behaviors, interactions and presentation of the
-	 * navigation drawer.
-	 */
+	public final static String OFFLINE = "com.licenta.classmanager.MainActivity.OFFLINE";
+	
 	private NavigationDrawerFragment mNavigationDrawerFragment;
-
-	/**
-	 * Used to store the last screen title. For use in
-	 * {@link #restoreActionBar()}.
-	 */
 	private CharSequence mTitle;
+	public boolean offline;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +35,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(
 				R.id.navigation_drawer);
 		mTitle = getTitle();
-
-		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		offline = getIntent().getBooleanExtra(OFFLINE, true);
 
 	}
 
@@ -91,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		case 5: /* Settings */
 			SettingsFragment settingsFragment = new SettingsFragment();
-			settingsFragment.setData(position + 1);
+			//settingsFragment.setData(position + 1);
 			fragmentManager.beginTransaction().replace(R.id.container, settingsFragment).commit();
 			break;
 		}

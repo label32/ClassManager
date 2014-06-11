@@ -1133,9 +1133,9 @@ containing a value of this type.
         public static final int logo=0x7f02005d;
     }
     public static final class id {
-        public static final int action_add_class=0x7f050061;
-        public static final int action_add_note=0x7f050063;
-        public static final int action_add_task=0x7f050062;
+        public static final int action_add_class=0x7f050062;
+        public static final int action_add_note=0x7f050064;
+        public static final int action_add_task=0x7f050063;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1144,19 +1144,20 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050023;
         public static final int action_bar_title=0x7f050022;
         public static final int action_context_bar=0x7f05001d;
-        public static final int action_dayview=0x7f05005f;
-        public static final int action_main=0x7f050065;
+        public static final int action_dayview=0x7f050060;
+        public static final int action_main=0x7f050066;
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_monthview=0x7f050060;
-        public static final int action_save=0x7f05005e;
-        public static final int action_settings=0x7f050064;
+        public static final int action_monthview=0x7f050061;
+        public static final int action_save=0x7f05005f;
+        public static final int action_settings=0x7f050065;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int btn_create_account=0x7f050053;
         public static final int btn_login=0x7f050054;
+        public static final int btn_logout=0x7f05005b;
         public static final int btn_use_offline=0x7f050055;
         public static final int calendarView1=0x7f05005a;
         public static final int cb_friday=0x7f050041;
@@ -1220,9 +1221,9 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int spinner1=0x7f050052;
         public static final int spinner_class=0x7f050047;
-        public static final int spinner_dropdown_title=0x7f05005b;
-        public static final int spinner_item_subtitle=0x7f05005d;
-        public static final int spinner_item_title=0x7f05005c;
+        public static final int spinner_dropdown_title=0x7f05005c;
+        public static final int spinner_item_subtitle=0x7f05005e;
+        public static final int spinner_item_title=0x7f05005d;
         public static final int spinner_type=0x7f050048;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
@@ -1300,11 +1301,12 @@ containing a value of this type.
         public static final int fragment_monthview=0x7f030023;
         public static final int fragment_navigation_drawer=0x7f030024;
         public static final int fragment_notes=0x7f030025;
-        public static final int fragment_tasks=0x7f030026;
-        public static final int fragment_tasks_list=0x7f030027;
-        public static final int spinner_dropdown_layout=0x7f030028;
-        public static final int spinner_layout=0x7f030029;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
+        public static final int fragment_settings=0x7f030026;
+        public static final int fragment_tasks=0x7f030027;
+        public static final int fragment_tasks_list=0x7f030028;
+        public static final int spinner_dropdown_layout=0x7f030029;
+        public static final int spinner_layout=0x7f03002a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002b;
     }
     public static final class menu {
         public static final int add_menu=0x7f0d0000;
@@ -1357,13 +1359,13 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int abr_friday=0x7f0a0043;
-        public static final int abr_monday=0x7f0a003f;
-        public static final int abr_saturday=0x7f0a0044;
-        public static final int abr_sunday=0x7f0a0045;
-        public static final int abr_thursday=0x7f0a0042;
-        public static final int abr_tuesday=0x7f0a0040;
-        public static final int abr_wednesday=0x7f0a0041;
+        public static final int abr_friday=0x7f0a0044;
+        public static final int abr_monday=0x7f0a0040;
+        public static final int abr_saturday=0x7f0a0045;
+        public static final int abr_sunday=0x7f0a0046;
+        public static final int abr_thursday=0x7f0a0043;
+        public static final int abr_tuesday=0x7f0a0041;
+        public static final int abr_wednesday=0x7f0a0042;
         public static final int action_main=0x7f0a0017;
         public static final int action_settings=0x7f0a0019;
         public static final int action_tasks=0x7f0a0018;
@@ -1371,35 +1373,37 @@ containing a value of this type.
         public static final int add_note=0x7f0a001a;
         public static final int add_task=0x7f0a001b;
         public static final int app_name=0x7f0a000d;
-        public static final int create_account=0x7f0a002c;
-        public static final int done=0x7f0a0037;
-        public static final int email=0x7f0a0030;
+        public static final int create_account=0x7f0a002d;
+        public static final int done=0x7f0a0038;
+        public static final int email=0x7f0a0031;
         public static final int end_time=0x7f0a0029;
-        public static final int friday=0x7f0a003c;
-        public static final int hello_world=0x7f0a0046;
-        public static final int iama=0x7f0a0034;
-        public static final int login=0x7f0a002d;
+        public static final int friday=0x7f0a003d;
+        public static final int hello_world=0x7f0a0048;
+        public static final int iama=0x7f0a0035;
+        public static final int login=0x7f0a002e;
         /**  Login activity 
          */
-        public static final int login_text=0x7f0a002f;
+        public static final int login_text=0x7f0a0030;
         /**  Welcome activity 
          */
-        public static final int logo_description=0x7f0a002a;
+        public static final int logo_description=0x7f0a002b;
+        public static final int logout=0x7f0a002a;
         /**  Days 
          */
-        public static final int monday=0x7f0a0038;
-        public static final int my_email=0x7f0a0035;
-        public static final int my_name=0x7f0a0033;
-        public static final int my_password=0x7f0a0036;
+        public static final int monday=0x7f0a0039;
+        public static final int my_email=0x7f0a0036;
+        public static final int my_name=0x7f0a0034;
+        public static final int my_password=0x7f0a0037;
         public static final int navigation_drawer_close=0x7f0a0016;
         public static final int navigation_drawer_open=0x7f0a0015;
-        public static final int password=0x7f0a0031;
+        public static final int password=0x7f0a0032;
+        public static final int preference_file=0x7f0a0047;
         /**  Register activity 
          */
-        public static final int register_text=0x7f0a0032;
+        public static final int register_text=0x7f0a0033;
         public static final int sample_long=0x7f0a001f;
         public static final int sample_short=0x7f0a001e;
-        public static final int saturday=0x7f0a003d;
+        public static final int saturday=0x7f0a003e;
         public static final int save=0x7f0a001d;
         public static final int start_time=0x7f0a0028;
         public static final int str_class=0x7f0a0020;
@@ -1410,24 +1414,24 @@ containing a value of this type.
         public static final int str_monthview=0x7f0a0027;
         public static final int str_title=0x7f0a0024;
         public static final int str_type=0x7f0a0022;
-        public static final int sunday=0x7f0a003e;
-        public static final int thursday=0x7f0a003b;
-        public static final int title_activity_add_class=0x7f0a0048;
-        public static final int title_activity_add_note=0x7f0a0047;
+        public static final int sunday=0x7f0a003f;
+        public static final int thursday=0x7f0a003c;
+        public static final int title_activity_add_class=0x7f0a004a;
+        public static final int title_activity_add_note=0x7f0a0049;
         public static final int title_activity_add_task=0x7f0a000e;
-        public static final int title_activity_login=0x7f0a004a;
-        public static final int title_activity_register=0x7f0a004b;
-        public static final int title_activity_welcome=0x7f0a0049;
+        public static final int title_activity_login=0x7f0a004c;
+        public static final int title_activity_register=0x7f0a004d;
+        public static final int title_activity_welcome=0x7f0a004b;
         public static final int title_calendar=0x7f0a0010;
         public static final int title_classes=0x7f0a0013;
         public static final int title_dashboard=0x7f0a000f;
         public static final int title_notes=0x7f0a0012;
         public static final int title_settings=0x7f0a0014;
         public static final int title_tasks=0x7f0a0011;
-        public static final int tuesday=0x7f0a0039;
-        public static final int use_offline=0x7f0a002e;
-        public static final int wednesday=0x7f0a003a;
-        public static final int welcome_cm=0x7f0a002b;
+        public static final int tuesday=0x7f0a003a;
+        public static final int use_offline=0x7f0a002f;
+        public static final int wednesday=0x7f0a003b;
+        public static final int welcome_cm=0x7f0a002c;
     }
     public static final class style {
         /** 
