@@ -30,6 +30,28 @@
     <string name="str_monthview">Monthview</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
+
+    <!-- Welcome activity -->
+    <string name="logo_description">Logo image</string>
+    <string name="welcome_cm">Welcome to Class Manager</string>
+    <string name="create_account">Create account</string>
+    <string name="login">Login</string>
+    <string name="use_offline">Use offline</string>
+    
+    <!-- Login activity -->
+    <string name="login_text">Please enter your credentials</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    
+    <!-- Register activity -->
+    <string name="register_text">Let\'s get to know each other</string>
+    <string name="my_name">My name is</string>
+    <string name="iama">I am a</string>
+    <string name="my_email">My email</string>
+    <string name="my_password">My password</string>
+    <string name="done">Done</string>
+
+    <!-- Days -->
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -63,5 +85,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_note">AddNoteActivity</string>
     <string name="title_activity_add_class">AddClassActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
 
 </resources>

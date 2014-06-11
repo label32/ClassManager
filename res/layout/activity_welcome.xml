@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}" >
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/welcome_logo_width"
+        android:layout_height="@dimen/welcome_logo_height"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/welcome_logo_max_height"
+        android:maxWidth="@dimen/welcome_logo_max_width"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/big_logo" />
+    
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/welcome_title"
+        android:layout_marginBottom="15dp"
+        android:text="@string/welcome_cm" />
+     
+     <Button 
+         android:layout_width="@dimen/welcome_button_width"
+         android:layout_height="wrap_content"
+         android:layout_margin="@dimen/welcome_buttons_margin"
+         android:layout_gravity="center_horizontal"
+         android:id="@+id/btn_create_account"
+         android:text="@string/create_account"/>
+     
+     <Button 
+         android:layout_width="@dimen/welcome_button_width"
+         android:layout_height="wrap_content"
+         android:layout_margin="@dimen/welcome_buttons_margin"
+         android:layout_gravity="center_horizontal"
+         android:id="@+id/btn_login"
+         android:text="@string/login"/>
+     
+     <Button 
+         android:layout_width="@dimen/welcome_button_width"
+         android:layout_height="wrap_content"
+         android:layout_margin="@dimen/welcome_buttons_margin"
+         android:layout_gravity="center_horizontal"
+         android:id="@+id/btn_use_offline"
+         android:text="@string/use_offline"/>
+   
+    
+    
+
+</LinearLayout>
