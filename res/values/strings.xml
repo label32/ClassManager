@@ -31,6 +31,8 @@
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
     <string name="logout">Logout</string>
+    <string name="stub_img_desc">Description of image</string>
+    <string name="list_item_background">Sticky part of list item</string>
 
     <!-- Welcome activity -->
     <string name="logo_description">Logo image</string>
@@ -38,12 +40,12 @@
     <string name="create_account">Create account</string>
     <string name="login">Login</string>
     <string name="use_offline">Use offline</string>
-    
+
     <!-- Login activity -->
     <string name="login_text">Please enter your credentials</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    
+
     <!-- Register activity -->
     <string name="register_text">Let\'s get to know each other</string>
     <string name="my_name">My name is</string>
@@ -82,9 +84,8 @@
         <item>Date</item>
         <item>Type</item>
     </string-array>
-    
-    <string name="preference_file">com.licenta.classmanager.PREFERENCE_FILE</string> 
 
+    <string name="preference_file">com.licenta.classmanager.PREFERENCE_FILE</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_note">AddNoteActivity</string>
     <string name="title_activity_add_class">AddClassActivity</string>
