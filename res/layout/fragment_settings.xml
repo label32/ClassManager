@@ -9,9 +9,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.licenta.classmanager.activities.MainActivity$PlaceholderFragment" >
 
+     <Button
+        android:id="@+id/btn_test"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:text="Test" />
+    
+    
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:text="@string/logout" />
 

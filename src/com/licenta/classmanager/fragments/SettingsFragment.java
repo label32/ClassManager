@@ -11,15 +11,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.WelcomeActivity;
+import com.licenta.classmanager.holders.User;
 
 public class SettingsFragment extends Fragment {
 
-	private static final String ARG_SECTION_NUMBER = "section_number";
+//	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	private Button btn_logout;
+	private Button btn_test;
 	private SharedPreferences sharedPref;
 
 	public SettingsFragment() {
@@ -34,6 +39,7 @@ public class SettingsFragment extends Fragment {
 	
 	public void linkUI() {
 		btn_logout = (Button) getActivity().findViewById(R.id.btn_logout);
+		btn_test = (Button) getActivity().findViewById(R.id.btn_test);
 	}
 	
 	public void setData() {
@@ -53,6 +59,17 @@ public class SettingsFragment extends Fragment {
 				Intent intent = new Intent(getActivity(), WelcomeActivity.class);
 				startActivity(intent);
 				getActivity().finish();
+			}
+		});
+		
+		btn_test.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				User u = new User(0, 2, "Local json user", "email@email.com", "pass2");
+				GsonBuilder builder = new GsonBuilder();
+		        Gson gson = builder.create();
+		        Toast.makeText(getActivity(), gson.toJson(u), Toast.LENGTH_LONG).show();
 			}
 		});
 	}
