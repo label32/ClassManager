@@ -1,7 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -10,14 +13,62 @@
     tools:context="com.licenta.classmanager.activities.MainActivity$PlaceholderFragment" >
 
     <TextView
-        android:id="@+id/section_label"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/announcements"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/app_blue_onwhite" />
 
     <de.timroes.android.listview.EnhancedListView
         android:id="@+id/elv_announcements"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" >
     </de.timroes.android.listview.EnhancedListView>
 
+    
+             <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/todays_lessons"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/app_blue_onwhite" />
+   
+
+
+    
+        <de.timroes.android.listview.EnhancedListView
+            android:id="@+id/elv_lessons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10.0sp" >
+        </de.timroes.android.listview.EnhancedListView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/upcoming"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/app_blue_onwhite" />
+
+        <de.timroes.android.listview.EnhancedListView
+            android:id="@+id/elv_upcoming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10.0sp" >
+        </de.timroes.android.listview.EnhancedListView>
+   
+
 </LinearLayout>
+</ScrollView>

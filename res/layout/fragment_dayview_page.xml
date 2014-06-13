@@ -18,5 +18,13 @@
         android:id="@+id/txt_pagerCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+    <de.timroes.android.listview.EnhancedListView
+        android:id="@+id/elv_events"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" >
+    </de.timroes.android.listview.EnhancedListView>
 
 </LinearLayout>

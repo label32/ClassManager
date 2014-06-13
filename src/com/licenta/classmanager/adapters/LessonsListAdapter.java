@@ -11,20 +11,20 @@ import android.widget.TextView;
 import com.licenta.classmanager.R;
 import de.timroes.android.listview.EnhancedListView;
 
-public class EnhancedListAdapter extends BaseAdapter {
+public class LessonsListAdapter extends BaseAdapter {
 
     private List<String> mItems = new ArrayList<String>();
     private Activity activity;
     private EnhancedListView elv;
     
-    public EnhancedListAdapter(Activity activity, EnhancedListView elv) {
+    public LessonsListAdapter(Activity activity, EnhancedListView elv) {
     	this.activity = activity;
     	this.elv = elv;
     }
 
     public void resetItems() {
         mItems.clear();
-        for(int i = 1; i <= 20; i++) {
+        for(int i = 1; i <= 5; i++) {
             mItems.add("Item " + i);
         }
         notifyDataSetChanged();
@@ -96,17 +96,17 @@ public class EnhancedListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.list_item, parent, false);
+            convertView = activity.getLayoutInflater().inflate(R.layout.announcement_list_item, parent, false);
             // Clicking the delete icon, will read the position of the item stored in
             // the tag and delete it from the list. So we don't need to generate a new
             // onClickListener every time the content of this view changes.
-            final View origView = convertView;
-            convertView.findViewById(R.id.action_delete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    elv.delete(((ViewHolder)origView.getTag()).position);
-                }
-            });
+//            final View origView = convertView;
+//            convertView.findViewById(R.id.action_open).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    elv.delete(((ViewHolder)origView.getTag()).position);
+//                }
+//            });
 
             holder = new ViewHolder();
             assert convertView != null;

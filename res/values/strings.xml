@@ -19,20 +19,28 @@
     <string name="add_class">Add class</string>
     <string name="save">Save</string>
     <string name="sample_short">Sample</string>
-    <string name="sample_long">A long sample text</string>
+    <string name="sample_long">A long sample text Lorem ipsum dolores nu stiu ce etc etc</string>
     <string name="str_class">Class</string>
-    <string name="str_class_name">Class name</string>
     <string name="str_type">Type</string>
     <string name="str_deadline">Deadline</string>
     <string name="str_title">Title</string>
     <string name="str_details">Details</string>
     <string name="str_dayview">Dayview</string>
     <string name="str_monthview">Monthview</string>
-    <string name="start_time">Start time</string>
-    <string name="end_time">End time</string>
     <string name="logout">Logout</string>
     <string name="stub_img_desc">Description of image</string>
     <string name="list_item_background">Sticky part of list item</string>
+
+    <!-- AddClass activity -->
+    <string name="str_class_name">Class name</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="choose_class_color">Pick a color:</string>
+
+    <!-- Dashboard Fragment -->
+    <string name="announcements">Announcements</string>
+    <string name="todays_lessons">Today\'s lessons</string>
+    <string name="upcoming">Upcoming</string>
 
     <!-- Welcome activity -->
     <string name="logo_description">Logo image</string>

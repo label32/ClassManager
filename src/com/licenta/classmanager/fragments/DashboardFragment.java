@@ -1,5 +1,8 @@
 package com.licenta.classmanager.fragments;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,35 +13,42 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.AddNoteActivity;
 import com.licenta.classmanager.activities.AddTaskActivity;
-import com.licenta.classmanager.activities.MainActivity;
-import com.licenta.classmanager.adapters.EnhancedListAdapter;
+import com.licenta.classmanager.adapters.AnnouncementsListAdapter;
+import com.licenta.classmanager.adapters.LessonsListAdapter;
+import com.licenta.classmanager.adapters.UpcomingListAdapter;
+import com.licenta.classmanager.holders.Announcement;
+import com.licenta.classmanager.utils.Utils;
 
 import de.timroes.android.listview.EnhancedListView;
-import de.timroes.android.listview.EnhancedListView.Undoable;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
 public class DashboardFragment extends Fragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	private EnhancedListView elv_announcements;
-	private EnhancedListAdapter elvAdapter;
+	private EnhancedListView elv_lessons;
+	private EnhancedListView elv_upcoming;
+	private AnnouncementsListAdapter announcementsAdapter;
+	private LessonsListAdapter lessonsAdapter;
+	private UpcomingListAdapter upcomingAdapter;
+	private ArrayList<Announcement> announcements;
 
-	public void setData(int sectionNumber) {
-		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		this.setArguments(args);
-	}
+//	public void setData(int sectionNumber) {
+//		Bundle args = new Bundle();
+//		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//		this.setArguments(args);
+//	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
-		TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-		textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+//		TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//		textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 		setHasOptionsMenu(true);
 		return rootView;
 	}
@@ -53,31 +63,93 @@ public class DashboardFragment extends Fragment {
 
 	public void linkUI() {
 		elv_announcements = (EnhancedListView) getActivity().findViewById(R.id.elv_announcements);
+		elv_lessons = (EnhancedListView) getActivity().findViewById(R.id.elv_lessons);
+		elv_upcoming = (EnhancedListView) getActivity().findViewById(R.id.elv_upcoming);
 	}
 
 	public void setData() {
-		elvAdapter = new EnhancedListAdapter(getActivity(), elv_announcements);
-		elvAdapter.resetItems();
-		elv_announcements.setAdapter(elvAdapter);
+		announcements = new ArrayList<Announcement>();
+		for(int i=0; i<5; i++) {
+			announcements.add(new Announcement(0, "Announcement "+i, "some description", 0, 0, new Date()));
+		}
+		
+		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
+		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons);
+		upcomingAdapter = new UpcomingListAdapter(getActivity(), elv_upcoming);
+		
+		announcementsAdapter.resetItems();
+		lessonsAdapter.resetItems();
+		upcomingAdapter.resetItems();
+		
+		elv_announcements.setAdapter(announcementsAdapter);
+		elv_announcements.setScrollContainer(false);
+		elv_lessons.setAdapter(lessonsAdapter);
+		elv_lessons.setScrollContainer(false);
+		elv_upcoming.setAdapter(upcomingAdapter);
+		elv_upcoming.setScrollContainer(false);
+		
 		elv_announcements.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
 			@Override
 			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
 
-				final String item = (String) elvAdapter.getItem(position);
-				elvAdapter.remove(position);
+				final Announcement item = (Announcement) announcementsAdapter.getItem(position);
+				announcementsAdapter.remove(position);
+				Utils.setListViewHeightBasedOnChildren(elv_announcements);
 				return new EnhancedListView.Undoable() {
 
 					@Override
 					public void undo() {
-						elvAdapter.insert(position, item);
+						announcementsAdapter.insert(position, item);
+						Utils.setListViewHeightBasedOnChildren(elv_announcements);
 					}
 
 				};
 			}
 		});
 		
+//		elv_lessons.setDismissCallback(new EnhancedListView.OnDismissCallback() {
+//
+//			@Override
+//			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+//
+//				final String item = (String) lessonsAdapter.getItem(position);
+//				lessonsAdapter.remove(position);
+//				return new EnhancedListView.Undoable() {
+//
+//					@Override
+//					public void undo() {
+//						lessonsAdapter.insert(position, item);
+//					}
+//
+//				};
+//			}
+//		});
+//		
+//		elv_upcoming.setDismissCallback(new EnhancedListView.OnDismissCallback() {
+//
+//			@Override
+//			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+//
+//				final String item = (String) upcomingAdapter.getItem(position);
+//				upcomingAdapter.remove(position);
+//				return new EnhancedListView.Undoable() {
+//
+//					@Override
+//					public void undo() {
+//						upcomingAdapter.insert(position, item);
+//					}
+//
+//				};
+//			}
+//		});
+		
 		elv_announcements.enableSwipeToDismiss();
+		elv_announcements.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
+		
+		Utils.setListViewHeightBasedOnChildren(elv_announcements);
+		Utils.setListViewHeightBasedOnChildren(elv_lessons);
+		Utils.setListViewHeightBasedOnChildren(elv_upcoming);
 
 	}
 
@@ -121,6 +193,6 @@ public class DashboardFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
 	}
 }

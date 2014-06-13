@@ -68,8 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="8dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingBottom="8dp" >
 
             <CheckBox
                 android:id="@+id/cb_friday"
@@ -91,6 +91,27 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:text="@string/abr_sunday" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_class_color"
+                android:textSize="@dimen/component_header" />
+
+            <Button
+                android:id="@+id/btn_color"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick" />
         </LinearLayout>
 
         <LinearLayout

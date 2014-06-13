@@ -12,16 +12,16 @@ public final class R {
 		public static final int elv_popup_show = 0x7f040007;
 	}
 	public static final class color {
-		public static final int elv_btn_focused = 0x7f070004;
-		public static final int elv_btn_normal = 0x7f070005;
-		public static final int elv_btn_pressed = 0x7f070003;
-		public static final int elv_popup_bg_color = 0x7f070006;
-		public static final int elv_popup_text_color = 0x7f070008;
-		public static final int elv_separator_color = 0x7f070007;
+		public static final int elv_btn_focused = 0x7f0a0004;
+		public static final int elv_btn_normal = 0x7f0a0005;
+		public static final int elv_btn_pressed = 0x7f0a0003;
+		public static final int elv_popup_bg_color = 0x7f0a0006;
+		public static final int elv_popup_text_color = 0x7f0a0008;
+		public static final int elv_separator_color = 0x7f0a0007;
 	}
 	public static final class dimen {
-		public static final int elv_touch_slop = 0x7f080016;
-		public static final int elv_undo_bottom_offset = 0x7f080015;
+		public static final int elv_touch_slop = 0x7f0b0016;
+		public static final int elv_undo_bottom_offset = 0x7f0b0015;
 	}
 	public static final class drawable {
 		public static final int elv_ic_action_undo = 0x7f020059;
@@ -32,19 +32,19 @@ public final class R {
 		public static final int elv_undo_btn_bg_pressed = 0x7f02005e;
 	}
 	public static final class id {
-		public static final int text = 0x7f050056;
-		public static final int undo = 0x7f050057;
+		public static final int text = 0x7f080059;
+		public static final int undo = 0x7f080060;
 	}
 	public static final class layout {
-		public static final int elv_undo_popup = 0x7f03001f;
+		public static final int elv_undo_popup = 0x7f030021;
 	}
 	public static final class string {
-		public static final int elv_item_deleted = 0x7f0a000f;
-		public static final int elv_n_items_deleted = 0x7f0a0010;
-		public static final int elv_undo = 0x7f0a000d;
-		public static final int elv_undo_all = 0x7f0a000e;
+		public static final int elv_item_deleted = 0x7f07001c;
+		public static final int elv_n_items_deleted = 0x7f07001d;
+		public static final int elv_undo = 0x7f07001a;
+		public static final int elv_undo_all = 0x7f07001b;
 	}
 	public static final class style {
-		public static final int elv_fade_animation = 0x7f0b008b;
+		public static final int elv_fade_animation = 0x7f0c008b;
 	}
 }

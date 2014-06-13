@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		/* Dashboard */
 		case 0: {
 			DashboardFragment dashboardFragment = new DashboardFragment();
-			dashboardFragment.setData(position + 1);
+//			dashboardFragment.setData(position + 1);
 			fragmentManager.beginTransaction().replace(R.id.container, dashboardFragment).commit();
 		}
 			break;

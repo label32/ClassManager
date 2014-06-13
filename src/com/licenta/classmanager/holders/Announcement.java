@@ -1,7 +1,7 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Announcement implements Serializable {
 
