@@ -13,12 +13,13 @@ public class Class implements Serializable {
 	private Time start_time;
 	private Time end_time;
 	private int id;
+	private int color;
 	
 	public Class() {
 		
 	}
 	
-	public Class(int id, String name, String details, String classroom, Days days, Time start_time, Time end_time) {
+	public Class(int id, String name, String details, String classroom, Days days, Time start_time, Time end_time, int color) {
 		this.id = id;
 		this.name = name;
 		this.details = details;
@@ -26,6 +27,7 @@ public class Class implements Serializable {
 		this.days = days;
 		this.start_time = start_time;
 		this.end_time = end_time;
+		this.color = color;
 	}
 	
 	public String getClassroom() {
@@ -56,6 +58,10 @@ public class Class implements Serializable {
 		return start_time;
 	}
 	
+	public int getColor() {
+		return color;
+	}
+	
 	public void setClassroom(String classroom) {
 		this.classroom = classroom;
 	}
@@ -82,5 +88,9 @@ public class Class implements Serializable {
 	
 	public void setStart_time(Time start_time) {
 		this.start_time = start_time;
+	}
+	
+	public void setColor(int color) {
+		this.color = color;
 	}
 }

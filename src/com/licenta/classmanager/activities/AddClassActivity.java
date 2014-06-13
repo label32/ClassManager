@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class AddClassActivity extends Activity {
 	
 	private TimePicker tp_start_time, tp_end_time;
 	private Button btn_color;
+	private TextView txt_pick;
 	public static int color;
 
 	@Override
@@ -35,6 +37,7 @@ public class AddClassActivity extends Activity {
 		tp_start_time = (TimePicker) findViewById(R.id.tp_start_time);
 		tp_end_time = (TimePicker) findViewById(R.id.tp_end_time);
 		btn_color = (Button) findViewById(R.id.btn_color);
+		txt_pick = (TextView) findViewById(R.id.txt_pick);
 	}
 	
 	private void setData() {
@@ -42,7 +45,7 @@ public class AddClassActivity extends Activity {
 		tp_end_time.setIs24HourView(true);
 	}
 	
-	private void setActions() {
+	private void setActions() {;
 		btn_color.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -54,8 +57,9 @@ public class AddClassActivity extends Activity {
 					
 					@Override
 					public void onColorChanged(int color) {
-						AddClassActivity.color = Integer.valueOf(String.valueOf(color), 16);;
-						Toast.makeText(AddClassActivity.this, "color:"+color, Toast.LENGTH_LONG).show();
+						AddClassActivity.color = 0xff000000 + Integer.parseInt(Integer.toHexString(color),16);
+						Toast.makeText(AddClassActivity.this, "color:"+Integer.toHexString(color), Toast.LENGTH_LONG).show();
+						txt_pick.setBackgroundColor(AddClassActivity.color);
 					}
 				});
 				cpd.show();
