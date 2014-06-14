@@ -1,4 +1,4 @@
-package com.licenta.classmanager.adapters;
+package com.licenta.classmanager.adapters.listadapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,13 @@ import android.widget.TextView;
 import com.licenta.classmanager.R;
 import de.timroes.android.listview.EnhancedListView;
 
-public class LessonsListAdapter extends BaseAdapter {
+public class UpcomingListAdapter extends BaseAdapter {
 
     private List<String> mItems = new ArrayList<String>();
     private Activity activity;
     private EnhancedListView elv;
     
-    public LessonsListAdapter(Activity activity, EnhancedListView elv) {
+    public UpcomingListAdapter(Activity activity, EnhancedListView elv) {
     	this.activity = activity;
     	this.elv = elv;
     }
@@ -96,7 +96,7 @@ public class LessonsListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.announcement_list_item, parent, false);
+            convertView = activity.getLayoutInflater().inflate(R.layout.simple_list_item, parent, false);
             // Clicking the delete icon, will read the position of the item stored in
             // the tag and delete it from the list. So we don't need to generate a new
             // onClickListener every time the content of this view changes.
@@ -110,7 +110,7 @@ public class LessonsListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             assert convertView != null;
-            holder.mTextView = (TextView) convertView.findViewById(R.id.text);
+            holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
 
             convertView.setTag(holder);
         } else {

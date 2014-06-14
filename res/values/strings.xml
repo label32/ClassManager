@@ -19,7 +19,7 @@
     <string name="add_class">Add class</string>
     <string name="save">Save</string>
     <string name="sample_short">Sample</string>
-    <string name="sample_long">A long sample text Lorem ipsum dolores nu stiu ce etc etc</string>
+    <string name="sample_long">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</string>
     <string name="str_class">Class</string>
     <string name="str_type">Type</string>
     <string name="str_deadline">Deadline</string>
@@ -36,6 +36,7 @@
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
     <string name="choose_class_color">Pick a color:</string>
+    <string name="classroom">Classroom</string>
 
     <!-- Dashboard Fragment -->
     <string name="announcements">Announcements</string>

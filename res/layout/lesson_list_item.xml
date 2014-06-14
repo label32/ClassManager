@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
+
+    <!-- 48dp -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/list_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/list_item_background"
+        android:textColor="@android:color/white" />
+
+    <FrameLayout
+        android:id="@+id/swiping_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/class_color"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackground"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" >
+
+            <TextView
+                android:id="@+id/txt_className"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/txt_className"
+                android:layout_centerVertical="true" >
+
+                <TextView
+                    android:id="@+id/txt_startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/sample_short"
+                    android:textAppearance="?android:textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/txt_hyphen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:layout_toRightOf="@id/txt_startTime"
+                    android:textAppearance="?android:textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/txt_endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@id/txt_hyphen"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_short"
+                    android:textAppearance="?android:textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/txt_classroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:text="@string/sample_short"
+                    android:textAppearance="?android:textAppearanceSmall" />
+                
+                 <TextView
+                    android:id="@+id/txt_str_classroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/txt_classroom"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:text="@string/classroom"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </RelativeLayout>
+
+            <!--
+                 <ImageButton
+                android:id="@+id/action_delete"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="?selectableItemBackground"
+                android:contentDescription="@string/stub_img_desc"
+                android:src="@drawable/ic_action_delete" 
+                android:visibility="gone" />
+            -->
+
+
+            <!--
+                 <ImageButton
+                android:id="@+id/action_open"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="?selectableItemBackground"
+                android:contentDescription="@string/stub_img_desc"
+                android:src="@drawable/ic_action_next_item" />
+            -->
+        </RelativeLayout>
+    </FrameLayout>
+
+</FrameLayout>

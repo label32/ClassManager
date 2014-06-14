@@ -4,6 +4,7 @@ import net.margaritov.preference.colorpicker.ColorPickerDialog;
 import net.margaritov.preference.colorpicker.ColorPickerDialog.OnColorChangedListener;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 
-public class AddClassActivity extends Activity {
+public class AddClassActivity extends ActionBarActivity {
 	
 	public static final int request_code = 103;
 	

@@ -1,7 +1,6 @@
-package com.licenta.classmanager.adapters;
+package com.licenta.classmanager.adapters.listadapters;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.view.View;
@@ -10,18 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.holders.Announcement;
+import com.licenta.classmanager.holders.Lesson;
 
 import de.timroes.android.listview.EnhancedListView;
 
-public class AnnouncementsListAdapter extends BaseAdapter {
+public class LessonsListAdapter extends BaseAdapter {
 
-	private ArrayList<Announcement> announcements;
 	private Activity activity;
 	private EnhancedListView elv;
+	private ArrayList<Lesson> lessons;
 
-	public AnnouncementsListAdapter(Activity activity, EnhancedListView elv, ArrayList<Announcement> announcements) {
-		this.announcements = announcements;
+	public LessonsListAdapter(Activity activity, EnhancedListView elv, ArrayList<Lesson> lessons) {
+		this.lessons = lessons;
 		this.activity = activity;
 		this.elv = elv;
 	}
@@ -31,12 +30,12 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 	}
 
 	public void remove(int position) {
-		announcements.remove(position);
+		lessons.remove(position);
 		notifyDataSetChanged();
 	}
 
-	public void insert(int position, Announcement item) {
-		announcements.add(position, item);
+	public void insert(int position, Lesson item) {
+		lessons.add(position, item);
 		notifyDataSetChanged();
 	}
 
@@ -47,7 +46,7 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return announcements.size();
+		return lessons.size();
 	}
 
 	/**
@@ -60,7 +59,7 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public Object getItem(int position) {
-		return announcements.get(position);
+		return lessons.get(position);
 	}
 
 	/**
@@ -105,7 +104,7 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = activity.getLayoutInflater().inflate(R.layout.announcement_list_item, parent, false);
+			convertView = activity.getLayoutInflater().inflate(R.layout.lesson_list_item, parent, false);
 			// Clicking the delete icon, will read the position of the item
 			// stored in
 			// the tag and delete it from the list. So we don't need to generate
@@ -122,7 +121,11 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 
 			holder = new ViewHolder();
 			assert convertView != null;
-			holder.mTextView = (TextView) convertView.findViewById(R.id.text);
+			holder.txt_className = (TextView) convertView.findViewById(R.id.txt_className);
+			holder.txt_startTime = (TextView) convertView.findViewById(R.id.txt_startTime);
+			holder.txt_endTime = (TextView) convertView.findViewById(R.id.txt_endTime);
+			holder.txt_classroom = (TextView) convertView.findViewById(R.id.txt_classroom);
+			holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
 
 			convertView.setTag(holder);
 		} else {
@@ -130,13 +133,20 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 		}
 
 		holder.position = position;
-		holder.mTextView.setText(announcements.get(position).getTitle());
-
+		holder.txt_className.setText(lessons.get(position).getName());
+		holder.txt_classroom.setText(lessons.get(position).getClassroom());
+		holder.txt_startTime.setText(lessons.get(position).getStart_time().toString());
+		holder.txt_endTime.setText(lessons.get(position).getEnd_time().toString());
+		holder.class_color.setBackgroundColor(lessons.get(position).getColor());
 		return convertView;
 	}
 
 	private class ViewHolder {
-		TextView mTextView;
+		TextView txt_className;
+		TextView txt_startTime;
+		TextView txt_endTime;
+		TextView txt_classroom;
+		TextView class_color;
 		int position;
 	}
 

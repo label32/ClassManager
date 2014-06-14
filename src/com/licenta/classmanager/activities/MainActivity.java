@@ -73,13 +73,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		case 3: /* Notes */
 			NotesFragment notesFragment = new NotesFragment();
-			notesFragment.setData(position + 1);
+//			notesFragment.setData(position + 1);
 			fragmentManager.beginTransaction().replace(R.id.container, notesFragment).commit();
 			break;
 
 		case 4: /* Classes */
 			ClassesFragment classesFragment = new ClassesFragment();
-			classesFragment.setData(position + 1);
+//			classesFragment.setData(position + 1);
 			fragmentManager.beginTransaction().replace(R.id.container, classesFragment).commit();
 			break;
 

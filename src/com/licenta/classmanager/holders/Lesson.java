@@ -1,25 +1,26 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Class implements Serializable {
+public class Lesson implements Serializable {
 
 	private static final long serialVersionUID = -3847846767934849303L;
 	
 	private String name;
 	private String details;
 	private String classroom;
-	private Days days;
+	private ArrayList<Day> days;
 	private Time start_time;
 	private Time end_time;
 	private int id;
 	private int color;
 	
-	public Class() {
+	public Lesson() {
 		
 	}
 	
-	public Class(int id, String name, String details, String classroom, Days days, Time start_time, Time end_time, int color) {
+	public Lesson(int id, String name, String details, String classroom, ArrayList<Day> days, Time start_time, Time end_time, int color) {
 		this.id = id;
 		this.name = name;
 		this.details = details;
@@ -34,7 +35,7 @@ public class Class implements Serializable {
 		return classroom;
 	}
 	
-	public Days getDays() {
+	public ArrayList<Day> getDays() {
 		return days;
 	}
 	
@@ -66,7 +67,7 @@ public class Class implements Serializable {
 		this.classroom = classroom;
 	}
 	
-	public void setDays(Days days) {
+	public void setDays(ArrayList<Day> days) {
 		this.days = days;
 	}
 	

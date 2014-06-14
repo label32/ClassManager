@@ -36,7 +36,7 @@
             android:paddingRight="16dp" >
 
             <TextView
-                android:id="@+id/text"
+                android:id="@+id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/text"
+                android:layout_below="@id/txt_title"
                 android:layout_centerVertical="true"
                 android:text="@string/sample_long"
                 android:textAppearance="?android:textAppearanceSmall" />

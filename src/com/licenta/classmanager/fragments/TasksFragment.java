@@ -45,11 +45,17 @@ public class TasksFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_tasks, container, false);
 		setHasOptionsMenu(true);
 		
-		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager());
-		mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
+		
+		return rootView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager(), getActivity());
+		mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mViewPager.setAdapter(mTasksPagerAdapter);
 
-		return rootView;
 	}
 
 	@Override

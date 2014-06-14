@@ -1,5 +1,7 @@
 package com.licenta.classmanager.fragments;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,26 +20,28 @@ import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.AddNoteActivity;
 import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
+import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
+import com.licenta.classmanager.holders.Lesson;
+
+import de.timroes.android.listview.EnhancedListView;
 
 public class NotesFragment extends Fragment {
-	/**
-	 * The fragment argument representing the section number for this fragment.
-	 */
+
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
-	/**
-	 * Returns a new instance of this fragment for the given section number.
-	 */
-
+	private ArrayList<Lesson> notes;
+	private EnhancedListView elv_notes;
+	private ClassesListAdapter notesAdapter;
+	
 	public NotesFragment() {
 
 	}
 
-	public void setData(int sectionNumber) {
-		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		this.setArguments(args);
-	}
+//	public void setData(int sectionNumber) {
+//		Bundle args = new Bundle();
+//		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//		this.setArguments(args);
+//	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +53,30 @@ public class NotesFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		linkUI();
+		setData();
+		setActions();
+	}
+	
+	private void linkUI() {
+		elv_notes = (EnhancedListView) getActivity().findViewById(R.id.elv_notes); 
+	}
+	
+	private void setData() {
+		notesAdapter = new ClassesListAdapter(getActivity(), elv_notes);
+		notesAdapter.resetItems();
+		elv_notes.setAdapter(notesAdapter);		
+		
+	}
+	
+	private void setActions() {
+		
 	}
 
 	@Override

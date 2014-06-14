@@ -1,6 +1,7 @@
-package com.licenta.classmanager.adapters;
+package com.licenta.classmanager.adapters.listadapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.view.View;
@@ -9,17 +10,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.holders.Announcement;
 
 import de.timroes.android.listview.EnhancedListView;
 
-public class ClassesListAdapter extends BaseAdapter {
+public class AnnouncementsListAdapter extends BaseAdapter {
 
+	private ArrayList<Announcement> announcements;
 	private Activity activity;
 	private EnhancedListView elv;
-	private ArrayList<Class> classes;
 
-	public ClassesListAdapter(Activity activity, EnhancedListView elv, ArrayList<Class> classes) {
-		this.classes = classes;
+	public AnnouncementsListAdapter(Activity activity, EnhancedListView elv, ArrayList<Announcement> announcements) {
+		this.announcements = announcements;
 		this.activity = activity;
 		this.elv = elv;
 	}
@@ -29,12 +31,12 @@ public class ClassesListAdapter extends BaseAdapter {
 	}
 
 	public void remove(int position) {
-		classes.remove(position);
+		announcements.remove(position);
 		notifyDataSetChanged();
 	}
 
-	public void insert(int position, Class item) {
-		classes.add(position, item);
+	public void insert(int position, Announcement item) {
+		announcements.add(position, item);
 		notifyDataSetChanged();
 	}
 
@@ -45,7 +47,7 @@ public class ClassesListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return classes.size();
+		return announcements.size();
 	}
 
 	/**
@@ -58,7 +60,7 @@ public class ClassesListAdapter extends BaseAdapter {
 	 */
 	@Override
 	public Object getItem(int position) {
-		return classes.get(position);
+		return announcements.get(position);
 	}
 
 	/**
@@ -103,7 +105,7 @@ public class ClassesListAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = activity.getLayoutInflater().inflate(R.layout.announcement_list_item, parent, false);
+			convertView = activity.getLayoutInflater().inflate(R.layout.simple_list_item, parent, false);
 			// Clicking the delete icon, will read the position of the item
 			// stored in
 			// the tag and delete it from the list. So we don't need to generate
@@ -120,7 +122,7 @@ public class ClassesListAdapter extends BaseAdapter {
 
 			holder = new ViewHolder();
 			assert convertView != null;
-			holder.mTextView = (TextView) convertView.findViewById(R.id.text);
+			holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
 
 			convertView.setTag(holder);
 		} else {
@@ -128,7 +130,7 @@ public class ClassesListAdapter extends BaseAdapter {
 		}
 
 		holder.position = position;
-		holder.mTextView.setText(classes.get(position).getName());
+		holder.mTextView.setText(announcements.get(position).getTitle());
 
 		return convertView;
 	}

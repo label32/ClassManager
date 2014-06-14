@@ -1,8 +1,11 @@
 package com.licenta.classmanager.fragments;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -16,22 +19,31 @@ import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.AddClassActivity;
-import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
+import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
+import com.licenta.classmanager.holders.Day;
+import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Time;
+
+import de.timroes.android.listview.EnhancedListView;
 
 public class ClassesFragment extends Fragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
+	
+	private ArrayList<Lesson> classes;
+	private EnhancedListView elv_classes;
+	private ClassesListAdapter classesAdapter;
 
 	public ClassesFragment() {
 
 	}
 
-	public void setData(int sectionNumber) {
-		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		this.setArguments(args);
-	}
+//	public void setData(int sectionNumber) {
+//		Bundle args = new Bundle();
+//		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//		this.setArguments(args);
+//	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +55,30 @@ public class ClassesFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		linkUI();
+		setData();
+		setActions();
+	}
+	
+	private void linkUI() {
+		elv_classes = (EnhancedListView) getActivity().findViewById(R.id.elv_classes); 
+	}
+	
+	private void setData() {
+		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes);
+		classesAdapter.resetItems();
+		elv_classes.setAdapter(classesAdapter);		
+		
+	}
+	
+	private void setActions() {
+		
 	}
 
 	@Override

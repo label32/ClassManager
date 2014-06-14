@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,10 +18,13 @@ import android.view.ViewGroup;
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.AddNoteActivity;
 import com.licenta.classmanager.activities.AddTaskActivity;
-import com.licenta.classmanager.adapters.AnnouncementsListAdapter;
-import com.licenta.classmanager.adapters.LessonsListAdapter;
-import com.licenta.classmanager.adapters.UpcomingListAdapter;
+import com.licenta.classmanager.adapters.listadapters.AnnouncementsListAdapter;
+import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
+import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
 import com.licenta.classmanager.holders.Announcement;
+import com.licenta.classmanager.holders.Day;
+import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Time;
 import com.licenta.classmanager.utils.Utils;
 
 import de.timroes.android.listview.EnhancedListView;
@@ -37,6 +41,7 @@ public class DashboardFragment extends Fragment {
 	private LessonsListAdapter lessonsAdapter;
 	private UpcomingListAdapter upcomingAdapter;
 	private ArrayList<Announcement> announcements;
+	private ArrayList<Lesson> lessons;
 
 //	public void setData(int sectionNumber) {
 //		Bundle args = new Bundle();
@@ -73,8 +78,27 @@ public class DashboardFragment extends Fragment {
 			announcements.add(new Announcement(0, "Announcement "+i, "some description", 0, 0, new Date()));
 		}
 		
+		lessons = new ArrayList<Lesson>();
+		ArrayList<Day> days;
+		int color;
+		for(int i=0; i<5; i++) {
+			days = new ArrayList<Day>();
+			if(i%2==0) {
+				days.add(Day.Monday);
+				days.add(Day.Wednesday);
+				days.add(Day.Friday);
+				color = Color.RED;
+			}
+			else {
+				days.add(Day.Tuesday);
+				days.add(Day.Thursday);
+				color = Color.BLUE;
+			}
+			lessons.add(new Lesson(0,"Lesson "+i,"Some details",""+i, days, new Time(12,30), new Time(14,30), color));
+		}
+		
 		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
-		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons);
+		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons, lessons);
 		upcomingAdapter = new UpcomingListAdapter(getActivity(), elv_upcoming);
 		
 		announcementsAdapter.resetItems();
@@ -95,13 +119,13 @@ public class DashboardFragment extends Fragment {
 
 				final Announcement item = (Announcement) announcementsAdapter.getItem(position);
 				announcementsAdapter.remove(position);
-				Utils.setListViewHeightBasedOnChildren(elv_announcements);
+				Utils.setListViewHeightBasedOnChildren(elv_announcements, true);
 				return new EnhancedListView.Undoable() {
 
 					@Override
 					public void undo() {
 						announcementsAdapter.insert(position, item);
-						Utils.setListViewHeightBasedOnChildren(elv_announcements);
+						Utils.setListViewHeightBasedOnChildren(elv_announcements, true);
 					}
 
 				};
@@ -147,9 +171,9 @@ public class DashboardFragment extends Fragment {
 		elv_announcements.enableSwipeToDismiss();
 		elv_announcements.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
 		
-		Utils.setListViewHeightBasedOnChildren(elv_announcements);
-		Utils.setListViewHeightBasedOnChildren(elv_lessons);
-		Utils.setListViewHeightBasedOnChildren(elv_upcoming);
+		Utils.setListViewHeightBasedOnChildren(elv_announcements, true);
+		Utils.setListViewHeightBasedOnChildren(elv_lessons, false);
+		Utils.setListViewHeightBasedOnChildren(elv_upcoming, true);
 
 	}
 

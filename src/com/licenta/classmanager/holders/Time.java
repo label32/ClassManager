@@ -33,5 +33,9 @@ public class Time implements Serializable {
 	public int getMinute() {
 		return minute;
 	}
+	
+	public String toString() {
+		return ""+hour+":"+minute;
+	}
 
 }
