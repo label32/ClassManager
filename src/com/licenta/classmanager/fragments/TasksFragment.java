@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.AddTaskActivity;
+import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.TasksPagerAdapter;
@@ -85,8 +85,8 @@ public class TasksFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_add_task) {
-			Intent addTaskIntent = new Intent(getActivity(), AddTaskActivity.class);
-			startActivityForResult(addTaskIntent, AddTaskActivity.request_code);
+			Intent addTaskIntent = new Intent(getActivity(), TaskAddEditActivity.class);
+			startActivityForResult(addTaskIntent, TaskAddEditActivity.add_request_code);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -94,7 +94,7 @@ public class TasksFragment extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == AddTaskActivity.request_code) {
+		if(requestCode == TaskAddEditActivity.add_request_code) {
 			// do stuff...
 		}
 	}

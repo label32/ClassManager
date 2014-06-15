@@ -1,4 +1,10 @@
 Activity request codes:
 101 - add task activity
-102 - add note activity
-103 - add class activity
+102 - edit task activity
+103 - details task activity 
+104 - add note activity
+105 - edit note activity
+106 - details note activity
+107 - add class activity
+108 - edit class activity
+109 - details class activity

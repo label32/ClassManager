@@ -1,5 +1,7 @@
 package com.licenta.classmanager.activities;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,13 +20,16 @@ import com.licenta.classmanager.fragments.NavigationDrawerFragment;
 import com.licenta.classmanager.fragments.NotesFragment;
 import com.licenta.classmanager.fragments.SettingsFragment;
 import com.licenta.classmanager.fragments.TasksFragment;
+import com.licenta.classmanager.holders.Lesson;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 	public final static String OFFLINE = "com.licenta.classmanager.MainActivity.OFFLINE";
+	public final static String REQUEST_CODE = "com.licenta.classmanager.MainActivity.REQUEST_CODE";
 	
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 	private CharSequence mTitle;
+	private ArrayList<Lesson> classes;
 	public boolean offline;
 
 	@Override
@@ -38,7 +43,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		
 		offline = getIntent().getBooleanExtra(OFFLINE, true);
+		loadData();
 
+	}
+	
+	private void loadData() {
+		
 	}
 
 	@Override

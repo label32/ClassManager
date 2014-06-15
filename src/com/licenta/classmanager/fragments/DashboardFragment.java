@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.AddNoteActivity;
-import com.licenta.classmanager.activities.AddTaskActivity;
+import com.licenta.classmanager.activities.NoteAddEditActivity;
+import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.adapters.listadapters.AnnouncementsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
@@ -190,13 +190,13 @@ public class DashboardFragment extends Fragment {
 		int id = item.getItemId();
 		switch (id) {
 		case R.id.action_add_task: {
-			Intent addTaskIntent = new Intent(getActivity(), AddTaskActivity.class);
-			startActivityForResult(addTaskIntent, AddTaskActivity.request_code);
+			Intent addTaskIntent = new Intent(getActivity(), TaskAddEditActivity.class);
+			startActivityForResult(addTaskIntent, TaskAddEditActivity.add_request_code);
 		}
 			break;
 		case R.id.action_add_note: {
-			Intent addNoteIntent = new Intent(getActivity(), AddNoteActivity.class);
-			startActivityForResult(addNoteIntent, AddNoteActivity.request_code);
+			Intent addNoteIntent = new Intent(getActivity(), NoteAddEditActivity.class);
+			startActivityForResult(addNoteIntent, NoteAddEditActivity.add_request_code);
 		}
 			break;
 		}
@@ -207,7 +207,7 @@ public class DashboardFragment extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case AddTaskActivity.request_code: {
+		case TaskAddEditActivity.add_request_code: {
 			// do stuff
 		}
 			break;

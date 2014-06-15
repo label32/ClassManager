@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.AddNoteActivity;
+import com.licenta.classmanager.activities.NoteAddEditActivity;
 import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
@@ -106,8 +106,8 @@ public class NotesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if(id == R.id.action_add_note) {
-			Intent addNoteIntent = new Intent(getActivity(), AddNoteActivity.class);
-			startActivityForResult(addNoteIntent, AddNoteActivity.request_code);
+			Intent addNoteIntent = new Intent(getActivity(), NoteAddEditActivity.class);
+			startActivityForResult(addNoteIntent, NoteAddEditActivity.add_request_code);
 		}
 		return super.onOptionsItemSelected(item);
 	}

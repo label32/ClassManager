@@ -32,11 +32,11 @@ public final class R {
 		public static final int elv_undo_btn_bg_pressed = 0x7f02005e;
 	}
 	public static final class id {
-		public static final int text = 0x7f08005e;
-		public static final int undo = 0x7f08005f;
+		public static final int text = 0x7f080061;
+		public static final int undo = 0x7f080062;
 	}
 	public static final class layout {
-		public static final int elv_undo_popup = 0x7f030020;
+		public static final int elv_undo_popup = 0x7f030023;
 	}
 	public static final class string {
 		public static final int elv_item_deleted = 0x7f07001c;

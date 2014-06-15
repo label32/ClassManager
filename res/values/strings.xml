@@ -35,8 +35,9 @@
     <string name="str_class_name">Class name</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
-    <string name="choose_class_color">Pick a color:</string>
+    <string name="class_color">Class color</string>
     <string name="classroom">Classroom</string>
+    <string name="schedule">Schedule</string>
 
     <!-- Dashboard Fragment -->
     <string name="announcements">Announcements</string>
@@ -101,5 +102,8 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_class_details">ClassDetailsActivity</string>
+    <string name="title_activity_note_details">NoteDetailsActivity</string>
+    <string name="title_activity_task_details">TaskDetailsActivity</string>
 
 </resources>

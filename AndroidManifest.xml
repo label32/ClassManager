@@ -18,7 +18,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.licenta.classmanager.activities.AddTaskActivity"
+            android:name="com.licenta.classmanager.activities.TaskAddEditActivity"
             android:label="@string/title_activity_add_task"
             android:parentActivityName="com.licenta.classmanager.MainActivity" >
             <meta-data
@@ -26,11 +26,11 @@
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name="com.licenta.classmanager.activities.AddNoteActivity"
+            android:name="com.licenta.classmanager.activities.NoteAddEditActivity"
             android:label="@string/title_activity_add_note" >
         </activity>
         <activity
-            android:name="com.licenta.classmanager.activities.AddClassActivity"
+            android:name="com.licenta.classmanager.activities.ClassAddEditActivity"
             android:label="@string/title_activity_add_class" >
         </activity>
         <activity
@@ -49,6 +49,18 @@
         <activity
             android:name="com.licenta.classmanager.activities.RegisterActivity"
             android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name="com.licenta.classmanager.activities.ClassDetailsActivity"
+            android:label="@string/title_activity_class_details" >
+        </activity>
+        <activity
+            android:name="com.licenta.classmanager.activities.NoteDetailsActivity"
+            android:label="@string/title_activity_note_details" >
+        </activity>
+        <activity
+            android:name="com.licenta.classmanager.activities.TaskDetailsActivity"
+            android:label="@string/title_activity_task_details" >
         </activity>
     </application>
 

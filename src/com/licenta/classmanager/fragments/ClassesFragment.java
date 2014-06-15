@@ -18,7 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.AddClassActivity;
+import com.licenta.classmanager.activities.ClassAddEditActivity;
+import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
 import com.licenta.classmanager.holders.Day;
@@ -108,8 +109,9 @@ public class ClassesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if(id == R.id.action_add_class) {
-			Intent intent = new Intent(getActivity(), AddClassActivity.class);
-			startActivityForResult(intent, AddClassActivity.request_code);
+			Intent intent = new Intent(getActivity(), ClassAddEditActivity.class);
+			intent.putExtra(MainActivity.REQUEST_CODE, ClassAddEditActivity.add_request_code);
+			startActivityForResult(intent, ClassAddEditActivity.add_request_code);
 		}
 		return super.onOptionsItemSelected(item);
 	}

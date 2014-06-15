@@ -7,9 +7,10 @@ import android.view.MenuInflater;
 
 import com.licenta.classmanager.R;
 
-public class AddTaskActivity extends ActionBarActivity {
+public class TaskAddEditActivity extends ActionBarActivity {
 
-	public static final int request_code = 101;
+	public static final int add_request_code = 101;
+	public static final int edit_request_code = 102;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -7,9 +7,10 @@ import android.view.MenuInflater;
 
 import com.licenta.classmanager.R;
 
-public class AddNoteActivity extends ActionBarActivity {
+public class NoteAddEditActivity extends ActionBarActivity {
 	
-	public static final int request_code = 102;
+	public static final int add_request_code = 104;
+	public static final int edit_request_code = 105;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

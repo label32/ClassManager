@@ -2,6 +2,7 @@ package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Lesson implements Serializable {
 
@@ -13,11 +14,18 @@ public class Lesson implements Serializable {
 	private ArrayList<Day> days;
 	private Time start_time;
 	private Time end_time;
-	private int id;
 	private int color;
 	
-	public Lesson() {
-		
+	private int id;
+	private String local_id;
+	private Random r;
+	
+	public Lesson(String name) {
+		this.name = name;
+		r = new Random();
+		int rand = r.nextInt(Integer.MAX_VALUE);
+		int hash = hash(name);
+		local_id = ""+rand+hash;
 	}
 	
 	public Lesson(int id, String name, String details, String classroom, ArrayList<Day> days, Time start_time, Time end_time, int color) {
@@ -29,6 +37,10 @@ public class Lesson implements Serializable {
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.color = color;
+		r = new Random();
+		int rand = r.nextInt(Integer.MAX_VALUE);
+		int hash = hash(name);
+		local_id = ""+rand+hash;
 	}
 	
 	public String getClassroom() {
@@ -94,4 +106,18 @@ public class Lesson implements Serializable {
 	public void setColor(int color) {
 		this.color = color;
 	}
+	
+	private int hash(String s) {
+		int hash=7;
+		for (int i=0; i < s.length(); i++) {
+		    hash = hash*31+s.charAt(i);
+		}
+		return hash;
+	}
+	
+	public String getLocal_id() {
+		return local_id;
+	}
+	
+	
 }
