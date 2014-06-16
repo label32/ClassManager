@@ -7,6 +7,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class Utils {
+	
+	public static int hash(String s) {
+		int hash=7;
+		for (int i=0; i < s.length(); i++) {
+		    hash = hash*31+s.charAt(i);
+		}
+		return hash;
+	}
+	
 	public static void setListViewHeightBasedOnChildren(ListView listView, boolean special) {
 		int listItem_height = 0;
 		ListAdapter listAdapter = listView.getAdapter();

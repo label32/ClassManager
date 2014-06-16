@@ -3,6 +3,7 @@ package com.licenta.classmanager.adapters.listadapters;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,19 +11,20 @@ import android.widget.TextView;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Task;
 
 import de.timroes.android.listview.EnhancedListView;
 
-public class ClassesListAdapter extends BaseAdapter {
+public class TasksListAdapter extends BaseAdapter {
 
-    private Activity activity;
+    private LayoutInflater inflater;
     private EnhancedListView elv;
-    private ArrayList<Lesson> classes;
+    private ArrayList<Task> tasks;
     
-    public ClassesListAdapter(Activity activity, EnhancedListView elv, ArrayList<Lesson> classes) {
-    	this.activity = activity;
+    public TasksListAdapter(LayoutInflater inflater, EnhancedListView elv, ArrayList<Task> tasks) {
+    	this.inflater = inflater;
     	this.elv = elv;
-    	this.classes = classes;
+    	this.tasks = tasks;
     }
 
     public void resetItems() {
@@ -30,12 +32,12 @@ public class ClassesListAdapter extends BaseAdapter {
     }
 
     public void remove(int position) {
-        classes.remove(position);
+        tasks.remove(position);
         notifyDataSetChanged();
     }
 
-    public void insert(int position, Lesson item) {
-        classes.add(position, item);
+    public void insert(int position, Task item) {
+        tasks.add(position, item);
         notifyDataSetChanged();
     }
 
@@ -46,7 +48,7 @@ public class ClassesListAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return classes.size();
+        return tasks.size();
     }
 
     /**
@@ -58,7 +60,7 @@ public class ClassesListAdapter extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return classes.get(position);
+        return tasks.get(position);
     }
 
     /**
@@ -95,7 +97,7 @@ public class ClassesListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.simple_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.simple_list_item, parent, false);
             // Clicking the delete icon, will read the position of the item stored in
             // the tag and delete it from the list. So we don't need to generate a new
             // onClickListener every time the content of this view changes.
@@ -118,8 +120,8 @@ public class ClassesListAdapter extends BaseAdapter {
         }
 
         holder.position = position;
-        holder.mTextView.setText(classes.get(position).getName());
-        holder.class_color.setBackgroundColor(classes.get(position).getColor());
+        holder.mTextView.setText(tasks.get(position).getTitle());
+        //holder.class_color.setBackgroundColor(tasks.get(position).getLesson().getColor());
 
         return convertView;
     }

@@ -77,7 +77,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		case 2: /* Tasks */
 			TasksFragment tasksFragment = new TasksFragment();
-			tasksFragment.setData(position + 1);
+//			tasksFragment.setData(position + 1);
 			fragmentManager.beginTransaction().replace(R.id.container, tasksFragment).commit();
 			break;
 

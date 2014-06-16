@@ -22,8 +22,8 @@
                 android:text="@string/str_class"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_class"
+            <Spinner
+                android:id="@+id/spinner_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -40,8 +40,8 @@
                 android:text="@string/str_type"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_type"
+            <Spinner
+                android:id="@+id/spinner_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -58,10 +58,11 @@
                 android:text="@string/str_deadline"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_deadline"
+            <DatePicker
+                android:id="@+id/dp_deadline"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,10 +77,11 @@
                 android:text="@string/str_title"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_title"
+            <EditText
+                android:id="@+id/et_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </LinearLayout>
         
          <LinearLayout
@@ -94,10 +96,13 @@
                 android:text="@string/str_details"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_details"
+            <EditText
+                android:id="@+id/et_details"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minLines="5"
+                android:inputType="textMultiLine" />
         </LinearLayout>
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.licenta.classmanager.dao;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,11 +27,28 @@ public class ClassesDao extends Dao {
 		return (Lesson) getData(new File(key.getAbsolutePath()));
 	}
 
-	public void deleteClass(Lesson contact) {
-		if (!deleteData(new File(classes_dir, contact.getLocal_id()))) {
+	public void deleteClass(Lesson lesson) {
+		if (!deleteData(new File(classes_dir, lesson.getLocal_id()))) {
 
 			Log.e("CONTACT_DELETE", "Class not deleted!");
-			Log.e("CONTACT_DELETE", getReason(new File(classes_dir, contact.getLocal_id())));
+			Log.e("CONTACT_DELETE", getReason(new File(classes_dir, lesson.getLocal_id())));
 		}
+	}
+	
+	public void putClasses(ArrayList<Lesson> lessons) {
+		for (int i = 0; i < lessons.size(); i++) {
+			putClass(lessons.get(i));
+		}
+	}
+
+	public ArrayList<Lesson> getClasses() {
+		ArrayList<Lesson> classes = new ArrayList<Lesson>();
+		for (File f : classes_dir.listFiles()) {
+			if (f == null) {
+				return classes;
+			}
+			classes.add(getClass(f));
+		}
+		return classes;
 	}
 }

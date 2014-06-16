@@ -22,13 +22,14 @@
                 android:text="@string/str_class_name"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_className"
+            <EditText
+                android:id="@+id/et_className"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </LinearLayout>
-
-        <LinearLayout
+        
+         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -40,13 +41,14 @@
                 android:text="@string/classroom"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_classroom"
+            <EditText
+                android:id="@+id/et_classroom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </LinearLayout>
-
-        <LinearLayout
+        
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -62,18 +64,18 @@
 
             <Button
                 android:id="@+id/btn_color"
-                android:enabled="false"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:background="@color/black"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        
+          <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:background="@color/black" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/schedule"
-            android:textSize="@dimen/component_header" />
+                android:text="@string/schedule"
+                android:textSize="@dimen/component_header" />
+        
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +86,7 @@
                 android:id="@+id/cb_monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:clickable="true"
                 android:padding="2dp"
                 android:text="@string/abr_monday" />
 
@@ -92,7 +94,6 @@
                 android:id="@+id/cb_tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_tuesday" />
 
@@ -100,7 +101,6 @@
                 android:id="@+id/cb_wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_wednesday" />
 
@@ -108,7 +108,6 @@
                 android:id="@+id/cb_thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_thursday" />
         </LinearLayout>
@@ -124,7 +123,6 @@
                 android:id="@+id/cb_friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_friday" />
 
@@ -132,7 +130,6 @@
                 android:id="@+id/cb_saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_saturday" />
 
@@ -140,53 +137,54 @@
                 android:id="@+id/cb_sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:padding="2dp"
                 android:text="@string/abr_sunday" />
         </LinearLayout>
 
+       
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal" >
+            android:orientation="vertical"
+            android:paddingBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_time"
-                android:layout_gravity="left"
                 android:textSize="@dimen/component_header" />
-            
-            <TextView
-                android:id="@+id/txt_startTime"
-                android:layout_width="fill_parent"
-                android:gravity="right"
+
+            <TimePicker
+                android:id="@+id/tp_start_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/start_time"
-                android:textSize="@dimen/component_header" />
+                android:scaleX="0.75"
+                android:scaleY="0.75"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp" />
         </LinearLayout>
 
-         <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal" >
+            android:orientation="vertical"
+            android:paddingBottom="20dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/end_time"
                 android:textSize="@dimen/component_header" />
-            
-            <TextView
-                android:id="@+id/txt_endTime"
-                 android:layout_width="fill_parent"
-                android:gravity="right"
+
+            <TimePicker
+                android:id="@+id/tp_end_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/start_time"
-                android:textSize="@dimen/component_header" />
+                android:scaleX="0.75"
+                android:scaleY="0.75"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -201,10 +199,13 @@
                 android:text="@string/str_details"
                 android:textSize="@dimen/component_header" />
 
-            <TextView
-                android:id="@+id/txt_details"
+            <EditText
+                android:id="@+id/et_details"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="5" />
         </LinearLayout>
     </LinearLayout>
 

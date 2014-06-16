@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.margaritov.preference.colorpicker.ColorPickerDialog;
 import net.margaritov.preference.colorpicker.ColorPickerDialog.OnColorChangedListener;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -20,14 +21,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Lesson;
 import com.licenta.classmanager.holders.Time;
 
 public class ClassAddEditActivity extends ActionBarActivity {
 	
-	public static final String EXTRA_CLASS = "com.licenta.classmanager.AddEditClassActivity.CLASS";
+	public static final String EXTRA_CLASS = "com.licenta.classmanager.CLASS";
 	
 	public static final int add_request_code = 107;
 	public static final int edit_request_code = 108;
@@ -36,15 +36,15 @@ public class ClassAddEditActivity extends ActionBarActivity {
 	private EditText et_className, et_details, et_classroom;
 	private Button btn_color;
 	private CheckBox cb_monday, cb_tuesday, cb_wednesday, cb_thursday, cb_friday, cb_saturday, cb_sunday;
-	private ClassesDao dao;
 	private int request_code;
+	private String class_id;
 	private Lesson lesson;
-	public static int color = 0;
+	public static int color = 0xff000000 + Integer.parseInt(Integer.toHexString(0),16);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_class);
+		setContentView(R.layout.activity_class_add);
 		linkUI();
 		setData();
 		setActions();
@@ -76,6 +76,7 @@ public class ClassAddEditActivity extends ActionBarActivity {
 		if(request_code == edit_request_code) {
 			lesson = (Lesson) intent.getSerializableExtra(EXTRA_CLASS);
 			if(lesson!=null) {
+				class_id = lesson.getLocal_id();
 				et_className.setText(lesson.getName());
 				et_details.setText(lesson.getDetails());
 				et_classroom.setText(lesson.getClassroom());
@@ -167,8 +168,11 @@ public class ClassAddEditActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if(id == R.id.action_save) {
-			dao = new ClassesDao(this);
-			dao.putClass(getClassData());
+			Lesson l = getClassData();
+			l.setLocal_id(class_id);
+			Intent result = new Intent();
+			result.putExtra(EXTRA_CLASS, l);
+			setResult(Activity.RESULT_OK, result);
 			this.finish();
 		}
 		return super.onOptionsItemSelected(item);

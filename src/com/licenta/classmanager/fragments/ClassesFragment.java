@@ -1,11 +1,11 @@
 package com.licenta.classmanager.fragments;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -15,16 +15,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.ClassAddEditActivity;
+import com.licenta.classmanager.activities.ClassDetailsActivity;
 import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
-import com.licenta.classmanager.holders.Day;
+import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.holders.Lesson;
-import com.licenta.classmanager.holders.Time;
 
 import de.timroes.android.listview.EnhancedListView;
 
@@ -35,7 +37,8 @@ public class ClassesFragment extends Fragment {
 	private ArrayList<Lesson> classes;
 	private EnhancedListView elv_classes;
 	private ClassesListAdapter classesAdapter;
-
+	private ClassesDao dao;
+	
 	public ClassesFragment() {
 
 	}
@@ -72,14 +75,72 @@ public class ClassesFragment extends Fragment {
 	}
 	
 	private void setData() {
-		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes);
-		classesAdapter.resetItems();
+		dao = new ClassesDao(getActivity());
+		classes = dao.getClasses();
+		if(classes == null)
+			classes = new ArrayList<Lesson>();
+		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes, classes);
 		elv_classes.setAdapter(classesAdapter);		
 		
 	}
 	
 	private void setActions() {
-		
+		elv_classes.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getActivity(), ClassDetailsActivity.class);
+				intent.putExtra(ClassDetailsActivity.EXTRA_CLASS, classes.get(position));
+				intent.putExtra(ClassDetailsActivity.EXTRA_CLASS_POSITION, position);
+				startActivityForResult(intent, ClassDetailsActivity.request_code);
+			}
+		});
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+		case ClassDetailsActivity.request_code: {
+			if(resultCode == Activity.RESULT_OK) {
+				Lesson lesson = (Lesson) data.getSerializableExtra(ClassDetailsActivity.EXTRA_CLASS);
+				int position = data.getIntExtra(ClassDetailsActivity.EXTRA_CLASS_POSITION, -1);
+				updateClass(lesson, position);
+			}
+		} break;
+		case ClassAddEditActivity.add_request_code: {
+			if(resultCode == Activity.RESULT_OK) {
+				Lesson lesson = (Lesson) data.getSerializableExtra(ClassAddEditActivity.EXTRA_CLASS);
+				addClass(lesson);
+			}
+		} break;
+		}
+	}
+	
+	public void addClass(Lesson lesson) {
+		dao.putClass(lesson);
+		classes.add(lesson);
+		updateUI();
+	}
+	
+	public void updateClass(Lesson lesson, int position) {
+		dao.deleteClass(lesson);
+		dao.putClass(lesson);
+		classes.set(position, lesson);
+		updateUI();
+	}
+	
+	public void deleteClass(Lesson lesson) {
+		dao.deleteClass(lesson);
+		classes.remove(lesson);
+		updateUI();
+	}
+	
+	public void updateUI() {
+		Lesson[] temp = classes.toArray(new Lesson[classes.size()]);
+		Arrays.sort(temp);
+		classes = new ArrayList<Lesson>(Arrays.asList(temp));
+		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes, classes);
+		elv_classes.setAdapter(classesAdapter);
 	}
 
 	@Override

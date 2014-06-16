@@ -1,5 +1,7 @@
 package com.licenta.classmanager.fragments;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
@@ -16,10 +18,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.activities.MainActivity;
+import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.TasksPagerAdapter;
+import com.licenta.classmanager.holders.Task;
 
 public class TasksFragment extends Fragment {
 	/**
@@ -27,6 +30,7 @@ public class TasksFragment extends Fragment {
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
+	private ArrayList<Task> tasks;
 	private TasksPagerAdapter mTasksPagerAdapter;
 	private ViewPager mViewPager;
 
@@ -34,18 +38,16 @@ public class TasksFragment extends Fragment {
 
 	}
 
-	public void setData(int sectionNumber) {
-		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		this.setArguments(args);
-	}
+//	public void setData(int sectionNumber) {
+//		Bundle args = new Bundle();
+//		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//		this.setArguments(args);
+//	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_tasks, container, false);
 		setHasOptionsMenu(true);
-		
-		
 		return rootView;
 	}
 	
@@ -55,7 +57,22 @@ public class TasksFragment extends Fragment {
 		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager(), getActivity());
 		mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mViewPager.setAdapter(mTasksPagerAdapter);
+		linkUI();
+		setData();
+		setActions();
 
+	}
+	
+	private void linkUI() {
+		
+	}
+	
+	private void setData() {
+		
+	}
+	
+	private void setActions() {
+		
 	}
 
 	@Override
@@ -102,6 +119,6 @@ public class TasksFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+		//((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
 	}
 }

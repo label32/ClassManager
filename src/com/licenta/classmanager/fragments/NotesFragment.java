@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.NoteAddEditActivity;
-import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
+import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
 import com.licenta.classmanager.holders.Lesson;
 
 import de.timroes.android.listview.EnhancedListView;
@@ -31,7 +31,7 @@ public class NotesFragment extends Fragment {
 
 	private ArrayList<Lesson> notes;
 	private EnhancedListView elv_notes;
-	private ClassesListAdapter notesAdapter;
+	private UpcomingListAdapter notesAdapter;
 	
 	public NotesFragment() {
 
@@ -69,7 +69,7 @@ public class NotesFragment extends Fragment {
 	}
 	
 	private void setData() {
-		notesAdapter = new ClassesListAdapter(getActivity(), elv_notes);
+		notesAdapter = new UpcomingListAdapter(getActivity(), elv_notes);
 		notesAdapter.resetItems();
 		elv_notes.setAdapter(notesAdapter);		
 		
