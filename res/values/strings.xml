@@ -89,16 +89,24 @@
     <string name="abr_saturday">Sat</string>
     <string name="abr_sunday">Sun</string>
 
+    <string-array name="task_types">
+        <item>Assignment</item>
+        <item>Project</item>
+        <item>Exam</item>
+    </string-array>
+    
     <string-array name="tasks_spinner_items">
         <item>Date</item>
         <item>Class</item>
         <item>Type</item>
     </string-array>
+    
     <string-array name="notes_spinner_items">
         <item>Date</item>
         <item>Class</item>
         <item>Type</item>
     </string-array>
+    
     <string-array name="classes_spinner_items">
         <item>Date</item>
         <item>Type</item>

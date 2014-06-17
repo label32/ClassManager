@@ -1,6 +1,7 @@
 package com.licenta.classmanager.fragments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
@@ -12,14 +13,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.MainActivity;
-import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.TasksPagerAdapter;
 import com.licenta.classmanager.holders.Task;
@@ -57,24 +55,8 @@ public class TasksFragment extends Fragment {
 		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager(), getActivity());
 		mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mViewPager.setAdapter(mTasksPagerAdapter);
-		linkUI();
-		setData();
-		setActions();
-
 	}
 	
-	private void linkUI() {
-		
-	}
-	
-	private void setData() {
-		
-	}
-	
-	private void setActions() {
-		
-	}
-
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.tasks, menu);
@@ -97,24 +79,18 @@ public class TasksFragment extends Fragment {
 
 		getActivity().getActionBar().setListNavigationCallbacks(mCustomSpinnerAdapter, mSpinnerOnNavigationListener);
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_add_task) {
-			Intent addTaskIntent = new Intent(getActivity(), TaskAddEditActivity.class);
-			startActivityForResult(addTaskIntent, TaskAddEditActivity.add_request_code);
-		}
-		return super.onOptionsItemSelected(item);
-	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == TaskAddEditActivity.add_request_code) {
-			// do stuff...
-		}
-	}
+        super.onActivityResult(requestCode, resultCode, data);
+
+        List<Fragment> fragments = getChildFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
 
 	@Override
 	public void onAttach(Activity activity) {

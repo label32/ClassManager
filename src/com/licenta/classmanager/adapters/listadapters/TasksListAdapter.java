@@ -121,7 +121,7 @@ public class TasksListAdapter extends BaseAdapter {
 
         holder.position = position;
         holder.mTextView.setText(tasks.get(position).getTitle());
-        //holder.class_color.setBackgroundColor(tasks.get(position).getLesson().getColor());
+        holder.class_color.setBackgroundColor(tasks.get(position).getLesson().getColor());
 
         return convertView;
     }

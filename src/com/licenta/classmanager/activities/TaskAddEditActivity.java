@@ -15,11 +15,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
-import com.licenta.classmanager.adapters.TaskClassSpinnerAdapter;
 import com.licenta.classmanager.dao.ClassesDao;
+import com.licenta.classmanager.dao.TasksDao;
+import com.licenta.classmanager.holders.Date;
 import com.licenta.classmanager.holders.Lesson;
 import com.licenta.classmanager.holders.Task;
+import com.licenta.classmanager.holders.TaskType;
 
 public class TaskAddEditActivity extends ActionBarActivity {
 
@@ -34,6 +35,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 	private int request_code;
 	private Task task;
 	private ArrayList<Lesson> classes;
+	private ClassesDao dao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +57,60 @@ public class TaskAddEditActivity extends ActionBarActivity {
 	private void setData() {
 		Intent intent = getIntent();
 		request_code = intent.getIntExtra(MainActivity.REQUEST_CODE, -1);
+		setSpinners();
 		if (request_code == edit_request_code) {
 			task = (Task) intent.getSerializableExtra(EXTRA_TASK);
 			if (task != null) {
-
+				setTaskData();
 			} else {
 				Log.e("INTENT_ERROR", "Received object is null: lesson");
 			}
-		} else {
-			ClassesDao dao = new ClassesDao(this);
-			classes = dao.getClasses();
-			TaskClassSpinnerAdapter classSpinnerAdapter = new TaskClassSpinnerAdapter(this,
-					android.R.layout.simple_spinner_item, classes, getString(R.string.class_spinner_title));
-			classSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-					makeArray(classes));
-			aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			spinner_class.setAdapter(aa);
-			spinner_class.setSelection(-1);
 		}
+	}
+	
+	private void setTaskData() {
+		int class_position = classes.indexOf(task.getLesson());
+		spinner_class.setSelection(class_position);
+		spinner_type.setSelection(task.getType().getCode()-1);
+		dp_deadline.updateDate(task.getDeadline().getYear(), task.getDeadline().getMonth(), task.getDeadline().getDay());
+		et_title.setText(task.getTitle());
+		et_details.setText(task.getDetails());
+	}
+	
+	private void setSpinners() {
+		dao = new ClassesDao(this);
+		classes = dao.getClasses();
+
+		ArrayAdapter<String> classes_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				makeArray(classes));
+		classes_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_class.setAdapter(classes_adapter);
+
+		ArrayAdapter<CharSequence> type_adapter = ArrayAdapter.createFromResource(this, R.array.task_types,
+				android.R.layout.simple_spinner_item);
+		type_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_type.setAdapter(type_adapter);
+
+	}
+
+	private Task getTaskData() {
+		int position = spinner_class.getSelectedItemPosition();
+		Lesson l = classes.get(position);
+		TaskType type = TaskType.Assignment;
+		switch (spinner_type.getSelectedItemPosition()) {
+		case 1:
+			type = TaskType.Project;
+			break;
+		case 2:
+			type = TaskType.Exam;
+			break;
+		}
+		String title = et_title.getText().toString();
+		String details = et_details.getText().toString();
+		int day = dp_deadline.getDayOfMonth();
+		int month = dp_deadline.getMonth();
+		int year = dp_deadline.getYear();
+		return new Task(0, l, type, new Date(day, month, year), title, details, false);
 	}
 
 	private String[] makeArray(ArrayList<Lesson> classes) {
@@ -97,7 +134,11 @@ public class TaskAddEditActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_save) {
-
+			Task task = getTaskData();
+			Intent intent = new Intent();
+			intent.putExtra(EXTRA_TASK, task);
+			setResult(RESULT_OK, intent);
+			this.finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}

@@ -1,7 +1,6 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Random;
 
 import com.licenta.classmanager.utils.Utils;

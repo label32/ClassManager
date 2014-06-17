@@ -19,9 +19,10 @@ public final class R {
         public static final int elv_popup_show=0x7f040007;
     }
     public static final class array {
-        public static final int classes_spinner_items=0x7f0d0002;
-        public static final int notes_spinner_items=0x7f0d0001;
-        public static final int tasks_spinner_items=0x7f0d0000;
+        public static final int classes_spinner_items=0x7f0d0003;
+        public static final int notes_spinner_items=0x7f0d0002;
+        public static final int task_types=0x7f0d0000;
+        public static final int tasks_spinner_items=0x7f0d0001;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
