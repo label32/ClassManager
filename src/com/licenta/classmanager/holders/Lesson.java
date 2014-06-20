@@ -45,6 +45,69 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		int hash = Utils.hash(name);
 		local_id = "" + rand + hash;
 	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((classroom == null) ? 0 : classroom.hashCode());
+		result = prime * result + color;
+		result = prime * result + ((days == null) ? 0 : days.hashCode());
+		result = prime * result + ((details == null) ? 0 : details.hashCode());
+		result = prime * result + ((end_time == null) ? 0 : end_time.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((start_time == null) ? 0 : start_time.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lesson other = (Lesson) obj;
+		if (classroom == null) {
+			if (other.classroom != null)
+				return false;
+		} else if (!classroom.equals(other.classroom))
+			return false;
+		if (color != other.color)
+			return false;
+		if (days == null) {
+			if (other.days != null)
+				return false;
+		} else if (!days.equals(other.days))
+			return false;
+		if (details == null) {
+			if (other.details != null)
+				return false;
+		} else if (!details.equals(other.details))
+			return false;
+		if (end_time == null) {
+			if (other.end_time != null)
+				return false;
+		} else if (!end_time.equals(other.end_time))
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (start_time == null) {
+			if (other.start_time != null)
+				return false;
+		} else if (!start_time.equals(other.start_time))
+			return false;
+		return true;
+	}
 
 	public int compareTo(Lesson lesson) {
 		return lesson.getName().compareTo(this.name);

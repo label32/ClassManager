@@ -15,8 +15,8 @@ import com.licenta.classmanager.holders.Task;
 
 public class TaskDetailsActivity extends ActionBarActivity {
 
-	public static final String EXTRA_TASK = "com.licenta.classmanager.EXTRA_TASK";
-	public static final String EXTRA_TASK_POSITION = "com.licenta.classmanager.EXTRA_TASK_POSITION";
+	public static final String EXTRA_TASK = "com.licenta.classmanager.TASK";
+	public static final String EXTRA_TASK_POSITION = "com.licenta.classmanager.TASK_POSITION";
 	
 	public static final int request_code = 103;
 	

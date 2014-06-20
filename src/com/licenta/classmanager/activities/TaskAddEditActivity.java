@@ -108,7 +108,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 		String title = et_title.getText().toString();
 		String details = et_details.getText().toString();
 		int day = dp_deadline.getDayOfMonth();
-		int month = dp_deadline.getMonth();
+		int month = dp_deadline.getMonth()+1;
 		int year = dp_deadline.getYear();
 		return new Task(0, l, type, new Date(day, month, year), title, details, false);
 	}

@@ -1,5 +1,7 @@
 package com.licenta.classmanager.fragments;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +20,8 @@ import com.google.gson.GsonBuilder;
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.WelcomeActivity;
 import com.licenta.classmanager.holders.User;
+import com.licenta.classmanager.services.DataService;
+import com.licenta.classmanager.services.ServiceCallback;
 
 public class SettingsFragment extends Fragment {
 
@@ -66,10 +70,25 @@ public class SettingsFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				User u = new User(0, 2, "Local json user", "email@email.com", "pass2");
-				GsonBuilder builder = new GsonBuilder();
-		        Gson gson = builder.create();
-		        Toast.makeText(getActivity(), gson.toJson(u), Toast.LENGTH_LONG).show();
+//				User u = new User(0, 2, "Local json user", "email@email.com", "pass2");
+//				GsonBuilder builder = new GsonBuilder();
+//		        Gson gson = builder.create();
+//		        Toast.makeText(getActivity(), gson.toJson(u), Toast.LENGTH_LONG).show();
+				
+				DataService dataService = new DataService(getActivity());
+				dataService.getUser("3", new ServiceCallback(getActivity()) {
+					
+					@Override
+					public void onSuccess(JSONObject result) {
+						Toast.makeText(getActivity(), result.toString(), Toast.LENGTH_LONG).show();
+					}
+					
+					@Override
+					public void onOffline() {
+						Toast.makeText(getActivity(), "offline", Toast.LENGTH_SHORT).show();
+					}
+				});
+				
 			}
 		});
 	}
