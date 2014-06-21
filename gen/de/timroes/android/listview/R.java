@@ -12,41 +12,41 @@ public final class R {
 		public static final int elv_popup_show = 0x7f040007;
 	}
 	public static final class color {
-		public static final int elv_btn_focused = 0x7f0a0004;
-		public static final int elv_btn_normal = 0x7f0a0005;
-		public static final int elv_btn_pressed = 0x7f0a0003;
-		public static final int elv_popup_bg_color = 0x7f0a0006;
-		public static final int elv_popup_text_color = 0x7f0a0008;
-		public static final int elv_separator_color = 0x7f0a0007;
+		public static final int elv_btn_focused = 0x7f08002b;
+		public static final int elv_btn_normal = 0x7f08002c;
+		public static final int elv_btn_pressed = 0x7f08002a;
+		public static final int elv_popup_bg_color = 0x7f08002d;
+		public static final int elv_popup_text_color = 0x7f08002f;
+		public static final int elv_separator_color = 0x7f08002e;
 	}
 	public static final class dimen {
-		public static final int elv_touch_slop = 0x7f0b0016;
-		public static final int elv_undo_bottom_offset = 0x7f0b0015;
+		public static final int elv_touch_slop = 0x7f090048;
+		public static final int elv_undo_bottom_offset = 0x7f090047;
 	}
 	public static final class drawable {
-		public static final int elv_ic_action_undo = 0x7f020059;
-		public static final int elv_popup_bg = 0x7f02005a;
-		public static final int elv_toast_frame = 0x7f02005b;
-		public static final int elv_undo_btn_bg = 0x7f02005c;
-		public static final int elv_undo_btn_bg_focused = 0x7f02005d;
-		public static final int elv_undo_btn_bg_pressed = 0x7f02005e;
+		public static final int elv_ic_action_undo = 0x7f020060;
+		public static final int elv_popup_bg = 0x7f020061;
+		public static final int elv_toast_frame = 0x7f020062;
+		public static final int elv_undo_btn_bg = 0x7f020063;
+		public static final int elv_undo_btn_bg_focused = 0x7f020064;
+		public static final int elv_undo_btn_bg_pressed = 0x7f020065;
 	}
 	public static final class id {
-		public static final int text = 0x7f08006a;
-		public static final int undo = 0x7f08006b;
+		public static final int text = 0x7f060083;
+		public static final int undo = 0x7f060084;
 	}
 	public static final class layout {
-		public static final int elv_undo_popup = 0x7f030024;
+		public static final int elv_undo_popup = 0x7f03002c;
 	}
 	public static final class string {
-		public static final int elv_item_deleted = 0x7f07001c;
-		public static final int elv_n_items_deleted = 0x7f07001d;
-		public static final int elv_n_tasks_deleted = 0x7f07001f;
-		public static final int elv_task_deleted = 0x7f07001e;
-		public static final int elv_undo = 0x7f07001a;
-		public static final int elv_undo_all = 0x7f07001b;
+		public static final int elv_item_deleted = 0x7f0b0062;
+		public static final int elv_n_items_deleted = 0x7f0b0063;
+		public static final int elv_n_tasks_deleted = 0x7f0b0065;
+		public static final int elv_task_deleted = 0x7f0b0064;
+		public static final int elv_undo = 0x7f0b0060;
+		public static final int elv_undo_all = 0x7f0b0061;
 	}
 	public static final class style {
-		public static final int elv_fade_animation = 0x7f0c008b;
+		public static final int elv_fade_animation = 0x7f0c00a4;
 	}
 }
