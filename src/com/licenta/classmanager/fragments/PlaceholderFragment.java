@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.MainActivity;
+import com.licenta.classmanager.activities.DashboardActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -50,7 +50,7 @@ public class PlaceholderFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(
+		((DashboardActivity) activity).onSectionAttached(getArguments().getInt(
 				ARG_SECTION_NUMBER));
 	}
 }

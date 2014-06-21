@@ -47,6 +47,7 @@
     <string name="class_color">Class color</string>
     <string name="classroom">Classroom</string>
     <string name="schedule">Schedule</string>
+    <string name="set_time">Set time</string>
 
     <!-- Dashboard Fragment -->
     <string name="announcements">Announcements</string>

@@ -72,7 +72,7 @@ public class ClassAddEditActivity extends ActionBarActivity {
 	
 	private void setData() {
 		Intent intent = getIntent();
-		request_code = intent.getIntExtra(MainActivity.REQUEST_CODE, -1);
+		request_code = intent.getIntExtra(DashboardActivity.REQUEST_CODE, -1);
 		if(request_code == edit_request_code) {
 			lesson = (Lesson) intent.getSerializableExtra(EXTRA_CLASS);
 			if(lesson!=null) {

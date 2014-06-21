@@ -4,14 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.licenta.classmanager.fragments.TasksListFragment;
+import com.licenta.classmanager.fragments.TasksPageFragment;
 
 import de.timroes.android.listview.EnhancedListView;
 
-public class TasksPagerAdapter extends FragmentPagerAdapter {
+public class TasksPagerAdapter extends FragmentStatePagerAdapter {
 
 	private Context context;
 	private EnhancedListView elv;
@@ -23,9 +22,9 @@ public class TasksPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int i) {
-		Fragment fragment = new TasksListFragment();
+		Fragment fragment = new TasksPageFragment();
         Bundle args = new Bundle();
-        args.putInt(TasksListFragment.PAGER_COUNT, i + 1);
+        args.putInt(TasksPageFragment.PAGER_COUNT, i + 1);
         fragment.setArguments(args);
         return fragment;
 	}
@@ -33,6 +32,11 @@ public class TasksPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		return 2;
+	}
+	
+	@Override
+	public int getItemPosition(Object object) {
+		return POSITION_NONE;
 	}
 	
 //	@Override

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.licenta.classmanager.fragments.DayviewPageFragment;
-import com.licenta.classmanager.fragments.TasksListFragment;
+import com.licenta.classmanager.fragments.TasksPageFragment;
 
 public class DayviewPagerAdapter extends FragmentPagerAdapter {
 
@@ -18,7 +18,7 @@ public class DayviewPagerAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int i) {
 		Fragment fragment = new DayviewPageFragment();
         Bundle args = new Bundle();
-        args.putInt(TasksListFragment.PAGER_COUNT, i + 1);
+        args.putInt(TasksPageFragment.PAGER_COUNT, i + 1);
         fragment.setArguments(args);
         return fragment;
 	}

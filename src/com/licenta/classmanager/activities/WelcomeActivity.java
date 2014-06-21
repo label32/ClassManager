@@ -31,7 +31,7 @@ public class WelcomeActivity extends Activity {
 			setData();
 			setActions();
 		} else {
-			Intent intent = new Intent(this, MainActivity.class);
+			Intent intent = new Intent(this, DashboardActivity.class);
 			startActivity(intent);
 			this.finish();
 		}
@@ -80,8 +80,8 @@ public class WelcomeActivity extends Activity {
 			public void onClick(View v) {
 				setFirstTime();
 				Intent intent = new Intent(WelcomeActivity.this,
-						MainActivity.class);
-				intent.putExtra(MainActivity.OFFLINE, true);
+						DashboardActivity.class);
+				intent.putExtra(DashboardActivity.OFFLINE, true);
 				startActivity(intent);
 				WelcomeActivity.this.finish();
 			}

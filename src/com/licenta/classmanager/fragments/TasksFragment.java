@@ -49,6 +49,11 @@ public class TasksFragment extends Fragment {
 		return rootView;
 	}
 	
+	public void updateViewPager() {
+		mViewPager.getAdapter().notifyDataSetChanged();
+		mViewPager.invalidate();
+	}
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -72,7 +77,7 @@ public class TasksFragment extends Fragment {
 
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-				Toast.makeText(getActivity(), "spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getActivity(), "spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		};

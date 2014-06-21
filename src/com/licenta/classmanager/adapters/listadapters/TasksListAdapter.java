@@ -111,7 +111,8 @@ public class TasksListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             assert convertView != null;
-            holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
+            holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
+            holder.txt_type = (TextView) convertView.findViewById(R.id.txt_description);
             holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
 
             convertView.setTag(holder);
@@ -120,14 +121,15 @@ public class TasksListAdapter extends BaseAdapter {
         }
 
         holder.position = position;
-        holder.mTextView.setText(tasks.get(position).getTitle());
+        holder.txt_title.setText(tasks.get(position).getTitle());
+        holder.txt_type.setText(tasks.get(position).getType().toString());
         holder.class_color.setBackgroundColor(tasks.get(position).getLesson().getColor());
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView mTextView, class_color;
+        TextView txt_title, class_color, txt_type;
         int position;
     }
 

@@ -22,7 +22,7 @@ import com.licenta.classmanager.fragments.SettingsFragment;
 import com.licenta.classmanager.fragments.TasksFragment;
 import com.licenta.classmanager.holders.Lesson;
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class DashboardActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 	public final static String OFFLINE = "com.licenta.classmanager.MainActivity.OFFLINE";
 	public final static String REQUEST_CODE = "com.licenta.classmanager.MainActivity.REQUEST_CODE";

@@ -15,19 +15,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.ClassAddEditActivity;
-import com.licenta.classmanager.activities.ClassDetailsActivity;
 import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.activities.TaskDetailsActivity;
-import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
 import com.licenta.classmanager.adapters.listadapters.TasksListAdapter;
 import com.licenta.classmanager.dao.TasksDao;
-import com.licenta.classmanager.holders.Lesson;
 import com.licenta.classmanager.holders.Task;
 
 import de.timroes.android.listview.EnhancedListView;
+import de.timroes.android.listview.EnhancedListView.ListItemType;
+import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
+import de.timroes.android.listview.EnhancedListView.UndoStyle;
+import de.timroes.android.listview.EnhancedListView.Undoable;
 
-public class TasksListFragment extends Fragment {
+public class TasksPageFragment extends Fragment {
 
 	public static final String PAGER_COUNT = "PAGER_COUNT";
 
@@ -66,6 +66,7 @@ public class TasksListFragment extends Fragment {
 		
 		tasksAdapter = new TasksListAdapter(inflater, elv_tasks, tasks);
 		elv_tasks.setAdapter(tasksAdapter);
+		elv_tasks.setType(ListItemType.Task);
 	}
 	
 	private void setActions() {
@@ -80,6 +81,53 @@ public class TasksListFragment extends Fragment {
 			}
 			
 		});
+		
+		elv_tasks.setDismissCallback(new OnDismissCallback() {
+			
+			@Override
+			public Undoable onDismiss(EnhancedListView listView, int position) {
+				final Task task = (Task) tasksAdapter.getItem(position);
+				dao.deleteTask(task);
+				task.setDone(!task.isDone());
+				dao.putTask(task);
+				tasksAdapter.remove(position);
+				TasksFragment f = (TasksFragment) getParentFragment();
+				f.updateViewPager();
+				return null;
+			}
+		});
+		
+		
+//		elv_tasks.setDismissCallback(new EnhancedListView.OnDismissCallback() {
+//
+//			@Override
+//			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+//
+//				final Task task = (Task) tasksAdapter.getItem(position);
+//				dao.deleteTask(task);
+//				task.setDone(!task.isDone());
+//				dao.putTask(task);
+//				tasksAdapter.remove(position);
+//				TasksFragment f = (TasksFragment) getParentFragment();
+//				f.updateViewPager();
+//				return new EnhancedListView.Undoable() {
+//
+//					@Override
+//					public void undo() {
+//						dao.deleteTask(task);
+//						task.setDone(!task.isDone());
+//						dao.putTask(task);
+//						tasksAdapter.insert(position, task);
+//						TasksFragment f = (TasksFragment) getParentFragment();
+//						f.updateViewPager();
+//					}
+//
+//				};
+//			}
+//		});
+		
+		elv_tasks.enableSwipeToDismiss();
+		elv_tasks.setUndoStyle(UndoStyle.COLLAPSED_POPUP);
 	}
 	
 	private ArrayList<Task> getCompleteTasks(ArrayList<Task> tasks) {

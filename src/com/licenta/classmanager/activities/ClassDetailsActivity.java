@@ -106,7 +106,7 @@ public class ClassDetailsActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_edit) {
 			Intent intent = new Intent(this, ClassAddEditActivity.class);
-			intent.putExtra(MainActivity.REQUEST_CODE, ClassAddEditActivity.edit_request_code);
+			intent.putExtra(DashboardActivity.REQUEST_CODE, ClassAddEditActivity.edit_request_code);
 			intent.putExtra(ClassAddEditActivity.EXTRA_CLASS, lesson);
 			startActivityForResult(intent, ClassAddEditActivity.edit_request_code);
 		}

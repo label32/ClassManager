@@ -32,15 +32,17 @@ public final class R {
 		public static final int elv_undo_btn_bg_pressed = 0x7f02005e;
 	}
 	public static final class id {
-		public static final int text = 0x7f080068;
-		public static final int undo = 0x7f080069;
+		public static final int text = 0x7f08006a;
+		public static final int undo = 0x7f08006b;
 	}
 	public static final class layout {
-		public static final int elv_undo_popup = 0x7f030023;
+		public static final int elv_undo_popup = 0x7f030024;
 	}
 	public static final class string {
 		public static final int elv_item_deleted = 0x7f07001c;
 		public static final int elv_n_items_deleted = 0x7f07001d;
+		public static final int elv_n_tasks_deleted = 0x7f07001f;
+		public static final int elv_task_deleted = 0x7f07001e;
 		public static final int elv_undo = 0x7f07001a;
 		public static final int elv_undo_all = 0x7f07001b;
 	}
