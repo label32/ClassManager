@@ -16,7 +16,6 @@ import android.widget.Spinner;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.dao.ClassesDao;
-import com.licenta.classmanager.dao.TasksDao;
 import com.licenta.classmanager.holders.Date;
 import com.licenta.classmanager.holders.Lesson;
 import com.licenta.classmanager.holders.Task;
@@ -63,7 +62,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 			if (task != null) {
 				setTaskData();
 			} else {
-				Log.e("INTENT_ERROR", "Received object is null: lesson");
+				Log.e("INTENT_ERROR", "Received object is null: task");
 			}
 		}
 	}

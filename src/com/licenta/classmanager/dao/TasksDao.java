@@ -30,8 +30,8 @@ public class TasksDao extends Dao {
 	public void deleteTask(Task task) {
 		if (!deleteData(new File(tasks_dir, task.getLocal_id()))) {
 
-			Log.e("CONTACT_DELETE", "Class not deleted!");
-			Log.e("CONTACT_DELETE", getReason(new File(tasks_dir, task.getLocal_id())));
+			Log.e("TASK_DELETE", "Task not deleted!");
+			Log.e("TASK_DELETE", getReason(new File(tasks_dir, task.getLocal_id())));
 		}
 	}
 	

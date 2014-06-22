@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.dao.NotesDao;
+import com.licenta.classmanager.dao.TasksDao;
 import com.licenta.classmanager.fragments.ClassesFragment;
 import com.licenta.classmanager.fragments.DashboardFragment;
 import com.licenta.classmanager.fragments.DayviewFragment;
@@ -21,6 +23,8 @@ import com.licenta.classmanager.fragments.NotesFragment;
 import com.licenta.classmanager.fragments.SettingsFragment;
 import com.licenta.classmanager.fragments.TasksFragment;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Note;
+import com.licenta.classmanager.holders.Task;
 
 public class DashboardActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -126,8 +130,25 @@ public class DashboardActivity extends ActionBarActivity implements NavigationDr
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		switch (requestCode) {
+		case DashboardFragment.task_add_request_code: {
+			Task task = (Task) data.getSerializableExtra(TaskAddEditActivity.EXTRA_TASK);
+			TasksDao dao = new TasksDao(this);
+			dao.putTask(task);
+			TasksFragment tasksFragment = new TasksFragment();
+			fragmentManager.beginTransaction().replace(R.id.container, tasksFragment).commit();
+		} break;
+		case DashboardFragment.note_add_request_code: {
+			Note note = (Note) data.getSerializableExtra(NoteAddEditActivity.EXTRA_NOTE);
+			NotesDao dao = new NotesDao(this);
+			dao.putNote(note);
+			NotesFragment notesFragment = new NotesFragment();
+			fragmentManager.beginTransaction().replace(R.id.container, notesFragment).commit();
+		} break;
+		}
 	}
 
 	public void restoreActionBar() {

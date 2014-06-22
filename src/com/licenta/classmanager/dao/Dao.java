@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class Dao {
 	
-	private Context context;
+	protected Context context;
 	
 	public Dao(Context context) {
 		this.context = context;

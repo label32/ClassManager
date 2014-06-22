@@ -46,7 +46,7 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_class_new_add);
+		setContentView(R.layout.activity_class_add);
 		linkUI();
 		setData();
 		setActions();

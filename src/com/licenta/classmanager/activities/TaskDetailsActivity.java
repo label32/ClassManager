@@ -92,7 +92,7 @@ public class TaskDetailsActivity extends ActionBarActivity {
 					intent.putExtra(EXTRA_TASK_POSITION, task_position);
 					setResult(RESULT_OK, intent);
 				} else {
-					Log.e("INTENT_ERROR", "Received object is null: lesson");
+					Log.e("INTENT_ERROR", "Received object is null: task");
 				}
 			} else {
 				setResult(RESULT_CANCELED);

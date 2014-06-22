@@ -7,6 +7,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Note;
+import com.licenta.classmanager.holders.Task;
 
 public class ClassesDao extends Dao {
 
@@ -29,9 +31,27 @@ public class ClassesDao extends Dao {
 
 	public void deleteClass(Lesson lesson) {
 		if (!deleteData(new File(classes_dir, lesson.getLocal_id()))) {
-
-			Log.e("CONTACT_DELETE", "Class not deleted!");
-			Log.e("CONTACT_DELETE", getReason(new File(classes_dir, lesson.getLocal_id())));
+			Log.e("CLASS_DELETE", "Class not deleted!");
+			Log.e("CLASS_DELETE", getReason(new File(classes_dir, lesson.getLocal_id())));
+		} else {
+			
+			TasksDao tasksDao = new TasksDao(super.context);
+			ArrayList<Task> tasks = tasksDao.getTasks();
+			Task task;
+			for(int i=0; i<tasks.size(); i++) {
+				task = tasks.get(i);
+				if(task.getLesson().equals(lesson))
+					tasksDao.deleteTask(task);
+			}
+			
+			NotesDao notesDao = new NotesDao(super.context);
+			ArrayList<Note> notes = notesDao.getNotes();
+			Note note;
+			for(int i=0; i<notes.size(); i++) {
+				note = notes.get(i);
+				if(note.getLesson().equals(lesson))
+					notesDao.deleteNote(note);
+			}
 		}
 	}
 	

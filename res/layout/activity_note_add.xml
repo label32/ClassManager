@@ -18,26 +18,8 @@
             android:text="@string/str_class"
             android:textSize="@dimen/component_header" />
 
-        <TextView
-            android:id="@+id/txt_class"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="20dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/date_added"
-            android:textSize="@dimen/component_header" />
-
-        <TextView
-            android:id="@+id/txt_dateAdded"
+        <Spinner
+            android:id="@+id/spinner_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -54,16 +36,19 @@
             android:text="@string/str_title"
             android:textSize="@dimen/component_header" />
 
-        <TextView
-            android:id="@+id/txt_title"
+        <EditText
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_text"
+    <EditText
+        android:id="@+id/et_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top" />
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:minLines="5" />
 
 </LinearLayout>

@@ -57,6 +57,7 @@
                 android:id="@+id/txt_pick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/class_color"
                 android:textSize="@dimen/component_header" />
 
@@ -64,7 +65,7 @@
                 android:id="@+id/btn_color"
                 android:enabled="false"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@color/black" />
         </LinearLayout>

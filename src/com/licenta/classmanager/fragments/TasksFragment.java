@@ -23,9 +23,7 @@ import com.licenta.classmanager.adapters.TasksPagerAdapter;
 import com.licenta.classmanager.holders.Task;
 
 public class TasksFragment extends Fragment {
-	/**
-	 * The fragment argument representing the section number for this fragment.
-	 */
+
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	private ArrayList<Task> tasks;

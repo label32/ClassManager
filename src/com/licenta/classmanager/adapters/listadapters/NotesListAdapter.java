@@ -1,42 +1,41 @@
 package com.licenta.classmanager.adapters.listadapters;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.holders.Note;
+
 import de.timroes.android.listview.EnhancedListView;
 
-public class UpcomingListAdapter extends BaseAdapter {
+public class NotesListAdapter extends BaseAdapter {
 
-    private List<String> mItems = new ArrayList<String>();
-    private Activity activity;
+    private LayoutInflater inflater;
     private EnhancedListView elv;
+    private ArrayList<Note> notes;
     
-    public UpcomingListAdapter(Activity activity, EnhancedListView elv) {
-    	this.activity = activity;
+    public NotesListAdapter(LayoutInflater inflater, EnhancedListView elv, ArrayList<Note> notes) {
+    	this.inflater = inflater;
     	this.elv = elv;
+    	this.notes = notes;
     }
 
     public void resetItems() {
-        mItems.clear();
-        for(int i = 1; i <= 5; i++) {
-            mItems.add("Item " + i);
-        }
-        notifyDataSetChanged();
+        
     }
 
     public void remove(int position) {
-        mItems.remove(position);
+        notes.remove(position);
         notifyDataSetChanged();
     }
 
-    public void insert(int position, String item) {
-        mItems.add(position, item);
+    public void insert(int position, Note item) {
+        notes.add(position, item);
         notifyDataSetChanged();
     }
 
@@ -47,7 +46,7 @@ public class UpcomingListAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return mItems.size();
+        return notes.size();
     }
 
     /**
@@ -59,7 +58,7 @@ public class UpcomingListAdapter extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return mItems.get(position);
+        return notes.get(position);
     }
 
     /**
@@ -96,7 +95,7 @@ public class UpcomingListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.list_item_simple, parent, false);
+            convertView = inflater.inflate(R.layout.list_item_simple, parent, false);
             // Clicking the delete icon, will read the position of the item stored in
             // the tag and delete it from the list. So we don't need to generate a new
             // onClickListener every time the content of this view changes.
@@ -110,7 +109,9 @@ public class UpcomingListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             assert convertView != null;
-            holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
+            holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
+            holder.txt_type = (TextView) convertView.findViewById(R.id.txt_description);
+            holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
 
             convertView.setTag(holder);
         } else {
@@ -118,13 +119,15 @@ public class UpcomingListAdapter extends BaseAdapter {
         }
 
         holder.position = position;
-        holder.mTextView.setText(mItems.get(position));
+        holder.txt_title.setText(notes.get(position).getTitle());
+        holder.txt_type.setText(" ");
+        holder.class_color.setBackgroundColor(notes.get(position).getLesson().getColor());
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView mTextView;
+        TextView txt_title, class_color, txt_type;
         int position;
     }
 

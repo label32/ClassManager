@@ -3,6 +3,8 @@ package com.licenta.classmanager.activities;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -25,6 +27,7 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	public static final String EXTRA_CLASS = "com.licenta.classmanager.CLASS";
 	public static final String EXTRA_CLASS_POSITION = "com.licenta.classmanager.CLASS_POSITION";
 	public static final String CLASS_MODIFIED = "com.licenta.classmanager.AddEditClassActivity.CLASS_MODIFIED";
+	public static final String CLASS_DELETED = "com.licenta.classmanager.ClassDetailsActivity.CLASS_DELETED";
 
 	private TextView txt_className, txt_classroom, txt_details, txt_startTime, txt_endTime;
 	private Button btn_color;
@@ -75,8 +78,8 @@ public class ClassDetailsActivity extends ActionBarActivity {
 		txt_className.setText(lesson.getName());
 		txt_classroom.setText(lesson.getClassroom());
 		txt_details.setText(lesson.getDetails());
-		txt_startTime.setText(lesson.getStart_time().getHour() + ":" + lesson.getStart_time().getMinute());
-		txt_endTime.setText(lesson.getEnd_time().getHour() + ":" + lesson.getEnd_time().getMinute());
+		txt_startTime.setText(lesson.getStart_time().toString());
+		txt_endTime.setText(lesson.getEnd_time().toString());
 		btn_color.setBackgroundColor(lesson.getColor());
 		setDays(lesson.getDays());
 	}
@@ -104,11 +107,32 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_edit) {
-			Intent intent = new Intent(this, ClassAddEditActivity.class);
-			intent.putExtra(DashboardActivity.REQUEST_CODE, ClassAddEditActivity.edit_request_code);
-			intent.putExtra(ClassAddEditActivity.EXTRA_CLASS, lesson);
-			startActivityForResult(intent, ClassAddEditActivity.edit_request_code);
+		switch(id) {
+		case R.id.action_edit: {
+				Intent intent = new Intent(this, ClassAddEditActivity.class);
+				intent.putExtra(DashboardActivity.REQUEST_CODE, ClassAddEditActivity.edit_request_code);
+				intent.putExtra(ClassAddEditActivity.EXTRA_CLASS, lesson);
+				startActivityForResult(intent, ClassAddEditActivity.edit_request_code);
+			} break;
+		case R.id.action_delete: {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Are you sure you want to delete this class?\nAll tasks and notes associated with this class will be also deleted.").setCancelable(true)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent intent = new Intent();
+						intent.putExtra(EXTRA_CLASS, lesson);
+						intent.putExtra(EXTRA_CLASS_POSITION, class_position);
+						intent.putExtra(CLASS_DELETED, true);
+						setResult(RESULT_OK, intent);
+						finish();
+					}
+				}).setNegativeButton("Cancel", null);
+				
+				AlertDialog alert = builder.create();
+				alert.show();
+			} break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

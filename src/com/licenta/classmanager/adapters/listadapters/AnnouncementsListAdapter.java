@@ -105,7 +105,7 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = activity.getLayoutInflater().inflate(R.layout.simple_list_item, parent, false);
+			convertView = activity.getLayoutInflater().inflate(R.layout.list_item_simple, parent, false);
 			// Clicking the delete icon, will read the position of the item
 			// stored in
 			// the tag and delete it from the list. So we don't need to generate

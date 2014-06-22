@@ -34,6 +34,9 @@ public class DashboardFragment extends Fragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
+	public static final int note_add_request_code = 104;
+	public static final int task_add_request_code = 101;
+	
 	private EnhancedListView elv_announcements;
 	private EnhancedListView elv_lessons;
 	private EnhancedListView elv_upcoming;
@@ -132,42 +135,6 @@ public class DashboardFragment extends Fragment {
 			}
 		});
 		
-//		elv_lessons.setDismissCallback(new EnhancedListView.OnDismissCallback() {
-//
-//			@Override
-//			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
-//
-//				final String item = (String) lessonsAdapter.getItem(position);
-//				lessonsAdapter.remove(position);
-//				return new EnhancedListView.Undoable() {
-//
-//					@Override
-//					public void undo() {
-//						lessonsAdapter.insert(position, item);
-//					}
-//
-//				};
-//			}
-//		});
-//		
-//		elv_upcoming.setDismissCallback(new EnhancedListView.OnDismissCallback() {
-//
-//			@Override
-//			public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
-//
-//				final String item = (String) upcomingAdapter.getItem(position);
-//				upcomingAdapter.remove(position);
-//				return new EnhancedListView.Undoable() {
-//
-//					@Override
-//					public void undo() {
-//						upcomingAdapter.insert(position, item);
-//					}
-//
-//				};
-//			}
-//		});
-		
 		elv_announcements.enableSwipeToDismiss();
 		elv_announcements.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
 		
@@ -191,27 +158,16 @@ public class DashboardFragment extends Fragment {
 		switch (id) {
 		case R.id.action_add_task: {
 			Intent addTaskIntent = new Intent(getActivity(), TaskAddEditActivity.class);
-			startActivityForResult(addTaskIntent, TaskAddEditActivity.add_request_code);
+			getActivity().startActivityForResult(addTaskIntent, task_add_request_code);
 		}
 			break;
 		case R.id.action_add_note: {
 			Intent addNoteIntent = new Intent(getActivity(), NoteAddEditActivity.class);
-			startActivityForResult(addNoteIntent, NoteAddEditActivity.add_request_code);
+			getActivity().startActivityForResult(addNoteIntent, note_add_request_code);
 		}
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) {
-		case TaskAddEditActivity.add_request_code: {
-			// do stuff
-		}
-			break;
-		}
 	}
 
 	@Override

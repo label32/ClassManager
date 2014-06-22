@@ -66,7 +66,13 @@ public class Time implements Serializable {
 	}
 	
 	public String toString() {
-		return ""+hour+":"+minute;
+		String h = Integer.toString(hour);
+		String m = Integer.toString(minute);
+		if(minute<10)
+			m = "0"+minute;
+		if(hour<10)
+			h = "0" + hour;
+		return ""+h+":"+m;
 	}
 
 }

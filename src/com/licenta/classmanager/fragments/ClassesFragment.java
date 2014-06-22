@@ -81,7 +81,6 @@ public class ClassesFragment extends Fragment {
 			classes = new ArrayList<Lesson>();
 		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes, classes);
 		elv_classes.setAdapter(classesAdapter);		
-		
 	}
 	
 	private void setActions() {
@@ -102,9 +101,13 @@ public class ClassesFragment extends Fragment {
 		switch(requestCode) {
 		case ClassDetailsActivity.request_code: {
 			if(resultCode == Activity.RESULT_OK) {
-				Lesson lesson = (Lesson) data.getSerializableExtra(ClassDetailsActivity.EXTRA_CLASS);
 				int position = data.getIntExtra(ClassDetailsActivity.EXTRA_CLASS_POSITION, -1);
-				updateClass(lesson, position);
+				Lesson lesson = (Lesson) data.getSerializableExtra(ClassDetailsActivity.EXTRA_CLASS);
+				if(data.getBooleanExtra(ClassDetailsActivity.CLASS_DELETED, false)) {
+					deleteClass(lesson);
+				} else {
+					updateClass(lesson, position);					
+				}
 			}
 		} break;
 		case ClassAddEditActivity.add_request_code: {

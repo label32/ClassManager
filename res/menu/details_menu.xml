@@ -8,6 +8,11 @@
         android:id="@+id/action_edit"
         android:title="@string/edit"
         app:showAsAction="withText|ifRoom"/>
+    
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/delete"
+        app:showAsAction="withText|ifRoom"/>
 
 </menu>
 
