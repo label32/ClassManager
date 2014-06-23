@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.fragments.TasksPageFragment;
 import com.licenta.classmanager.holders.Task;
 
 public class TaskDetailsActivity extends ActionBarActivity {
@@ -22,7 +23,7 @@ public class TaskDetailsActivity extends ActionBarActivity {
 	
 	private TextView txt_class, txt_type, txt_deadline, txt_title, txt_details;
 	private Task task;
-	private int task_position;
+	private int task_position, pager_count;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class TaskDetailsActivity extends ActionBarActivity {
 		Intent intent = getIntent();
 		task = (Task) intent.getSerializableExtra(EXTRA_TASK);
 		task_position = intent.getIntExtra(EXTRA_TASK_POSITION, -1);
+		pager_count = intent.getIntExtra(TasksPageFragment.PAGER_COUNT, -1);
 		setTaskData();
 	}
 	
@@ -90,6 +92,7 @@ public class TaskDetailsActivity extends ActionBarActivity {
 					Intent intent = new Intent();
 					intent.putExtra(EXTRA_TASK, task);
 					intent.putExtra(EXTRA_TASK_POSITION, task_position);
+					intent.putExtra(TasksPageFragment.PAGER_COUNT, pager_count);
 					setResult(RESULT_OK, intent);
 				} else {
 					Log.e("INTENT_ERROR", "Received object is null: task");

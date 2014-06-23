@@ -13,8 +13,20 @@ public class DataService {
 		this.context = context;
 		net_worker = new NetworkWorker();
 	}
+	
+	public void getClassDays(String classid, BaseCallback callback) {
+		net_worker.executeRequest(linkBuilder.getClassDays(classid), callback);
+	}
+	
+	public void getUserClasses(String userid, BaseCallback callback) {
+		net_worker.executeRequest(linkBuilder.getUserClasses(userid), callback);
+	}
 
 	public void getUser(String userId, BaseCallback callback) {
 		net_worker.executeRequest(linkBuilder.getUser(userId), callback);
+	}
+	
+	public void login(String email, String password, BaseCallback callback) {
+		net_worker.executeRequest(linkBuilder.login(email, password), callback);
 	}
 }

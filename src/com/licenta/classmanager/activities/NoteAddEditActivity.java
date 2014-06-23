@@ -33,6 +33,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 	private int request_code;
 	private ClassesDao dao;
 	private ArrayList<Lesson> classes;
+	private String local_id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 		if(request_code == edit_request_code) {
 			note = (Note) intent.getSerializableExtra(EXTRA_NOTE);
 			if (note != null) {
+				local_id = note.getLocal_id();
 				setNoteData();
 			} else {
 				Log.e("INTENT_ERROR", "Received object is null: note");
@@ -117,6 +119,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if(id==R.id.action_save) {
 			Note note = getNoteData();
+			note.setLocal_id(local_id);
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_NOTE, note);
 			setResult(RESULT_OK, intent);

@@ -1,11 +1,11 @@
 package com.licenta.classmanager.fragments;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.NoteAddEditActivity;
@@ -21,10 +22,11 @@ import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.adapters.listadapters.AnnouncementsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
+import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.holders.Announcement;
+import com.licenta.classmanager.holders.Date;
 import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Lesson;
-import com.licenta.classmanager.holders.Time;
 import com.licenta.classmanager.utils.Utils;
 
 import de.timroes.android.listview.EnhancedListView;
@@ -37,14 +39,18 @@ public class DashboardFragment extends Fragment {
 	public static final int note_add_request_code = 104;
 	public static final int task_add_request_code = 101;
 	
+	private TextView txt_announcements;
 	private EnhancedListView elv_announcements;
 	private EnhancedListView elv_lessons;
 	private EnhancedListView elv_upcoming;
+	private LayoutInflater inflater;
 	private AnnouncementsListAdapter announcementsAdapter;
 	private LessonsListAdapter lessonsAdapter;
 	private UpcomingListAdapter upcomingAdapter;
 	private ArrayList<Announcement> announcements;
-	private ArrayList<Lesson> lessons;
+	private ArrayList<Lesson> classes;
+	private ArrayList<Lesson> todays_classes;
+	private ClassesDao classesDao;
 
 //	public void setData(int sectionNumber) {
 //		Bundle args = new Bundle();
@@ -55,57 +61,40 @@ public class DashboardFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
-//		TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//		textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+		this.inflater = inflater;
 		setHasOptionsMenu(true);
+		linkUI(rootView);
+		setData();
+		setActions();
 		return rootView;
 	}
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		linkUI();
-		setData();
-		setActions();
-	}
-
-	public void linkUI() {
-		elv_announcements = (EnhancedListView) getActivity().findViewById(R.id.elv_announcements);
-		elv_lessons = (EnhancedListView) getActivity().findViewById(R.id.elv_lessons);
-		elv_upcoming = (EnhancedListView) getActivity().findViewById(R.id.elv_upcoming);
+	public void linkUI(View rootView) {
+		elv_announcements = (EnhancedListView) rootView.findViewById(R.id.elv_announcements);
+		elv_lessons = (EnhancedListView) rootView.findViewById(R.id.elv_lessons);
+		elv_upcoming = (EnhancedListView) rootView.findViewById(R.id.elv_upcoming);
+		txt_announcements = (TextView) rootView.findViewById(R.id.txt_announcements);
 	}
 
 	public void setData() {
 		announcements = new ArrayList<Announcement>();
 		for(int i=0; i<5; i++) {
-			announcements.add(new Announcement(0, "Announcement "+i, "some description", 0, 0, new Date()));
+			announcements.add(new Announcement(0, "Announcement "+i, "some description", 0, 0, null));
+		}
+		if(announcements.size()==0) {
+			txt_announcements.setVisibility(View.GONE);
 		}
 		
-		lessons = new ArrayList<Lesson>();
-		ArrayList<Day> days;
-		int color;
-		for(int i=0; i<5; i++) {
-			days = new ArrayList<Day>();
-			if(i%2==0) {
-				days.add(Day.Monday);
-				days.add(Day.Wednesday);
-				days.add(Day.Friday);
-				color = Color.RED;
-			}
-			else {
-				days.add(Day.Tuesday);
-				days.add(Day.Thursday);
-				color = Color.BLUE;
-			}
-			lessons.add(new Lesson(0,"Lesson "+i,"Some details",""+i, days, new Time(12,30), new Time(14,30), color));
-		}
+		classesDao = new ClassesDao(getActivity());
+		classes = new ArrayList<Lesson>();
+		classes = classesDao.getClasses();
+		todays_classes = getTodaysClasses();
 		
 		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
-		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons, lessons);
+		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons, todays_classes);
 		upcomingAdapter = new UpcomingListAdapter(getActivity(), elv_upcoming);
 		
 		announcementsAdapter.resetItems();
-		lessonsAdapter.resetItems();
 		upcomingAdapter.resetItems();
 		
 		elv_announcements.setAdapter(announcementsAdapter);
@@ -138,13 +127,34 @@ public class DashboardFragment extends Fragment {
 		elv_announcements.enableSwipeToDismiss();
 		elv_announcements.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
 		
-		Utils.setListViewHeightBasedOnChildren(elv_announcements, true);
-		Utils.setListViewHeightBasedOnChildren(elv_lessons, false);
+		Utils.setListViewHeightBasedOnChildren(elv_announcements,true);
+		Utils.setListViewHeightBasedOnChildren3(elv_lessons);
 		Utils.setListViewHeightBasedOnChildren(elv_upcoming, true);
 
 	}
 
 	public void setActions() {
+		
+	}
+	
+	public ArrayList<Lesson> getTodaysClasses() {
+		ArrayList<Lesson> c = new ArrayList<Lesson>();
+		ArrayList<Day> days;
+		
+		Calendar cal = Calendar.getInstance();
+		int day_of_week = cal.get(Calendar.DAY_OF_WEEK);
+		if(day_of_week == 1)
+			day_of_week = 7;
+		else
+			day_of_week--;
+		
+		for(int i=0; i<classes.size(); i++) {
+			days = classes.get(i).getDays();
+			for(int j=0; j<days.size(); j++) 
+				if(day_of_week==days.get(j).getCode())
+					c.add(classes.get(i));
+		}
+		return c;
 	}
 
 	@Override

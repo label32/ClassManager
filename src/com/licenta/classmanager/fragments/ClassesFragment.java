@@ -25,6 +25,7 @@ import com.licenta.classmanager.activities.ClassDetailsActivity;
 import com.licenta.classmanager.activities.DashboardActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.ClassesListAdapter;
+import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.holders.Lesson;
 
@@ -36,7 +37,7 @@ public class ClassesFragment extends Fragment {
 	
 	private ArrayList<Lesson> classes;
 	private EnhancedListView elv_classes;
-	private ClassesListAdapter classesAdapter;
+	private LessonsListAdapter classesAdapter;
 	private ClassesDao dao;
 	
 	public ClassesFragment() {
@@ -79,7 +80,7 @@ public class ClassesFragment extends Fragment {
 		classes = dao.getClasses();
 		if(classes == null)
 			classes = new ArrayList<Lesson>();
-		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes, classes);
+		classesAdapter = new LessonsListAdapter(getActivity(), elv_classes, classes);
 		elv_classes.setAdapter(classesAdapter);		
 	}
 	
@@ -142,7 +143,7 @@ public class ClassesFragment extends Fragment {
 		Lesson[] temp = classes.toArray(new Lesson[classes.size()]);
 		Arrays.sort(temp);
 		classes = new ArrayList<Lesson>(Arrays.asList(temp));
-		classesAdapter = new ClassesListAdapter(getActivity(), elv_classes, classes);
+		classesAdapter = new LessonsListAdapter(getActivity(), elv_classes, classes);
 		elv_classes.setAdapter(classesAdapter);
 	}
 
@@ -161,7 +162,7 @@ public class ClassesFragment extends Fragment {
 
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-				Toast.makeText(getActivity(), "classes spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getActivity(), "classes spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		};

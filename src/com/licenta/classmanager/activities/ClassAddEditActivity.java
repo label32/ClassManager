@@ -218,7 +218,8 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 		int id = item.getItemId();
 		if (id == R.id.action_save) {
 			Lesson l = getClassData();
-			l.setLocal_id(class_id);
+			if(request_code == edit_request_code)
+				l.setLocal_id(class_id);
 			Intent result = new Intent();
 			result.putExtra(EXTRA_CLASS, l);
 			setResult(Activity.RESULT_OK, result);
@@ -238,10 +239,10 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 	public void onTimeSet(RadialTimePickerDialog dialog, int hourOfDay, int minute) {
 		if(is_start_time) {
 			start_time = new Time(hourOfDay, minute);
-			btn_start_time.setText(""+hourOfDay+":"+minute);
+			btn_start_time.setText(start_time.toString());
 		} else {
 			end_time = new Time(hourOfDay, minute);
-			btn_end_time.setText(""+hourOfDay+":"+minute);
+			btn_end_time.setText(end_time.toString());
 		}
 	}
 }

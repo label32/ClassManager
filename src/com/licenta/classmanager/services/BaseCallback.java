@@ -12,7 +12,7 @@ public abstract class BaseCallback {
 		this.context = context;
 	}
 
-	public abstract void finish(String url, JSONObject resutl);
+	public abstract void finish(String url, JSONObject resutl, String msg);
 
 	public Context getContext() {
 		return context;

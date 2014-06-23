@@ -22,6 +22,7 @@ public class NetworkWorker {
 
 	public BaseCallback callback;
 	private String url;
+	private String error_msg="Connection error";
 
 	public NetworkWorker() {
 	}
@@ -68,7 +69,7 @@ public class NetworkWorker {
 		protected void onPostExecute(JSONObject result) {
 			super.onPostExecute(result);
 			progress.dismiss();
-			callback.finish(url, result);
+			callback.finish(url, result, error_msg);
 		}
 	}
 
@@ -123,7 +124,8 @@ public class NetworkWorker {
 				responseStrBuilder.append(inputStr);
 			return new JSONObject(responseStrBuilder.toString());
 		} catch (Exception e) {
-			Log.e("READ_JSON", e.toString());
+			error_msg = "Incorrect data!";
+			Log.e("READ_JSON_ERROR", e.toString());
 			return null;
 		}
 	}

@@ -108,7 +108,7 @@ public class NotesFragment extends Fragment {
 
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-				Toast.makeText(getActivity(), "notes spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getActivity(), "notes spinner position = " + itemPosition, Toast.LENGTH_SHORT).show();
 				return false;
 			}
 		};

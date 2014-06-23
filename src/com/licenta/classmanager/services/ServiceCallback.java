@@ -25,20 +25,20 @@ public abstract class ServiceCallback extends BaseCallback {
 	public abstract void onOffline();
 
 	@Override
-	public void finish(String url, JSONObject result) {
+	public void finish(String url, JSONObject result, String msg) {
 		if (result != null) {
 			if (result.optInt("result_id") == 0) {
 				onSuccess(result);
 			} else {
-				onError(url, result);
+				onError(url, result, msg);
 			}
 		} else {
-			onError(url, result);
+			onError(url, result, msg);
 		}
 
 	}
 
-	private void onError(final String url, JSONObject result) {
+	private void onError(final String url, JSONObject result, final String msg) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		if (result != null) {
 			builder.setMessage(result.optString("result_message"));
@@ -54,7 +54,7 @@ public abstract class ServiceCallback extends BaseCallback {
 		} else {
 
 			if (NetworkWorker.checkConnection(context)) {
-				builder.setMessage("Connection error!");
+				builder.setMessage("Error: "+msg);
 				builder.setPositiveButton("Retry",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
@@ -62,20 +62,20 @@ public abstract class ServiceCallback extends BaseCallback {
 										ServiceCallback.this);
 							}
 						});
-//				builder.setNegativeButton("Continue offline",
-//						new DialogInterface.OnClickListener() {
-//							@Override
-//							public void onClick(DialogInterface dialog,
-//									int which) {
-//								onOffline();
-//							}
-//						});
+				builder.setCancelable(true);
+				builder.setNegativeButton("Continue offline",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								onOffline();
+							}
+						});
 				builder.setOnCancelListener(new OnCancelListener() {
 					
 					@Override
 					public void onCancel(DialogInterface dialog) {
-						Activity a = (Activity) context;
-						a.finish();
+						onOffline();
 					}
 				});
 				AlertDialog alert = builder.create();

@@ -1,9 +1,9 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
-public class Announcement implements Serializable {
+public class Announcement implements Serializable, Comparable<Announcement> {
 
 	private static final long serialVersionUID = 6048951092151509898L;
 	
@@ -73,6 +73,36 @@ public class Announcement implements Serializable {
 	
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	@Override
+	public int compareTo(Announcement another) {
+		boolean year_equal = false;
+		boolean month_equal = false;
+		if(this.date.getYear() == another.getDate().getYear()) {
+			year_equal = true;
+		} else {
+			if(this.date.getYear() > another.getDate().getYear())
+				return 1;
+			else
+				return -1;
+		}
+		if(year_equal && this.date.getMonth() == another.getDate().getMonth()) {
+			month_equal = true;
+		} else {
+			if(this.date.getMonth() > another.getDate().getMonth())
+				return 1;
+			else
+				return -1;
+		}
+		if(year_equal && month_equal && this.date.getDay() == another.getDate().getDay())
+			return 0;
+		else {
+			if(this.date.getDay() > another.getDate().getDay())
+				return 1;
+			else
+				return -1;
+		}
 	}
 
 }

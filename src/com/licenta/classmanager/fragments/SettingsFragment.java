@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.DashboardActivity;
 import com.licenta.classmanager.activities.WelcomeActivity;
 import com.licenta.classmanager.holders.User;
 import com.licenta.classmanager.services.DataService;
@@ -59,6 +60,8 @@ public class SettingsFragment extends Fragment {
 						Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putBoolean(WelcomeActivity.FIRST_TIME, true);
+				editor.remove(DashboardActivity.EXTRA_USER_ID);
+				editor.remove(DashboardActivity.EXTRA_USER_TYPE);
 				editor.commit();
 				Intent intent = new Intent(getActivity(), WelcomeActivity.class);
 				startActivity(intent);

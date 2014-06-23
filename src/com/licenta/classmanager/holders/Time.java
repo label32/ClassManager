@@ -1,6 +1,9 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Time implements Serializable {
 
@@ -11,6 +14,21 @@ public class Time implements Serializable {
 	
 	public Time() {
 		
+	}
+	
+	public static Time createFromString(String str_time) {
+		Time time = new Time();
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat ("HH:mm");
+		try {
+			java.util.Date d = sdf.parse(str_time);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(d);
+			time.setHour(cal.get(Calendar.HOUR_OF_DAY));
+			time.setMinute(cal.get(Calendar.MINUTE));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return time;
 	}
 	
 	

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.services.NetworkWorker;
 
 public class WelcomeActivity extends Activity {
 
@@ -70,7 +72,12 @@ public class WelcomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// check connectivity
+				if(NetworkWorker.checkConnection(WelcomeActivity.this)) {
+					Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+					startActivity(intent);
+				} else {
+					Toast.makeText(WelcomeActivity.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 

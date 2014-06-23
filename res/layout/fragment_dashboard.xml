@@ -13,6 +13,7 @@
     tools:context="com.licenta.classmanager.activities.MainActivity$PlaceholderFragment" >
 
     <TextView
+        android:id="@+id/txt_announcements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -24,7 +25,8 @@
     <de.timroes.android.listview.EnhancedListView
         android:id="@+id/elv_announcements"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:scrollbars="none"
+        android:layout_height="wrap_content"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp" >
     </de.timroes.android.listview.EnhancedListView>

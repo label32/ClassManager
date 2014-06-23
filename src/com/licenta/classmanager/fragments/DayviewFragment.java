@@ -11,20 +11,26 @@ import android.view.ViewGroup;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.adapters.DayviewPagerAdapter;
+import com.licenta.classmanager.dao.ClassesDao;
+import com.licenta.classmanager.dao.TasksDao;
 
 public class DayviewFragment extends Fragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
+	
 	private ViewPager mViewPager;
 	private DayviewPagerAdapter mDayviewPagerAdapter;
+	private TasksDao tasksDao;
+	private ClassesDao classesDao;
 
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_dayview, container, false);
 		setHasOptionsMenu(true);
-        
-        mDayviewPagerAdapter = new DayviewPagerAdapter(getChildFragmentManager());
+        tasksDao = new TasksDao(getActivity());
+        classesDao = new ClassesDao(getActivity());
+        mDayviewPagerAdapter = new DayviewPagerAdapter(getChildFragmentManager(), tasksDao.getTasks(), classesDao.getClasses());
 		mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
 		mViewPager.setAdapter(mDayviewPagerAdapter);
 

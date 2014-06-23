@@ -40,7 +40,7 @@ public class TasksPageFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_tasks_list, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_tasks_page, container, false);
 		this.inflater = inflater;
 		setHasOptionsMenu(true);
 		linkUI(rootView);
@@ -77,7 +77,8 @@ public class TasksPageFragment extends Fragment {
 				Intent intent = new Intent(getActivity(), TaskDetailsActivity.class);
 				intent.putExtra(TaskDetailsActivity.EXTRA_TASK, tasks.get(position));
 				intent.putExtra(TaskDetailsActivity.EXTRA_TASK_POSITION, position);
-				startActivityForResult(intent, TaskDetailsActivity.request_code);
+				intent.putExtra(PAGER_COUNT, count);
+				getParentFragment().startActivityForResult(intent, TaskDetailsActivity.request_code);
 			}
 			
 		});
@@ -178,7 +179,8 @@ public class TasksPageFragment extends Fragment {
 			if(resultCode == Activity.RESULT_OK) {
 				Task task = (Task) data.getSerializableExtra(TaskDetailsActivity.EXTRA_TASK);
 				int position = data.getIntExtra(TaskDetailsActivity.EXTRA_TASK_POSITION, -1);
-				updateTask(task, position);
+				if(count == data.getIntExtra(PAGER_COUNT, -1))
+					updateTask(task, position);
 			}
 		} break;
 		case TaskAddEditActivity.add_request_code: {
