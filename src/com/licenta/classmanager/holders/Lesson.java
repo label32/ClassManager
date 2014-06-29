@@ -17,22 +17,20 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 	private Time start_time;
 	private Time end_time;
 	private int color;
-
+	private Flag flag;
 	private int id;
-	private String local_id;
 	private Random r;
 
 	public Lesson(String name) {
 		this.name = name;
 		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(name);
-		local_id = "" + rand + hash;
+//		int rand = r.nextInt(Integer.MAX_VALUE);
+//		int hash = Utils.hash(name);
+		id = this.hashCode();
 	}
 
-	public Lesson(int id, String name, String details, String classroom, ArrayList<Day> days, Time start_time,
+	public Lesson(String name, String details, String classroom, ArrayList<Day> days, Time start_time,
 			Time end_time, int color) {
-		this.id = id;
 		this.name = name;
 		this.details = details;
 		this.classroom = classroom;
@@ -41,9 +39,9 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		this.end_time = end_time;
 		this.color = color;
 		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(name);
-		local_id = "" + rand + hash;
+//		int rand = r.nextInt(Integer.MAX_VALUE);
+//		int hash = Utils.hash(name);
+		id = this.hashCode();
 	}
 	
 	
@@ -57,7 +55,6 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		result = prime * result + ((days == null) ? 0 : days.hashCode());
 		result = prime * result + ((details == null) ? 0 : details.hashCode());
 		result = prime * result + ((end_time == null) ? 0 : end_time.hashCode());
-		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((start_time == null) ? 0 : start_time.hashCode());
 		return result;
@@ -93,8 +90,6 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 			if (other.end_time != null)
 				return false;
 		} else if (!end_time.equals(other.end_time))
-			return false;
-		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -177,12 +172,12 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		this.color = color;
 	}
 
-	public String getLocal_id() {
-		return local_id;
+	public Flag getFlag() {
+		return flag;
 	}
-
-	public void setLocal_id(String local_id) {
-		this.local_id = local_id;
+	
+	public void setFlag(Flag flag) {
+		this.flag = flag;
 	}
 
 }

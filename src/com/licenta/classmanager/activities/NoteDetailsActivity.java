@@ -69,7 +69,7 @@ public class NoteDetailsActivity extends ActionBarActivity {
 		case R.id.action_edit: {
 				Intent intent = new Intent(this, NoteAddEditActivity.class);
 				intent.putExtra(EXTRA_NOTE, note);
-				intent.putExtra(DashboardActivity.REQUEST_CODE, NoteAddEditActivity.edit_request_code);
+				intent.putExtra(MainActivity.REQUEST_CODE, NoteAddEditActivity.edit_request_code);
 				startActivityForResult(intent, NoteAddEditActivity.edit_request_code);
 			} break;
 		case R.id.action_delete: {

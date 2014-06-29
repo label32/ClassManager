@@ -53,7 +53,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 	public void setData() {
 		Intent intent = new Intent();
 		intent = getIntent();
-		request_code = intent.getIntExtra(DashboardActivity.REQUEST_CODE, -1);
+		request_code = intent.getIntExtra(MainActivity.REQUEST_CODE, -1);
 		setSpinner();
 		if(request_code == edit_request_code) {
 			note = (Note) intent.getSerializableExtra(EXTRA_NOTE);

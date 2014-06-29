@@ -22,7 +22,7 @@ import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.TasksPagerAdapter;
 import com.licenta.classmanager.holders.Task;
 
-public class TasksFragment extends Fragment {
+public class TasksFragment extends BaseFragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 

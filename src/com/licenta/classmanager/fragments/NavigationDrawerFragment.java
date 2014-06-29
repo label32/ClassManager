@@ -28,7 +28,7 @@ import com.licenta.classmanager.R;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends BaseFragment {
 
     /**
      * Remember the position of the selected item.

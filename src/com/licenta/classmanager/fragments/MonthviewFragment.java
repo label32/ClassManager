@@ -30,7 +30,7 @@ import com.roomorama.caldroid.CaldroidListener;
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.ListItemType;
 
-public class MonthviewFragment extends Fragment {
+public class MonthviewFragment extends BaseFragment {
 
 	private CaldroidFragment caldroidFragment;
 	private final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");

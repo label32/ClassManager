@@ -17,7 +17,7 @@ import com.licenta.classmanager.holders.Task;
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.ListItemType;
 
-public class DayviewPageFragment extends Fragment {
+public class DayviewPageFragment extends BaseFragment {
 
 	public static final String PAGER_COUNT = "PAGER_COUNT";
 	public static final String TASKS = "com.licenta.classmanager.TASKS";

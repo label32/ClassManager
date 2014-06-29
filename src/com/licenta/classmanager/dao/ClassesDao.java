@@ -22,7 +22,7 @@ public class ClassesDao extends Dao {
 	}
 	
 	public void putClass(Lesson lesson) {
-		putData(new File(classes_dir, lesson.getLocal_id()), lesson);
+		putData(new File(classes_dir, Integer.toString(lesson.getId())), lesson);
 	}
 	
 	public Lesson getClass(File key) {
@@ -30,9 +30,9 @@ public class ClassesDao extends Dao {
 	}
 
 	public void deleteClass(Lesson lesson) {
-		if (!deleteData(new File(classes_dir, lesson.getLocal_id()))) {
+		if (!deleteData(new File(classes_dir, Integer.toString(lesson.getId())))) {
 			Log.e("CLASS_DELETE", "Class not deleted!");
-			Log.e("CLASS_DELETE", getReason(new File(classes_dir, lesson.getLocal_id())));
+			Log.e("CLASS_DELETE", getReason(new File(classes_dir, Integer.toString(lesson.getId()))));
 		} else {
 			
 			TasksDao tasksDao = new TasksDao(super.context);

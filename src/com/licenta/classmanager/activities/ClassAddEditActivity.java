@@ -38,7 +38,7 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 	private CheckBox cb_monday, cb_tuesday, cb_wednesday, cb_thursday, cb_friday, cb_saturday, cb_sunday;
 	private Time start_time, end_time;
 	private int request_code;
-	private String class_id;
+	private int class_id;
 	private Lesson lesson;
 	public static int color = 0xff000000 + Integer.parseInt(Integer.toHexString(0), 16);
 	public static boolean is_start_time = true;
@@ -74,11 +74,11 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 
 	private void setData() {
 		Intent intent = getIntent();
-		request_code = intent.getIntExtra(DashboardActivity.REQUEST_CODE, -1);
+		request_code = intent.getIntExtra(MainActivity.REQUEST_CODE, -1);
 		if (request_code == edit_request_code) {
 			lesson = (Lesson) intent.getSerializableExtra(EXTRA_CLASS);
 			if (lesson != null) {
-				class_id = lesson.getLocal_id();
+				class_id = lesson.getId();
 				et_className.setText(lesson.getName());
 				et_details.setText(lesson.getDetails());
 				et_classroom.setText(lesson.getClassroom());
@@ -158,10 +158,13 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 		String details = et_details.getText().toString();
 		String classroom = et_classroom.getText().toString();
 		ArrayList<Day> days = getDays();
-		int id = 0;
-		if (request_code == edit_request_code)
+		int id;
+		Lesson l = new Lesson(name, details, classroom, days, start_time, end_time, color);
+		if (request_code == edit_request_code) {
 			id = lesson.getId();
-		return new Lesson(id, name, details, classroom, days, start_time, end_time, color);
+			l.setId(id);
+		}
+		return l;
 	}
 
 	private void setDays(ArrayList<Day> days) {
@@ -218,8 +221,9 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 		int id = item.getItemId();
 		if (id == R.id.action_save) {
 			Lesson l = getClassData();
-			if(request_code == edit_request_code)
-				l.setLocal_id(class_id);
+			if(request_code == edit_request_code) {
+				l.setId(class_id);
+			}
 			Intent result = new Intent();
 			result.putExtra(EXTRA_CLASS, l);
 			setResult(Activity.RESULT_OK, result);

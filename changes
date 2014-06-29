@@ -1,0 +1,6 @@
+Where data change is made:
+
+ - Main Activity: OnActivityResult
+ - Classes Fragment
+ - Notes Fragment
+ - Task Page Fragment

@@ -64,12 +64,12 @@ public class LoginActivity extends Activity {
 								Context.MODE_PRIVATE);
 						SharedPreferences.Editor editor = sharedPref.edit();
 						editor.putBoolean(WelcomeActivity.FIRST_TIME, false);
-						editor.putInt(DashboardActivity.EXTRA_USER_ID, u.getId());
-						editor.putInt(DashboardActivity.EXTRA_USER_TYPE, u.getType());
+						editor.putInt(MainActivity.EXTRA_USER_ID, u.getId());
+						editor.putInt(MainActivity.EXTRA_USER_TYPE, u.getType());
 						editor.commit();
 						
-						Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-						intent.putExtra(DashboardActivity.EXTRA_USER, u);
+						Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+						intent.putExtra(MainActivity.EXTRA_USER, u);
 						startActivity(intent);
 						LoginActivity.this.finish();
 					}

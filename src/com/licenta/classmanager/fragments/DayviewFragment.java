@@ -14,7 +14,7 @@ import com.licenta.classmanager.adapters.DayviewPagerAdapter;
 import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.dao.TasksDao;
 
-public class DayviewFragment extends Fragment {
+public class DayviewFragment extends BaseFragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	

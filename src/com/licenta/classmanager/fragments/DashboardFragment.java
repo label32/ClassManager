@@ -1,11 +1,15 @@
 package com.licenta.classmanager.fragments;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,17 +28,19 @@ import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
 import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.holders.Announcement;
-import com.licenta.classmanager.holders.Date;
 import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.services.DataService;
+import com.licenta.classmanager.services.DaysCallback;
+import com.licenta.classmanager.services.ServiceCallback;
 import com.licenta.classmanager.utils.Utils;
 
 import de.timroes.android.listview.EnhancedListView;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends BaseFragment {
 
-	private static final String ARG_SECTION_NUMBER = "section_number";
+	public static final String EXTRA_CLASSES = "com.licenta.classmanager.CLASSES";
 
 	public static final int note_add_request_code = 104;
 	public static final int task_add_request_code = 101;
@@ -43,25 +49,20 @@ public class DashboardFragment extends Fragment {
 	private EnhancedListView elv_announcements;
 	private EnhancedListView elv_lessons;
 	private EnhancedListView elv_upcoming;
-	private LayoutInflater inflater;
 	private AnnouncementsListAdapter announcementsAdapter;
 	private LessonsListAdapter lessonsAdapter;
 	private UpcomingListAdapter upcomingAdapter;
 	private ArrayList<Announcement> announcements;
 	private ArrayList<Lesson> classes;
 	private ArrayList<Lesson> todays_classes;
-	private ClassesDao classesDao;
 
-//	public void setData(int sectionNumber) {
-//		Bundle args = new Bundle();
-//		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//	public void setArguments(Bundle args) {
 //		this.setArguments(args);
 //	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
-		this.inflater = inflater;
 		setHasOptionsMenu(true);
 		linkUI(rootView);
 		setData();
@@ -85,9 +86,7 @@ public class DashboardFragment extends Fragment {
 			txt_announcements.setVisibility(View.GONE);
 		}
 		
-		classesDao = new ClassesDao(getActivity());
 		classes = new ArrayList<Lesson>();
-		classes = classesDao.getClasses();
 		todays_classes = getTodaysClasses();
 		
 		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
@@ -183,6 +182,6 @@ public class DashboardFragment extends Fragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-//		((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//		((DashboardActivity) activity).onSectionAttached(getArguments().getInt(EXTRA_CLASSES));
 	}
 }

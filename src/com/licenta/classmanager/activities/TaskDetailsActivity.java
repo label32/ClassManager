@@ -68,7 +68,7 @@ public class TaskDetailsActivity extends ActionBarActivity {
 		if(id == R.id.action_edit) {
 			Intent intent = new Intent(this, TaskAddEditActivity.class);
 			intent.putExtra(EXTRA_TASK, task);
-			intent.putExtra(DashboardActivity.REQUEST_CODE, TaskAddEditActivity.edit_request_code);
+			intent.putExtra(MainActivity.REQUEST_CODE, TaskAddEditActivity.edit_request_code);
 			startActivityForResult(intent, TaskAddEditActivity.edit_request_code);
 		}
 		return super.onOptionsItemSelected(item);

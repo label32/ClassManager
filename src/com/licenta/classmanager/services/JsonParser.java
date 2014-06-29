@@ -16,9 +16,8 @@ public class JsonParser {
 	
 	private DataService dataService;
 	private Context context;
-	private boolean not_ready;
 	private ArrayList<Day> days;
-	private Lesson l;
+	public static boolean not_ready;
 	
 	public JsonParser(Context context) {
 		this.context = context;
@@ -56,8 +55,8 @@ public class JsonParser {
 		return u;
 	}
 	
-	public Lesson getLessonFromJSON(JSONObject json_lesson) {
-		l = new Lesson(json_lesson.optString("Name"));
+	public void getLessonFromJSON(JSONObject json_lesson, final DaysCallback callback) {
+		final Lesson l = new Lesson(json_lesson.optString("Name"));
 		l.setId(json_lesson.optInt("Id"));
 		l.setClassroom(json_lesson.optString("Classroom"));
 		l.setColor(json_lesson.optInt("Color"));
@@ -67,16 +66,12 @@ public class JsonParser {
 		
 		dataService = new DataService(context);
 		not_ready = true;
-		days = new ArrayList<Day>();
 
-		
-		dataService.getClassDays(Integer.toString(l.getId()), new ServiceCallback(context) {
+		dataService.getClassDays(l.getId(), new ServiceCallback(context) {
 			
 			@Override
 			public void onSuccess(JSONObject result) {
-				days = getDaysFromJSON(result);
-				l.setDays(days);
-				not_ready = false;
+				callback.onDaysFinish(result, l);
 			}
 			
 			@Override
@@ -84,11 +79,6 @@ public class JsonParser {
 				
 			}
 		});
-		
-		while(not_ready) {
-			;
-		}
-		
-		return l;
+
 	}
 }

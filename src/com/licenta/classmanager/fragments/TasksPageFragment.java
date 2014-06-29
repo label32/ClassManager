@@ -27,7 +27,7 @@ import de.timroes.android.listview.EnhancedListView.OnDismissCallback;
 import de.timroes.android.listview.EnhancedListView.UndoStyle;
 import de.timroes.android.listview.EnhancedListView.Undoable;
 
-public class TasksPageFragment extends Fragment {
+public class TasksPageFragment extends BaseFragment {
 
 	public static final String PAGER_COUNT = "PAGER_COUNT";
 

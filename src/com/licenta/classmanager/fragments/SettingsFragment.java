@@ -15,16 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.DashboardActivity;
+import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.activities.WelcomeActivity;
-import com.licenta.classmanager.holders.User;
 import com.licenta.classmanager.services.DataService;
 import com.licenta.classmanager.services.ServiceCallback;
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragment {
 
 //	private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -60,8 +57,8 @@ public class SettingsFragment extends Fragment {
 						Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putBoolean(WelcomeActivity.FIRST_TIME, true);
-				editor.remove(DashboardActivity.EXTRA_USER_ID);
-				editor.remove(DashboardActivity.EXTRA_USER_TYPE);
+				editor.remove(MainActivity.EXTRA_USER_ID);
+				editor.remove(MainActivity.EXTRA_USER_TYPE);
 				editor.commit();
 				Intent intent = new Intent(getActivity(), WelcomeActivity.class);
 				startActivity(intent);
@@ -79,7 +76,7 @@ public class SettingsFragment extends Fragment {
 //		        Toast.makeText(getActivity(), gson.toJson(u), Toast.LENGTH_LONG).show();
 				
 				DataService dataService = new DataService(getActivity());
-				dataService.getUser("3", new ServiceCallback(getActivity()) {
+				dataService.getUser(3, new ServiceCallback(getActivity()) {
 					
 					@Override
 					public void onSuccess(JSONObject result) {

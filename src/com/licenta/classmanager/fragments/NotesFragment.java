@@ -29,7 +29,7 @@ import com.licenta.classmanager.holders.Note;
 
 import de.timroes.android.listview.EnhancedListView;
 
-public class NotesFragment extends Fragment {
+public class NotesFragment extends BaseFragment {
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
