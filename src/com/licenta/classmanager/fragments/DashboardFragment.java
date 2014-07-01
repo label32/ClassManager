@@ -1,8 +1,7 @@
 package com.licenta.classmanager.fragments;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import org.json.JSONArray;
@@ -11,7 +10,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,17 +19,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.activities.NoteAddEditActivity;
 import com.licenta.classmanager.activities.TaskAddEditActivity;
 import com.licenta.classmanager.adapters.listadapters.AnnouncementsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
+import com.licenta.classmanager.dao.AnnouncementsDao;
 import com.licenta.classmanager.dao.ClassesDao;
+import com.licenta.classmanager.dao.TasksDao;
 import com.licenta.classmanager.holders.Announcement;
 import com.licenta.classmanager.holders.Day;
+import com.licenta.classmanager.holders.Flag;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Task;
 import com.licenta.classmanager.services.DataService;
-import com.licenta.classmanager.services.DaysCallback;
+import com.licenta.classmanager.services.JsonParser;
 import com.licenta.classmanager.services.ServiceCallback;
 import com.licenta.classmanager.utils.Utils;
 
@@ -55,6 +58,14 @@ public class DashboardFragment extends BaseFragment {
 	private ArrayList<Announcement> announcements;
 	private ArrayList<Lesson> classes;
 	private ArrayList<Lesson> todays_classes;
+	private ArrayList<Task> tasks;
+	private ArrayList<Task> upcoming;
+	private DataService dataService;
+	private JsonParser jsonParser;
+	private AnnouncementsDao announcementsDao;
+	private ClassesDao classesDao;
+	private TasksDao tasksDao;
+	public static int userid;
 
 //	public void setArguments(Bundle args) {
 //		this.setArguments(args);
@@ -78,31 +89,180 @@ public class DashboardFragment extends BaseFragment {
 	}
 
 	public void setData() {
+		announcementsDao = new AnnouncementsDao(getActivity());		
+		dataService = new DataService(getActivity());
+		jsonParser = new JsonParser(getActivity());
 		announcements = new ArrayList<Announcement>();
-		for(int i=0; i<5; i++) {
-			announcements.add(new Announcement(0, "Announcement "+i, "some description", 0, 0, null));
-		}
-		if(announcements.size()==0) {
-			txt_announcements.setVisibility(View.GONE);
-		}
 		
+		dataService.getAnnouncements(userid, new ServiceCallback(getActivity()) {
+			
+			@Override
+			public void onSuccess(JSONObject result) {
+				JSONArray json_announcements_data = result.optJSONArray("announcements_data");
+				if(json_announcements_data.length() == 0)
+					return;
+				for(int i=0; i<json_announcements_data.length(); i++) {
+					JSONObject json_announcement_data = json_announcements_data.optJSONObject(i);
+					Announcement a = jsonParser.getAnnouncementFromJSON(json_announcement_data);
+					announcements.add(a);
+					announcementsDao.putAnnouncement(a);
+				}
+				if(announcements.size()==0) {
+					txt_announcements.setVisibility(View.GONE);
+				}
+				updateAnnouncementsList();
+				getLessons();
+			}
+			
+			@Override
+			public void onOffline() {
+				announcements = announcementsDao.getAnnouncements();
+				int diff = 0;
+				for (int i = 0; i < announcements.size(); i++) {
+					if (announcements.get(i - diff).getFlag() == Flag.DELETED) {
+						announcements.remove(i - diff);
+						diff++;
+					}
+				}
+				updateAnnouncementsList();
+				getLessons();
+			}
+		});
+		
+	}
+	
+	public void getLessons() {
 		classes = new ArrayList<Lesson>();
-		todays_classes = getTodaysClasses();
+		classesDao = new ClassesDao(getActivity());
 		
-		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
+		dataService.getUserClasses(userid, new ServiceCallback(getActivity()) {
+
+			@Override
+			public void onSuccess(JSONObject result) {
+				JSONArray json_classes = result.optJSONArray("classes");
+				JSONArray json_days = result.optJSONArray("days");
+				if (json_classes.length() == 0)
+					return;
+				for (int i = 0; i < json_classes.length(); i++) {
+					JSONObject json_class = json_classes.optJSONObject(i);
+					JSONArray json_class_days = json_days.optJSONArray(i);
+					Lesson lesson = jsonParser.getLessonFromJSON(json_class);
+					ArrayList<Day> class_days = jsonParser.getDaysFromJSON(json_class_days);
+					if (lesson != null) {
+						lesson.setDays(class_days);
+						classes.add(lesson);
+						classesDao.putClass(lesson);
+					}
+				}
+				todays_classes = getTodaysClasses();
+				updateLessonsList();
+				getTasks();
+			}
+
+			@Override
+			public void onOffline() {
+				classes = classesDao.getClasses();
+				int diff = 0;
+				for (int i = 0; i < classes.size(); i++) {
+					if (classes.get(i - diff).getFlag() == Flag.DELETED) {
+						classes.remove(i - diff);
+						diff++;
+					}
+				}
+				todays_classes = getTodaysClasses();
+				updateLessonsList();
+				getTasks();
+			}
+		});
+	}
+	
+	public void getTasks() {
+		tasks = new ArrayList<Task>();
+		tasksDao = new TasksDao(getActivity());
+		
+		dataService.getTasks(userid, new ServiceCallback(getActivity()) {
+
+			@Override
+			public void onSuccess(JSONObject result) {
+				JSONArray json_tasks_data = result.optJSONArray("tasks_data");
+				if (json_tasks_data.length() == 0)
+					return;
+				for (int i = 0; i < json_tasks_data.length(); i++) {
+					JSONObject json_task_data = json_tasks_data.optJSONObject(i);
+					Task t = jsonParser.getTaskFromJSON(json_task_data);
+					tasks.add(t);
+				}
+					tasksDao.putTasks(tasks);
+					getUpcoming();
+			}
+
+			@Override
+			public void onOffline() {
+				tasks = tasksDao.getTasks();
+				getUpcoming();
+			}
+		});
+		
+	}
+	
+	public void getUpcoming() {
+		upcoming = new ArrayList<Task>();
+		Calendar cal;
+		for(int i=0; i<tasks.size(); i++) {
+			Task t = tasks.get(i);
+			cal = Calendar.getInstance();
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			int month = cal.get(Calendar.MONTH)+1;
+			int year = cal.get(Calendar.YEAR);
+			if(t.getDeadline().getYear() == year) {
+				if(day>15) {
+					//day 16..31
+					if(t.getDeadline().getMonth() == month && t.getDeadline().getDay()<=31) {
+						upcoming.add(t);
+					} else {
+						if(t.getDeadline().getMonth() == (month+1) && t.getDeadline().getDay()<=15) {
+							upcoming.add(t);
+						}
+					}
+				} else {
+					//day 1..15
+					if(t.getDeadline().getMonth() == month && t.getDeadline().getDay()<=day+15) {
+						upcoming.add(t);
+					}
+				}
+			}
+		}
+		updateUpcomingList();
+	}
+	
+	public void updateLessonsList() {
+		Lesson[] temp = todays_classes.toArray(new Lesson[todays_classes.size()]);
+		Arrays.sort(temp);
+		todays_classes = new ArrayList<Lesson>(Arrays.asList(temp));
 		lessonsAdapter = new LessonsListAdapter(getActivity(), elv_lessons, todays_classes);
-		upcomingAdapter = new UpcomingListAdapter(getActivity(), elv_upcoming);
-		
-		announcementsAdapter.resetItems();
-		upcomingAdapter.resetItems();
-		
-		elv_announcements.setAdapter(announcementsAdapter);
-		elv_announcements.setScrollContainer(false);
 		elv_lessons.setAdapter(lessonsAdapter);
 		elv_lessons.setScrollContainer(false);
+		Utils.setListViewHeightBasedOnChildren3(elv_lessons);
+	}
+	
+	public void updateAnnouncementsList() {
+		Announcement[] temp = announcements.toArray(new Announcement[announcements.size()]);
+		Arrays.sort(temp);
+		announcements = new ArrayList<Announcement>(Arrays.asList(temp));
+		announcementsAdapter = new AnnouncementsListAdapter(getActivity(), elv_announcements, announcements);
+		elv_announcements.setAdapter(announcementsAdapter);
+		elv_announcements.setScrollContainer(false);
+		Utils.setListViewHeightBasedOnChildren(elv_announcements,true);
+	}
+	
+	public void updateUpcomingList() {
+		upcomingAdapter = new UpcomingListAdapter(getActivity(), elv_upcoming);
 		elv_upcoming.setAdapter(upcomingAdapter);
 		elv_upcoming.setScrollContainer(false);
-		
+		Utils.setListViewHeightBasedOnChildren(elv_upcoming, true);		
+	}
+	
+	public void setActions() {
 		elv_announcements.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
 			@Override
@@ -125,15 +285,6 @@ public class DashboardFragment extends BaseFragment {
 		
 		elv_announcements.enableSwipeToDismiss();
 		elv_announcements.setUndoStyle(UndoStyle.MULTILEVEL_POPUP);
-		
-		Utils.setListViewHeightBasedOnChildren(elv_announcements,true);
-		Utils.setListViewHeightBasedOnChildren3(elv_lessons);
-		Utils.setListViewHeightBasedOnChildren(elv_upcoming, true);
-
-	}
-
-	public void setActions() {
-		
 	}
 	
 	public ArrayList<Lesson> getTodaysClasses() {

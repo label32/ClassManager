@@ -16,31 +16,23 @@ public class Task implements Serializable, Comparable<Task> {
 	private String title;
 	private String details;
 	private boolean done;
-	private String local_id;
-	private Random r;
+	private Flag flag;
 
 	// Reminder...
 
 	public Task(String title) {
 		this.title = title;
-		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(title);
-		local_id = "" + rand + hash;
+		id = this.hashCode();
 	}
 
-	public Task(int id, Lesson lesson, TaskType type, Date deadline, String title, String details, boolean done) {
-		this.id = id;
+	public Task(Lesson lesson, TaskType type, Date deadline, String title, String details, boolean done) {
 		this.lesson = lesson;
 		this.type = type;
 		this.deadline = deadline;
 		this.title = title;
 		this.details = details;
 		this.done = done;
-		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(title);
-		local_id = "" + rand + hash;
+		id = this.hashCode();
 	}
 	
 	public int compareTo(Task task) {
@@ -79,14 +71,6 @@ public class Task implements Serializable, Comparable<Task> {
 		this.lesson = lesson;
 	}
 	
-	public String getLocal_id() {
-		return local_id;
-	}
-	
-	public void setLocal_id(String local_id) {
-		this.local_id = local_id;
-	}
-	
 	public String getTitle() {
 		return title;
 	}
@@ -110,5 +94,64 @@ public class Task implements Serializable, Comparable<Task> {
 	public boolean isDone() {
 		return done;
 	}
+	
+	public Flag getFlag() {
+		return flag;
+	}
+	
+	public void setFlag(Flag flag) {
+		this.flag = flag;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((deadline == null) ? 0 : deadline.hashCode());
+		result = prime * result + ((details == null) ? 0 : details.hashCode());
+		result = prime * result + (done ? 1231 : 1237);
+		result = prime * result + ((lesson == null) ? 0 : lesson.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (deadline == null) {
+			if (other.deadline != null)
+				return false;
+		} else if (!deadline.equals(other.deadline))
+			return false;
+		if (details == null) {
+			if (other.details != null)
+				return false;
+		} else if (!details.equals(other.details))
+			return false;
+		if (done != other.done)
+			return false;
+		if (lesson == null) {
+			if (other.lesson != null)
+				return false;
+		} else if (!lesson.equals(other.lesson))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+	
+	
 
 }

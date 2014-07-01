@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.licenta.classmanager.fragments.TasksFragment;
 import com.licenta.classmanager.fragments.TasksPageFragment;
 
 import de.timroes.android.listview.EnhancedListView;
@@ -14,10 +15,12 @@ public class TasksPagerAdapter extends FragmentStatePagerAdapter {
 
 	private Context context;
 	private EnhancedListView elv;
+	private int user_id;
 	
-	public TasksPagerAdapter(FragmentManager fm, Context context) {
+	public TasksPagerAdapter(FragmentManager fm, Context context, int user_id) {
 		super(fm);
 		this.context = context;
+		this.user_id = user_id;
 	}
 
 	@Override
@@ -25,6 +28,7 @@ public class TasksPagerAdapter extends FragmentStatePagerAdapter {
 		Fragment fragment = new TasksPageFragment();
         Bundle args = new Bundle();
         args.putInt(TasksPageFragment.PAGER_COUNT, i + 1);
+        args.putInt(TasksPageFragment.USERID, user_id);
         fragment.setArguments(args);
         return fragment;
 	}

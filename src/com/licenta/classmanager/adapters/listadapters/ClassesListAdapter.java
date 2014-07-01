@@ -109,7 +109,7 @@ public class ClassesListAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
             assert convertView != null;
-            holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
+            holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
             holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
 
             convertView.setTag(holder);
@@ -118,14 +118,14 @@ public class ClassesListAdapter extends BaseAdapter {
         }
 
         holder.position = position;
-        holder.mTextView.setText(classes.get(position).getName());
+        holder.txt_title.setText(classes.get(position).getName());
         holder.class_color.setBackgroundColor(classes.get(position).getColor());
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView mTextView, class_color;
+        TextView txt_title, class_color;
         int position;
     }
 

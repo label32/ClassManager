@@ -19,13 +19,9 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 	private int color;
 	private Flag flag;
 	private int id;
-	private Random r;
 
 	public Lesson(String name) {
 		this.name = name;
-		r = new Random();
-//		int rand = r.nextInt(Integer.MAX_VALUE);
-//		int hash = Utils.hash(name);
 		id = this.hashCode();
 	}
 
@@ -38,9 +34,6 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.color = color;
-		r = new Random();
-//		int rand = r.nextInt(Integer.MAX_VALUE);
-//		int hash = Utils.hash(name);
 		id = this.hashCode();
 	}
 	

@@ -84,9 +84,10 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 				et_classroom.setText(lesson.getClassroom());
 				start_time = new Time(lesson.getStart_time().getHour(), lesson.getStart_time().getMinute());
 				end_time = new Time(lesson.getEnd_time().getHour(), lesson.getEnd_time().getMinute());
-				btn_start_time.setText(lesson.getStart_time().getHour() + ":" + lesson.getStart_time().getMinute());
-				btn_end_time.setText(lesson.getEnd_time().getHour() + ":" + lesson.getEnd_time().getMinute());
+				btn_start_time.setText(lesson.getStart_time().toString());
+				btn_end_time.setText(lesson.getEnd_time().toString());
 				btn_color.setBackgroundColor(lesson.getColor());
+				color = lesson.getColor();
 				setDays(lesson.getDays());
 			} else {
 				Log.e("INTENT_ERROR", "Received object is null: lesson");

@@ -18,8 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 import com.licenta.classmanager.R;
 import com.licenta.classmanager.activities.ClassAddEditActivity;
@@ -28,10 +28,10 @@ import com.licenta.classmanager.activities.MainActivity;
 import com.licenta.classmanager.adapters.CustomSpinnerAdapter;
 import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.dao.ClassesDao;
+import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Flag;
 import com.licenta.classmanager.holders.Lesson;
 import com.licenta.classmanager.services.DataService;
-import com.licenta.classmanager.services.DaysCallback;
 import com.licenta.classmanager.services.JsonParser;
 import com.licenta.classmanager.services.NetworkWorker;
 import com.licenta.classmanager.services.ServiceCallback;
@@ -41,7 +41,7 @@ import de.timroes.android.listview.EnhancedListView;
 
 public class ClassesFragment extends BaseFragment {
 
-	private static final String ARG_USERID = "com.licenta.classmanager.USERID";
+	private static final String USERID = "com.licenta.classmanager.USERID";
 
 	private ArrayList<Lesson> classes;
 	private EnhancedListView elv_classes;
@@ -88,60 +88,63 @@ public class ClassesFragment extends BaseFragment {
 	}
 
 	private void setData() {
-		user_id = getArguments().getInt(ARG_USERID);
+		user_id = getArguments().getInt(USERID);
 		classes = new ArrayList<Lesson>();
 		jsonParser = new JsonParser(getActivity());
 		dao = new ClassesDao(getActivity());
+
 		dataService = new DataService(getActivity());
-		if(!classes_synced && NetworkWorker.checkConnection(getActivity())) {
+		if (!classes_synced && NetworkWorker.checkConnection(getActivity())) {
 			dataService.syncClasses(user_id, new SyncCallback() {
-								
+
 				@Override
 				public void onSuccess(JSONObject result) {
 					Toast.makeText(getActivity(), "Classes synced!", Toast.LENGTH_SHORT).show();
-					getClasses();				
+					classes_synced = true;
+					getClasses();
 				}
-				
+
 			});
 		} else {
-			getClasses();			
+			getClasses();
 		}
-		
+
 	}
-	
+
 	private void getClasses() {
 		dataService.getUserClasses(user_id, new ServiceCallback(getActivity()) {
 
 			@Override
 			public void onSuccess(JSONObject result) {
 				JSONArray json_classes = result.optJSONArray("classes");
+				JSONArray json_days = result.optJSONArray("days"); // array of
+																	// arrays
 				if (json_classes.length() == 0)
 					return;
 				for (int i = 0; i < json_classes.length(); i++) {
-					final int last = json_classes.length() - 1;
-					final int count = i;
 					JSONObject json_class = json_classes.optJSONObject(i);
-					jsonParser.getLessonFromJSON(json_class, new DaysCallback() {
-
-						@Override
-						public void onDaysFinish(JSONObject json_days, Lesson lesson) {
-							if (lesson != null) {
-								lesson.setDays(jsonParser.getDaysFromJSON(json_days));
-								classes.add(lesson);
-								if (count == last) {
-									dao.putClasses(classes);
-									updateUI();
-								}
-									
-							}
-						}
-					});
+					JSONArray json_class_days = json_days.optJSONArray(i);
+					Lesson lesson = jsonParser.getLessonFromJSON(json_class);
+					ArrayList<Day> class_days = jsonParser.getDaysFromJSON(json_class_days);
+					if (lesson != null) {
+						lesson.setDays(class_days);
+						classes.add(lesson);
+						dao.putClass(lesson);
+					}
 				}
+				updateUI();
 			}
 
 			@Override
 			public void onOffline() {
 				classes = dao.getClasses();
+				int diff = 0;
+				for (int i = 0; i < classes.size(); i++) {
+					if (classes.get(i - diff).getFlag() == Flag.DELETED) {
+						classes.remove(i - diff);
+						diff++;
+					}
+				}
 				updateUI();
 			}
 		});
@@ -217,8 +220,8 @@ public class ClassesFragment extends BaseFragment {
 				dao.deleteClass(lesson);
 				dao.putClass(lesson);
 				classes.set(position, lesson);
-				updateUI();
 				classes_modified = true;
+				updateUI();
 			}
 
 			@Override
@@ -229,47 +232,40 @@ public class ClassesFragment extends BaseFragment {
 				dao.deleteClass(lesson);
 				dao.putClass(lesson);
 				classes.set(position, lesson);
-				updateUI();
 				classes_modified = true;
 				classes_synced = false;
+				updateUI();
 			}
 		});
 
 	}
 
 	public void deleteClass(final Lesson lesson) {
-		if (lesson.getId() == 0) {
-			dao.deleteClass(lesson);
-			classes.remove(lesson);
-			classes_modified = true;
-			updateUI();
-		} else {
-			dataService.deleteClass(lesson.getId(), new ServiceCallback(getActivity()) {
+		dataService.deleteClass(lesson.getId(), new ServiceCallback(getActivity()) {
 
-				@Override
-				public void onSuccess(JSONObject result) {
-					dao.deleteClass(lesson);
-					classes.remove(lesson);
-					classes_modified = true;
-					updateUI();
-				}
+			@Override
+			public void onSuccess(JSONObject result) {
+				dao.deleteClass(lesson);
+				classes.remove(lesson);
+				classes_modified = true;
+				updateUI();
+			}
 
-				@Override
-				public void onOffline() {
-					int position = classes.indexOf(lesson);
-					if (classes.get(position).getFlag() == Flag.ADDED) {
-						dao.deleteClass(classes.get(position));
-					} else {
-						classes.get(position).setFlag(Flag.DELETED);
-						dao.putClass(classes.get(position));
-					}
-					classes_modified = true;
-					classes_synced = false;
-					classes.remove(position);
-					updateUI();
+			@Override
+			public void onOffline() {
+				int position = classes.indexOf(lesson);
+				if (classes.get(position).getFlag() == Flag.ADDED) {
+					dao.deleteClass(classes.get(position));
+				} else {
+					classes.get(position).setFlag(Flag.DELETED);
+					dao.putClass(classes.get(position));
 				}
-			});
-		}
+				classes_modified = true;
+				classes_synced = false;
+				classes.remove(position);
+				updateUI();
+			}
+		});
 	}
 
 	public void updateUI() {

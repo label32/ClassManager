@@ -33,7 +33,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 	private int request_code;
 	private ClassesDao dao;
 	private ArrayList<Lesson> classes;
-	private String local_id;
+	private int note_id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class NoteAddEditActivity extends ActionBarActivity {
 		if(request_code == edit_request_code) {
 			note = (Note) intent.getSerializableExtra(EXTRA_NOTE);
 			if (note != null) {
-				local_id = note.getLocal_id();
+				note_id = note.getId();
 				setNoteData();
 			} else {
 				Log.e("INTENT_ERROR", "Received object is null: note");
@@ -87,14 +87,16 @@ public class NoteAddEditActivity extends ActionBarActivity {
 		int month = c.get(Calendar.MONTH);
 		int day = c.get(Calendar.DATE);
 		int year = c.get(Calendar.YEAR);
-		int id = 0;
+		int id;
+		Note n = new Note(title, text, l, new Date(day, month, year));
 		if(request_code == edit_request_code) {
 			day = note.getDate().getDay();
 			year = note.getDate().getYear();
 			month = note.getDate().getMonth();
 			id = note.getId();
+			n.setId(id);
 		}
-		return new Note(id, title, text, l, new Date(day, month, year));
+		return n;
 	}
 	
 	private void setSpinner() {
@@ -119,7 +121,8 @@ public class NoteAddEditActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if(id==R.id.action_save) {
 			Note note = getNoteData();
-			note.setLocal_id(local_id);
+			if(request_code == edit_request_code)
+				note.setId(note_id);
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_NOTE, note);
 			setResult(RESULT_OK, intent);

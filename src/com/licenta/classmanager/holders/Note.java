@@ -1,9 +1,6 @@
 package com.licenta.classmanager.holders;
 
 import java.io.Serializable;
-import java.util.Random;
-
-import com.licenta.classmanager.utils.Utils;
 
 public class Note implements Serializable, Comparable<Note> {
 
@@ -13,27 +10,19 @@ public class Note implements Serializable, Comparable<Note> {
 	private String title, text;
 	private Lesson lesson;
 	private Date date;
-	private String local_id;
-	private Random r;
+	private Flag flag;
 
 	public Note(String title) {
 		this.title = title;
-		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(title);
-		local_id = "" + rand + hash;
+		id = this.hashCode();
 	}
 	
-	public Note(int id, String title, String text, Lesson lesson, Date date) {
-		this.id = id;
+	public Note(String title, String text, Lesson lesson, Date date) {
 		this.title = title;
 		this.text = text;
 		this.lesson = lesson;
 		this.date = date;
-		r = new Random();
-		int rand = r.nextInt(Integer.MAX_VALUE);
-		int hash = Utils.hash(title);
-		local_id = "" + rand + hash;
+		id = this.hashCode();
 	}
 	
 	public void setId(int id) {
@@ -68,20 +57,20 @@ public class Note implements Serializable, Comparable<Note> {
 		return lesson;
 	}
 	
-	public void setLocal_id(String local_id) {
-		this.local_id = local_id;
-	}
-	
-	public String getLocal_id() {
-		return local_id;
-	}
-	
 	public void setText(String text) {
 		this.text = text;
 	}
 	
 	public String getText() {
 		return text;
+	}
+	
+	public Flag getFlag() {
+		return flag;
+	}
+	
+	public void setFlag(Flag flag) {
+		this.flag = flag;
 	}
 	
 	@Override
@@ -94,9 +83,7 @@ public class Note implements Serializable, Comparable<Note> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + id;
 		result = prime * result + ((lesson == null) ? 0 : lesson.hashCode());
-		result = prime * result + ((local_id == null) ? 0 : local_id.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -116,17 +103,10 @@ public class Note implements Serializable, Comparable<Note> {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (id != other.id)
-			return false;
 		if (lesson == null) {
 			if (other.lesson != null)
 				return false;
 		} else if (!lesson.equals(other.lesson))
-			return false;
-		if (local_id == null) {
-			if (other.local_id != null)
-				return false;
-		} else if (!local_id.equals(other.local_id))
 			return false;
 		if (text == null) {
 			if (other.text != null)

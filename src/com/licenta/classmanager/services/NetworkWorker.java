@@ -18,6 +18,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.licenta.classmanager.activities.MainActivity;
+
 public class NetworkWorker {
 
 	public BaseCallback callback;
@@ -50,8 +52,8 @@ public class NetworkWorker {
 
 		@Override
 		protected void onPreExecute() {
-			progress = ProgressDialog.show(callback.getContext(), "Loading data",
-					"Please wait...");
+//			progress = ProgressDialog.show(callback.getContext(), "Loading data",
+//					"Please wait...");			
 			super.onPreExecute();
 		}
 
@@ -68,7 +70,7 @@ public class NetworkWorker {
 		@Override
 		protected void onPostExecute(JSONObject result) {
 			super.onPostExecute(result);
-			progress.dismiss();
+//			progress.dismiss();
 			callback.finish(url, result, error_msg);
 		}
 	}

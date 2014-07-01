@@ -105,7 +105,7 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = activity.getLayoutInflater().inflate(R.layout.list_item_simple, parent, false);
+			convertView = activity.getLayoutInflater().inflate(R.layout.list_item_announcement, parent, false);
 			// Clicking the delete icon, will read the position of the item
 			// stored in
 			// the tag and delete it from the list. So we don't need to generate
@@ -122,7 +122,10 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 
 			holder = new ViewHolder();
 			assert convertView != null;
-			holder.mTextView = (TextView) convertView.findViewById(R.id.txt_title);
+			holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
+			holder.txt_text = (TextView) convertView.findViewById(R.id.txt_text);
+			holder.txt_date = (TextView) convertView.findViewById(R.id.txt_date);
+			holder.txt_color = (TextView) convertView.findViewById(R.id.class_color);
 
 			convertView.setTag(holder);
 		} else {
@@ -130,13 +133,19 @@ public class AnnouncementsListAdapter extends BaseAdapter {
 		}
 
 		holder.position = position;
-		holder.mTextView.setText(announcements.get(position).getTitle());
+		holder.txt_title.setText(announcements.get(position).getTitle());
+		String text = announcements.get(position).getText();
+		if(text.length() > 77)
+		    text = text.substring(0,77) + "...";
+		holder.txt_text.setText(text);
+		holder.txt_date.setText(announcements.get(position).getDate().toString());
+		holder.txt_color.setBackgroundColor(announcements.get(position).getLesson().getColor());
 
 		return convertView;
 	}
 
 	private class ViewHolder {
-		TextView mTextView;
+		TextView txt_title, txt_color, txt_text, txt_date;
 		int position;
 	}
 

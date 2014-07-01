@@ -11,24 +11,33 @@ public class Announcement implements Serializable, Comparable<Announcement> {
 	private String title;
 	private String text;
 	private int class_id;
-	private int user_id;
+	private Lesson lesson;
 	private Date date;
+	private Flag flag;
 	
-	public Announcement() {
-		
+	public Announcement(String title) {
+		this.title = title;
+		id = hashCode();
 	}
 	
-	public Announcement(int id, String title, String text, int class_id, int user_id, Date date) {
-		this.id = id;
+	public Announcement(String title, String text, int class_id, Date date) {
 		this.title = title;
 		this.text = text;
 		this.class_id = class_id;
-		this.user_id = user_id;
 		this.date = date;
+		id = hashCode();
 	}
 	
 	public int getClass_id() {
 		return class_id;
+	}
+	
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
+	
+	public Lesson getLesson() {
+		return lesson;
 	}
 	
 	public Date getDate() {
@@ -45,10 +54,6 @@ public class Announcement implements Serializable, Comparable<Announcement> {
 	
 	public String getTitle() {
 		return title;
-	}
-	
-	public int getUser_id() {
-		return user_id;
 	}
 	
 	public void setClass_id(int class_id) {
@@ -71,8 +76,52 @@ public class Announcement implements Serializable, Comparable<Announcement> {
 		this.title = title;
 	}
 	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public Flag getFlag() {
+		return flag;
+	}
+	
+	public void setFlag(Flag flag) {
+		this.flag = flag;
+	}	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + class_id;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Announcement other = (Announcement) obj;
+		if (class_id != other.class_id)
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -89,6 +89,8 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	}
 	
 	private void setDays(ArrayList<Day> days) {
+		if(days == null)
+			return;
 		Day day;
 		for(int i=0; i<days.size(); i++) {
 			day = days.get(i);

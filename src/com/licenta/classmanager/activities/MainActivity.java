@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	public final static String EXTRA_USER = "com.licenta.classmanager.EXTRA_USER";
 	public final static String EXTRA_USER_ID = "com.licenta.classmanager.EXTRA_USER_ID";
 	public final static String EXTRA_USER_TYPE = "com.licenta.classmanager.EXTRA_USER_TYPE";
-	private static final String ARG_USERID = "com.licenta.classmanager.USERID";
+	public static final String USERID = "com.licenta.classmanager.USERID";
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 	private CharSequence mTitle;
@@ -95,22 +95,21 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 				alert.show();
 			}
 		}
+		DashboardFragment.userid = user_id;
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
+		Bundle args;
 
 		switch (position) {
 
 		/* Dashboard */
-		case 0: {
+		case 0: 
 			DashboardFragment dashboardFragment = new DashboardFragment();
-			Bundle data = new Bundle();
-			dashboardFragment.setArguments(data);
 			fragmentManager.beginTransaction().replace(R.id.container, dashboardFragment).commit();
-		}
 			break;
 
 		/* Calendar */
@@ -124,7 +123,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		case 2: /* Tasks */
 			TasksFragment tasksFragment = new TasksFragment();
-			// tasksFragment.setData(position + 1);
+			args = new Bundle();
+			args.putInt(USERID, user_id);
+			tasksFragment.setArguments(args);
 			fragmentManager.beginTransaction().replace(R.id.container, tasksFragment).commit();
 			break;
 
@@ -136,8 +137,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		case 4: /* Classes */
 			ClassesFragment classesFragment = new ClassesFragment();
-			Bundle args = new Bundle();
-			args.putInt(ARG_USERID, user_id);
+			args = new Bundle();
+			args.putInt(USERID, user_id);
 			classesFragment.setArguments(args);
 			fragmentManager.beginTransaction().replace(R.id.container, classesFragment).commit();
 			break;

@@ -24,7 +24,8 @@ import com.licenta.classmanager.holders.Task;
 
 public class TasksFragment extends BaseFragment {
 
-	private static final String ARG_SECTION_NUMBER = "section_number";
+	public static final String ARG_SECTION_NUMBER = "section_number";
+	public static final String USERID = "com.licenta.classmanager.USERID";	
 
 	private ArrayList<Task> tasks;
 	private TasksPagerAdapter mTasksPagerAdapter;
@@ -55,7 +56,7 @@ public class TasksFragment extends BaseFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager(), getActivity());
+		mTasksPagerAdapter = new TasksPagerAdapter(getChildFragmentManager(), getActivity(), getArguments().getInt(USERID, -1));
 		mViewPager = (ViewPager) getActivity().findViewById(R.id.pager);
 		mViewPager.setAdapter(mTasksPagerAdapter);
 	}

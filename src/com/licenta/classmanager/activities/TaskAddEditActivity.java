@@ -35,7 +35,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 	private Task task;
 	private ArrayList<Lesson> classes;
 	private ClassesDao dao;
-	private String local_id;
+	private int task_id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 		if (request_code == edit_request_code) {
 			task = (Task) intent.getSerializableExtra(EXTRA_TASK);
 			if (task != null) {
-				local_id = task.getLocal_id();
+				task_id = task.getId();
 				setTaskData();
 			} else {
 				Log.e("INTENT_ERROR", "Received object is null: task");
@@ -111,7 +111,14 @@ public class TaskAddEditActivity extends ActionBarActivity {
 		int day = dp_deadline.getDayOfMonth();
 		int month = dp_deadline.getMonth()+1;
 		int year = dp_deadline.getYear();
-		return new Task(0, l, type, new Date(day, month, year), title, details, false);
+		int id;
+		Task t = new Task(l, type, new Date(day, month, year), title, details, false);
+		if (request_code == edit_request_code) {
+			t.setDone(task.isDone());
+			id = task.getId();
+			t.setId(id);
+		}
+		return t;
 	}
 
 	private String[] makeArray(ArrayList<Lesson> classes) {
@@ -137,7 +144,7 @@ public class TaskAddEditActivity extends ActionBarActivity {
 		if (id == R.id.action_save) {
 			Task task = getTaskData();
 			if(request_code == edit_request_code)
-				task.setLocal_id(local_id);
+				task.setId(task_id);
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_TASK, task);
 			setResult(RESULT_OK, intent);

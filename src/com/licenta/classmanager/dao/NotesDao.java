@@ -20,7 +20,7 @@ public class NotesDao extends Dao {
 	}
 	
 	public void putNote(Note note) {
-		putData(new File(notes_dir, note.getLocal_id()), note);
+		putData(new File(notes_dir, Integer.toString(note.getId())), note);
 	}
 	
 	public Note getNote(File key) {
@@ -28,10 +28,10 @@ public class NotesDao extends Dao {
 	}
 
 	public void deleteNote(Note note) {
-		if (!deleteData(new File(notes_dir, note.getLocal_id()))) {
+		if (!deleteData(new File(notes_dir, Integer.toString(note.getId())))) {
 
 			Log.e("NOTE_DELETE", "Note not deleted!");
-			Log.e("NOTE_DELETE", getReason(new File(notes_dir, note.getLocal_id())));
+			Log.e("NOTE_DELETE", getReason(new File(notes_dir, Integer.toString(note.getId()))));
 		}
 	}
 	

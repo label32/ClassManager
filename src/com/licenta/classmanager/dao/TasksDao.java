@@ -20,7 +20,7 @@ public class TasksDao extends Dao {
 	}
 	
 	public void putTask(Task task) {
-		putData(new File(tasks_dir, task.getLocal_id()), task);
+		putData(new File(tasks_dir, Integer.toString(task.getId())), task);
 	}
 	
 	public Task getTask(File key) {
@@ -28,10 +28,10 @@ public class TasksDao extends Dao {
 	}
 
 	public void deleteTask(Task task) {
-		if (!deleteData(new File(tasks_dir, task.getLocal_id()))) {
+		if (!deleteData(new File(tasks_dir, Integer.toString(task.getId())))) {
 
 			Log.e("TASK_DELETE", "Task not deleted!");
-			Log.e("TASK_DELETE", getReason(new File(tasks_dir, task.getLocal_id())));
+			Log.e("TASK_DELETE", getReason(new File(tasks_dir, Integer.toString(task.getId()))));
 		}
 	}
 	
