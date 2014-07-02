@@ -8,7 +8,7 @@ package net.margaritov.preference.colorpicker;
 
 public final class R {
 	public static final class drawable {
-		public static final int icon = 0x7f020085;
+		public static final int icon = 0x7f020088;
 	}
 	public static final class id {
 		public static final int btn_done = 0x7f0b0089;
@@ -23,7 +23,7 @@ public final class R {
 		public static final int COLOR_GREEN = 0x7f0a0001;
 	}
 	public static final class layout {
-		public static final int dialog_color_picker = 0x7f03002d;
+		public static final int dialog_color_picker = 0x7f03002e;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f080007;

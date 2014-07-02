@@ -164,6 +164,9 @@ public class ClassAddEditActivity extends ActionBarActivity implements RadialTim
 		if (request_code == edit_request_code) {
 			id = lesson.getId();
 			l.setId(id);
+			l.setOffline(lesson.isOffline());
+		} else {
+			l.setOffline(true);
 		}
 		return l;
 	}

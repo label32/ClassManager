@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
@@ -99,25 +100,28 @@ public class LessonsListAdapter extends BaseAdapter {
 	 *            The parent that this view will eventually be attached to
 	 * @return A View corresponding to the data at the specified position.
 	 */
+	
+	// Clicking the delete icon, will read the position of the item
+	// stored in
+	// the tag and delete it from the list. So we don't need to generate
+	// a new
+	// onClickListener every time the content of this view changes.
+	// final View origView = convertView;
+	// convertView.findViewById(R.id.action_open).setOnClickListener(new
+	// View.OnClickListener() {
+	// @Override
+	// public void onClick(View v) {
+	// elv.delete(((ViewHolder)origView.getTag()).position);
+	// }
+	// });
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = activity.getLayoutInflater().inflate(R.layout.list_item_lesson, parent, false);
-			// Clicking the delete icon, will read the position of the item
-			// stored in
-			// the tag and delete it from the list. So we don't need to generate
-			// a new
-			// onClickListener every time the content of this view changes.
-			// final View origView = convertView;
-			// convertView.findViewById(R.id.action_open).setOnClickListener(new
-			// View.OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			// elv.delete(((ViewHolder)origView.getTag()).position);
-			// }
-			// });
+
 
 			holder = new ViewHolder();
 			assert convertView != null;
@@ -126,6 +130,7 @@ public class LessonsListAdapter extends BaseAdapter {
 			holder.txt_endTime = (TextView) convertView.findViewById(R.id.txt_endTime);
 			holder.txt_classroom = (TextView) convertView.findViewById(R.id.txt_classroom);
 			holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
+			holder.img_online = (ImageView) convertView.findViewById(R.id.img_online);
 
 			convertView.setTag(holder);
 		} else {
@@ -138,6 +143,11 @@ public class LessonsListAdapter extends BaseAdapter {
 		holder.txt_startTime.setText(lessons.get(position).getStart_time().toString());
 		holder.txt_endTime.setText(lessons.get(position).getEnd_time().toString());
 		holder.class_color.setBackgroundColor(lessons.get(position).getColor());
+		if(lessons.get(position).isOffline())
+			holder.img_online.setVisibility(View.GONE);
+		else {
+			holder.img_online.setVisibility(View.VISIBLE);
+		}
 		return convertView;
 	}
 
@@ -146,6 +156,7 @@ public class LessonsListAdapter extends BaseAdapter {
 		TextView txt_startTime;
 		TextView txt_endTime;
 		TextView txt_classroom;
+		ImageView img_online;
 		TextView class_color;
 		int position;
 	}

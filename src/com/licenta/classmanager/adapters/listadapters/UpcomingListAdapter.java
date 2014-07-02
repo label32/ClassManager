@@ -1,42 +1,40 @@
 package com.licenta.classmanager.adapters.listadapters;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.holders.Task;
+
 import de.timroes.android.listview.EnhancedListView;
 
 public class UpcomingListAdapter extends BaseAdapter {
 
-    private List<String> mItems = new ArrayList<String>();
+	private ArrayList<Task> upcoming;
     private Activity activity;
     private EnhancedListView elv;
     
-    public UpcomingListAdapter(Activity activity, EnhancedListView elv) {
+    public UpcomingListAdapter(Activity activity, EnhancedListView elv, ArrayList<Task> upcoming) {
     	this.activity = activity;
     	this.elv = elv;
+    	this.upcoming = upcoming;
     }
 
     public void resetItems() {
-        mItems.clear();
-        for(int i = 1; i <= 5; i++) {
-            mItems.add("Item " + i);
-        }
-        notifyDataSetChanged();
     }
 
     public void remove(int position) {
-        mItems.remove(position);
+        upcoming.remove(position);
         notifyDataSetChanged();
     }
 
-    public void insert(int position, String item) {
-        mItems.add(position, item);
+    public void insert(int position, Task item) {
+        upcoming.add(position, item);
         notifyDataSetChanged();
     }
 
@@ -47,7 +45,7 @@ public class UpcomingListAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return mItems.size();
+        return upcoming.size();
     }
 
     /**
@@ -59,7 +57,7 @@ public class UpcomingListAdapter extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return mItems.get(position);
+        return upcoming.get(position);
     }
 
     /**
@@ -118,7 +116,7 @@ public class UpcomingListAdapter extends BaseAdapter {
         }
 
         holder.position = position;
-        holder.mTextView.setText(mItems.get(position));
+        holder.mTextView.setText(upcoming.get(position).getTitle());
 
         return convertView;
     }

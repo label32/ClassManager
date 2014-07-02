@@ -25,7 +25,7 @@ public class DayviewPagerAdapter extends FragmentPagerAdapter {
 		this.tasks = tasks;
 		this.classes = classes;
 	}
-
+	
 	@Override
 	public Fragment getItem(int i) {
 		Fragment fragment = new DayviewPageFragment();

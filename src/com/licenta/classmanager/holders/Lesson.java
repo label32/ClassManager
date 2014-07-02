@@ -19,6 +19,7 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 	private int color;
 	private Flag flag;
 	private int id;
+	private boolean offline;
 
 	public Lesson(String name) {
 		this.name = name;
@@ -37,8 +38,14 @@ public class Lesson implements Serializable, Comparable<Lesson> {
 		id = this.hashCode();
 	}
 	
+	public void setOffline(boolean offline) {
+		this.offline = offline;
+	}
 	
-
+	public boolean isOffline() {
+		return offline;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

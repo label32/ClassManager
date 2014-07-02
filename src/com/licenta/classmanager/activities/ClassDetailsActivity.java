@@ -21,9 +21,9 @@ import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Lesson;
 
 public class ClassDetailsActivity extends ActionBarActivity {
-	
+
 	public static final int request_code = 103;
-	
+
 	public static final String EXTRA_CLASS = "com.licenta.classmanager.CLASS";
 	public static final String EXTRA_CLASS_POSITION = "com.licenta.classmanager.CLASS_POSITION";
 	public static final String CLASS_MODIFIED = "com.licenta.classmanager.AddEditClassActivity.CLASS_MODIFIED";
@@ -50,7 +50,7 @@ public class ClassDetailsActivity extends ActionBarActivity {
 		txt_details = (TextView) findViewById(R.id.txt_details);
 		txt_startTime = (TextView) findViewById(R.id.txt_startTime);
 		txt_endTime = (TextView) findViewById(R.id.txt_endTime);
-		
+
 		btn_color = (Button) findViewById(R.id.btn_color);
 
 		cb_monday = (CheckBox) findViewById(R.id.cb_monday);
@@ -67,13 +67,13 @@ public class ClassDetailsActivity extends ActionBarActivity {
 		intent = getIntent();
 		lesson = (Lesson) intent.getSerializableExtra(EXTRA_CLASS);
 		class_position = intent.getIntExtra(EXTRA_CLASS_POSITION, -1);
-		if(lesson != null) {
+		if (lesson != null) {
 			setClassData();
 		} else {
 			Log.e("INTENT_ERROR", "Received object is null: lesson");
 		}
 	}
-	
+
 	private void setClassData() {
 		txt_className.setText(lesson.getName());
 		txt_classroom.setText(lesson.getClassroom());
@@ -87,21 +87,35 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	private void setActions() {
 
 	}
-	
+
 	private void setDays(ArrayList<Day> days) {
-		if(days == null)
+		if (days == null)
 			return;
 		Day day;
-		for(int i=0; i<days.size(); i++) {
+		for (int i = 0; i < days.size(); i++) {
 			day = days.get(i);
-			switch(day) {
-			case Monday: cb_monday.setChecked(true); break;
-			case Tuesday: cb_tuesday.setChecked(true); break;
-			case Wednesday: cb_wednesday.setChecked(true); break;
-			case Thursday: cb_thursday.setChecked(true); break;
-			case Friday: cb_friday.setChecked(true); break;
-			case Saturday: cb_saturday.setChecked(true); break;
-			case Sunday: cb_sunday.setChecked(true); break;
+			switch (day) {
+			case Monday:
+				cb_monday.setChecked(true);
+				break;
+			case Tuesday:
+				cb_tuesday.setChecked(true);
+				break;
+			case Wednesday:
+				cb_wednesday.setChecked(true);
+				break;
+			case Thursday:
+				cb_thursday.setChecked(true);
+				break;
+			case Friday:
+				cb_friday.setChecked(true);
+				break;
+			case Saturday:
+				cb_saturday.setChecked(true);
+				break;
+			case Sunday:
+				cb_sunday.setChecked(true);
+				break;
 			}
 		}
 	}
@@ -109,32 +123,49 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		switch(id) {
-		case R.id.action_edit: {
+		if (lesson.isOffline()) {
+			switch (id) {
+			case R.id.action_edit: {
 				Intent intent = new Intent(this, ClassAddEditActivity.class);
 				intent.putExtra(MainActivity.REQUEST_CODE, ClassAddEditActivity.edit_request_code);
 				intent.putExtra(ClassAddEditActivity.EXTRA_CLASS, lesson);
 				startActivityForResult(intent, ClassAddEditActivity.edit_request_code);
-			} break;
-		case R.id.action_delete: {
+			}
+				break;
+			case R.id.action_delete: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage("Are you sure you want to delete this class?\nAll tasks and notes associated with this class will be also deleted.").setCancelable(true)
-				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						Intent intent = new Intent();
-						intent.putExtra(EXTRA_CLASS, lesson);
-						intent.putExtra(EXTRA_CLASS_POSITION, class_position);
-						intent.putExtra(CLASS_DELETED, true);
-						setResult(RESULT_OK, intent);
-						finish();
-					}
-				}).setNegativeButton("Cancel", null);
-				
+				builder.setMessage(
+						"Are you sure you want to delete this class?\nAll tasks and notes associated with this class will be also deleted.")
+						.setCancelable(true).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent();
+								intent.putExtra(EXTRA_CLASS, lesson);
+								intent.putExtra(EXTRA_CLASS_POSITION, class_position);
+								intent.putExtra(CLASS_DELETED, true);
+								setResult(RESULT_OK, intent);
+								finish();
+							}
+						}).setNegativeButton("Cancel", null);
+
 				AlertDialog alert = builder.create();
 				alert.show();
-			} break;
+			}
+				break;
+			}
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(
+					"Sorry, you cannot modify an online class").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+			AlertDialog alert = builder.create();
+			alert.show();
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -145,14 +176,14 @@ public class ClassDetailsActivity extends ActionBarActivity {
 		inflater.inflate(R.menu.details_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == ClassAddEditActivity.edit_request_code) {
-			if(resultCode == Activity.RESULT_OK) {
+		if (requestCode == ClassAddEditActivity.edit_request_code) {
+			if (resultCode == Activity.RESULT_OK) {
 				lesson = (Lesson) data.getSerializableExtra(EXTRA_CLASS);
-				if(lesson!=null) {
+				if (lesson != null) {
 					setClassData();
 					Intent intent = new Intent();
 					intent.putExtra(EXTRA_CLASS, lesson);

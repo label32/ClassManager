@@ -42,6 +42,15 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:textAppearance="?android:textAppearanceMedium" />
+            
+            <ImageView android:id="@+id/img_online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/stub_img_desc"
+                android:src="@drawable/ic_action_cloud"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

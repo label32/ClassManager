@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.licenta.classmanager.activities.ClassAddEditActivity;
 import com.licenta.classmanager.holders.Announcement;
 import com.licenta.classmanager.holders.Date;
 import com.licenta.classmanager.holders.Day;
@@ -129,10 +130,24 @@ public class JsonParser {
 		Lesson l = new Lesson(json_lesson.optString("Name"));
 		l.setId(json_lesson.optInt("Id"));
 		l.setClassroom(json_lesson.optString("Classroom"));
-		l.setColor(json_lesson.optInt("Color"));
 		l.setDetails(json_lesson.optString("Details"));
 		l.setStart_time(Time.createFromString(json_lesson.optString("StartTime")));
 		l.setEnd_time(Time.createFromString(json_lesson.optString("EndTime")));
+		
+		int offline = json_lesson.optInt("Offline");
+		if(offline==0)
+			l.setOffline(false);
+		else
+			l.setOffline(true);
+		
+		int color_int = (json_lesson.optInt("Color"));
+		if(l.isOffline())
+			l.setColor(color_int);
+		else {
+			int true_color = 0xff000000 + Integer.parseInt(Integer.toHexString(color_int), 16);
+			l.setColor(true_color);
+		}
+		
 		return l;
 	}
 

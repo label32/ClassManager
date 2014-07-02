@@ -90,37 +90,36 @@ public class ClassesListAdapter extends BaseAdapter {
      * @param parent      The parent that this view will eventually be attached to
      * @return A View corresponding to the data at the specified position.
      */
+    
+    // Clicking the delete icon, will read the position of the item stored in
+    // the tag and delete it from the list. So we don't need to generate a new
+    // onClickListener every time the content of this view changes.
+//    final View origView = convertView;
+//    convertView.findViewById(R.id.action_open).setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            elv.delete(((ViewHolder)origView.getTag()).position);
+//        }
+//    });
+
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder;
         if(convertView == null) {
             convertView = activity.getLayoutInflater().inflate(R.layout.list_item_simple, parent, false);
-            // Clicking the delete icon, will read the position of the item stored in
-            // the tag and delete it from the list. So we don't need to generate a new
-            // onClickListener every time the content of this view changes.
-//            final View origView = convertView;
-//            convertView.findViewById(R.id.action_open).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    elv.delete(((ViewHolder)origView.getTag()).position);
-//                }
-//            });
-
             holder = new ViewHolder();
             assert convertView != null;
             holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
             holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         holder.position = position;
         holder.txt_title.setText(classes.get(position).getName());
         holder.class_color.setBackgroundColor(classes.get(position).getColor());
-
         return convertView;
     }
 

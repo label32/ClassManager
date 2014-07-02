@@ -156,7 +156,7 @@ public class DataService {
 			} else {
 				for (int i = 0; i < size; i++) {
 					Flag flag = classes.get(i).getFlag();
-					if (flag != null) {
+					if (flag != null && classes.get(i).isOffline()) {
 						switch (flag) {
 						case ADDED:
 							final Lesson l = classes.get(i);
