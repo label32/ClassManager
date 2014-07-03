@@ -35,8 +35,8 @@ public final class R {
     
          */
         public static final int backup_country_names=0x7f0d000b;
-        public static final int classes_spinner_items=0x7f0d000f;
-        public static final int notes_spinner_items=0x7f0d000e;
+        public static final int classes_spinner_items=0x7f0d0010;
+        public static final int notes_spinner_items=0x7f0d000f;
         /**  Recurrence picker: How events are to be repeated.  [CHAR LIMIT = 20] 
          */
         public static final int recurrence_freq=0x7f0d0000;
@@ -66,8 +66,8 @@ public final class R {
         /**  Repeat a monthly event on the same nth day of every Wednesday. [CHAR LIMIT=30] 
          */
         public static final int repeat_by_nth_wed=0x7f0d0004;
-        public static final int task_types=0x7f0d000c;
-        public static final int tasks_spinner_items=0x7f0d000d;
+        public static final int task_types=0x7f0d000d;
+        public static final int tasks_spinner_items=0x7f0d000e;
         /** 
         Timezone IDs for the time zones that we want to override the display strings.
         ALWAYS ADD NEW ENTRIES AT THE END. Othewise the entries after the insertion point will
@@ -83,6 +83,7 @@ public final class R {
     
          */
         public static final int timezone_rename_labels=0x7f0d0009;
+        public static final int user_types=0x7f0d000c;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1467,73 +1468,75 @@ containing a value of this type.
         public static final int ic_action_cloud=0x7f02006a;
         public static final int ic_action_delete=0x7f02006b;
         public static final int ic_action_done=0x7f02006c;
-        public static final int ic_action_next_item=0x7f02006d;
-        public static final int ic_action_refresh=0x7f02006e;
-        public static final int ic_action_refresh_light=0x7f02006f;
-        public static final int ic_action_search=0x7f020070;
-        public static final int ic_action_settings=0x7f020071;
-        public static final int ic_action_sort_by_size=0x7f020072;
-        public static final int ic_backspace_dark=0x7f020073;
-        public static final int ic_backspace_disabled_dark=0x7f020074;
-        public static final int ic_backspace_disabled_light=0x7f020075;
-        public static final int ic_backspace_light=0x7f020076;
-        public static final int ic_backspace_normal_dark=0x7f020077;
-        public static final int ic_backspace_normal_light=0x7f020078;
-        public static final int ic_check_dark=0x7f020079;
-        public static final int ic_check_dark_disabled=0x7f02007a;
-        public static final int ic_check_light=0x7f02007b;
-        public static final int ic_check_light_disabled=0x7f02007c;
-        public static final int ic_check_normal_dark=0x7f02007d;
-        public static final int ic_check_normal_light=0x7f02007e;
-        public static final int ic_clear_search_holo_light=0x7f02007f;
-        public static final int ic_drawer=0x7f020080;
-        public static final int ic_launcher=0x7f020081;
-        public static final int ic_recurrence_bubble_disabled=0x7f020082;
-        public static final int ic_recurrence_bubble_fill=0x7f020083;
-        public static final int ic_recurrence_bubble_outline=0x7f020084;
-        public static final int ic_recurrence_bubble_outline_disabled=0x7f020085;
-        public static final int ic_search_holo_light=0x7f020086;
-        public static final int ic_undo=0x7f020087;
-        public static final int icon=0x7f020088;
-        public static final int item_background_holo_light=0x7f020089;
-        public static final int key_background_dark=0x7f02008a;
-        public static final int key_background_light=0x7f02008b;
-        public static final int left_arrow=0x7f02008c;
-        public static final int list_focused_holo=0x7f02008d;
-        public static final int list_longpressed_holo_light=0x7f02008e;
-        public static final int list_pressed_holo_light=0x7f02008f;
-        public static final int list_selector_background_transition_holo_light=0x7f020090;
-        public static final int list_selector_disabled_holo_light=0x7f020091;
-        public static final int logo=0x7f020092;
-        public static final int recurrence_bubble_fill=0x7f020093;
-        public static final int red_border=0x7f020094;
-        public static final int red_border_gray_bg=0x7f020095;
-        public static final int right_arrow=0x7f020096;
-        public static final int section_header=0x7f020097;
-        public static final int spinner_background_holo_light=0x7f020098;
-        public static final int spinner_default_holo_light=0x7f020099;
-        public static final int spinner_disabled_holo_light=0x7f02009a;
-        public static final int spinner_focused_holo_light=0x7f02009b;
-        public static final int spinner_pressed_holo_light=0x7f02009c;
-        public static final int switch_bg_disabled_holo_light=0x7f02009d;
-        public static final int switch_bg_focused_holo_light=0x7f02009e;
-        public static final int switch_bg_holo_light=0x7f02009f;
-        public static final int switch_thumb=0x7f0200a0;
-        public static final int switch_thumb_activated_holo_light=0x7f0200a1;
-        public static final int switch_thumb_disabled_holo_light=0x7f0200a2;
-        public static final int switch_thumb_holo_light_v2=0x7f0200a3;
-        public static final int switch_thumb_pressed_holo_light=0x7f0200a4;
-        public static final int switch_track_holo_light=0x7f0200a5;
-        public static final int textfield_activated_holo_light=0x7f0200a6;
-        public static final int textfield_default_holo_light=0x7f0200a7;
-        public static final int textfield_disabled_focused_holo_light=0x7f0200a8;
-        public static final int textfield_disabled_holo_light=0x7f0200a9;
-        public static final int textfield_focused_holo_light=0x7f0200aa;
+        public static final int ic_action_new=0x7f02006d;
+        public static final int ic_action_next_item=0x7f02006e;
+        public static final int ic_action_refresh=0x7f02006f;
+        public static final int ic_action_refresh_light=0x7f020070;
+        public static final int ic_action_search=0x7f020071;
+        public static final int ic_action_settings=0x7f020072;
+        public static final int ic_action_sort_by_size=0x7f020073;
+        public static final int ic_backspace_dark=0x7f020074;
+        public static final int ic_backspace_disabled_dark=0x7f020075;
+        public static final int ic_backspace_disabled_light=0x7f020076;
+        public static final int ic_backspace_light=0x7f020077;
+        public static final int ic_backspace_normal_dark=0x7f020078;
+        public static final int ic_backspace_normal_light=0x7f020079;
+        public static final int ic_check_dark=0x7f02007a;
+        public static final int ic_check_dark_disabled=0x7f02007b;
+        public static final int ic_check_light=0x7f02007c;
+        public static final int ic_check_light_disabled=0x7f02007d;
+        public static final int ic_check_normal_dark=0x7f02007e;
+        public static final int ic_check_normal_light=0x7f02007f;
+        public static final int ic_clear_search_holo_light=0x7f020080;
+        public static final int ic_drawer=0x7f020081;
+        public static final int ic_launcher=0x7f020082;
+        public static final int ic_recurrence_bubble_disabled=0x7f020083;
+        public static final int ic_recurrence_bubble_fill=0x7f020084;
+        public static final int ic_recurrence_bubble_outline=0x7f020085;
+        public static final int ic_recurrence_bubble_outline_disabled=0x7f020086;
+        public static final int ic_search_holo_light=0x7f020087;
+        public static final int ic_undo=0x7f020088;
+        public static final int icon=0x7f020089;
+        public static final int item_background_holo_light=0x7f02008a;
+        public static final int key_background_dark=0x7f02008b;
+        public static final int key_background_light=0x7f02008c;
+        public static final int left_arrow=0x7f02008d;
+        public static final int list_focused_holo=0x7f02008e;
+        public static final int list_longpressed_holo_light=0x7f02008f;
+        public static final int list_pressed_holo_light=0x7f020090;
+        public static final int list_selector_background_transition_holo_light=0x7f020091;
+        public static final int list_selector_disabled_holo_light=0x7f020092;
+        public static final int logo=0x7f020093;
+        public static final int recurrence_bubble_fill=0x7f020094;
+        public static final int red_border=0x7f020095;
+        public static final int red_border_gray_bg=0x7f020096;
+        public static final int right_arrow=0x7f020097;
+        public static final int section_header=0x7f020098;
+        public static final int spinner_background_holo_light=0x7f020099;
+        public static final int spinner_default_holo_light=0x7f02009a;
+        public static final int spinner_disabled_holo_light=0x7f02009b;
+        public static final int spinner_focused_holo_light=0x7f02009c;
+        public static final int spinner_pressed_holo_light=0x7f02009d;
+        public static final int switch_bg_disabled_holo_light=0x7f02009e;
+        public static final int switch_bg_focused_holo_light=0x7f02009f;
+        public static final int switch_bg_holo_light=0x7f0200a0;
+        public static final int switch_thumb=0x7f0200a1;
+        public static final int switch_thumb_activated_holo_light=0x7f0200a2;
+        public static final int switch_thumb_disabled_holo_light=0x7f0200a3;
+        public static final int switch_thumb_holo_light_v2=0x7f0200a4;
+        public static final int switch_thumb_pressed_holo_light=0x7f0200a5;
+        public static final int switch_track_holo_light=0x7f0200a6;
+        public static final int textfield_activated_holo_light=0x7f0200a7;
+        public static final int textfield_default_holo_light=0x7f0200a8;
+        public static final int textfield_disabled_focused_holo_light=0x7f0200a9;
+        public static final int textfield_disabled_holo_light=0x7f0200aa;
+        public static final int textfield_focused_holo_light=0x7f0200ab;
     }
     public static final class id {
-        public static final int action_add_class=0x7f0b00f1;
-        public static final int action_add_note=0x7f0b00f7;
-        public static final int action_add_task=0x7f0b00f8;
+        public static final int action_add_announcement=0x7f0b00f9;
+        public static final int action_add_class=0x7f0b00f8;
+        public static final int action_add_note=0x7f0b00ff;
+        public static final int action_add_task=0x7f0b0100;
         public static final int action_bar=0x7f0b001f;
         public static final int action_bar_activity_content=0x7f0b0015;
         public static final int action_bar_container=0x7f0b001e;
@@ -1542,173 +1545,176 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0b0026;
         public static final int action_bar_title=0x7f0b0025;
         public static final int action_context_bar=0x7f0b0020;
-        public static final int action_dayview=0x7f0b00ef;
-        public static final int action_delete=0x7f0b00f4;
-        public static final int action_edit=0x7f0b00f3;
-        public static final int action_main=0x7f0b00f6;
+        public static final int action_dayview=0x7f0b00f6;
+        public static final int action_delete=0x7f0b00fc;
+        public static final int action_edit=0x7f0b00fb;
+        public static final int action_main=0x7f0b00fe;
         public static final int action_menu_divider=0x7f0b0016;
         public static final int action_menu_presenter=0x7f0b0017;
         public static final int action_mode_close_button=0x7f0b0027;
-        public static final int action_monthview=0x7f0b00f0;
-        public static final int action_refresh=0x7f0b00f2;
-        public static final int action_save=0x7f0b00ee;
-        public static final int action_settings=0x7f0b00f5;
+        public static final int action_monthview=0x7f0b00f7;
+        public static final int action_refresh=0x7f0b00fa;
+        public static final int action_save=0x7f0b00f5;
+        public static final int action_settings=0x7f0b00fd;
         public static final int activity_chooser_view_content=0x7f0b0028;
         public static final int always=0x7f0b000b;
-        public static final int ampm_hitspace=0x7f0b00c5;
-        public static final int ampm_label=0x7f0b00c6;
-        public static final int animator=0x7f0b006f;
+        public static final int ampm_hitspace=0x7f0b00cc;
+        public static final int ampm_label=0x7f0b00cd;
+        public static final int animator=0x7f0b0071;
+        public static final int ann_data=0x7f0b0094;
         public static final int beginning=0x7f0b0011;
-        public static final int btn_color=0x7f0b0042;
-        public static final int btn_create_account=0x7f0b0066;
-        public static final int btn_done=0x7f0b0089;
-        public static final int btn_end_time=0x7f0b004b;
-        public static final int btn_login=0x7f0b0055;
-        public static final int btn_logout=0x7f0b009e;
-        public static final int btn_start_time=0x7f0b004a;
-        public static final int btn_test=0x7f0b009d;
-        public static final int btn_use_offline=0x7f0b0067;
-        public static final int calendar1=0x7f0b009a;
-        public static final int calendar_gridview=0x7f0b0078;
-        public static final int calendar_left_arrow=0x7f0b0071;
-        public static final int calendar_month_year_textview=0x7f0b0072;
-        public static final int calendar_right_arrow=0x7f0b0073;
-        public static final int calendar_title_view=0x7f0b0070;
-        public static final int calendar_tv=0x7f0b0077;
-        public static final int cancel_button=0x7f0b007b;
-        public static final int cb_friday=0x7f0b0047;
-        public static final int cb_monday=0x7f0b0043;
-        public static final int cb_saturday=0x7f0b0048;
-        public static final int cb_sunday=0x7f0b0049;
-        public static final int cb_thursday=0x7f0b0046;
-        public static final int cb_tuesday=0x7f0b0044;
-        public static final int cb_wednesday=0x7f0b0045;
-        public static final int center_view=0x7f0b00bf;
+        public static final int btn_change=0x7f0b00a3;
+        public static final int btn_color=0x7f0b0049;
+        public static final int btn_createAccount=0x7f0b00a4;
+        public static final int btn_create_account=0x7f0b0068;
+        public static final int btn_done=0x7f0b008b;
+        public static final int btn_end_time=0x7f0b0054;
+        public static final int btn_login=0x7f0b005e;
+        public static final int btn_logout=0x7f0b00a5;
+        public static final int btn_register=0x7f0b0064;
+        public static final int btn_start_time=0x7f0b0052;
+        public static final int btn_use_offline=0x7f0b0069;
+        public static final int calendar1=0x7f0b009d;
+        public static final int calendar_gridview=0x7f0b007a;
+        public static final int calendar_left_arrow=0x7f0b0073;
+        public static final int calendar_month_year_textview=0x7f0b0074;
+        public static final int calendar_right_arrow=0x7f0b0075;
+        public static final int calendar_title_view=0x7f0b0072;
+        public static final int calendar_tv=0x7f0b0079;
+        public static final int cancel_button=0x7f0b007d;
+        public static final int cb_friday=0x7f0b004e;
+        public static final int cb_monday=0x7f0b004a;
+        public static final int cb_saturday=0x7f0b004f;
+        public static final int cb_sunday=0x7f0b0050;
+        public static final int cb_thursday=0x7f0b004d;
+        public static final int cb_tuesday=0x7f0b004b;
+        public static final int cb_wednesday=0x7f0b004c;
+        public static final int center_view=0x7f0b00c6;
         public static final int checkbox=0x7f0b0030;
-        public static final int class_color=0x7f0b00af;
-        public static final int clear_search=0x7f0b00ec;
+        public static final int class_color=0x7f0b00b6;
+        public static final int clear_search=0x7f0b00f3;
         public static final int collapseActionView=0x7f0b000d;
-        public static final int color_picker_view=0x7f0b0086;
-        public static final int container=0x7f0b0057;
-        public static final int date=0x7f0b0080;
+        public static final int color_picker_view=0x7f0b0088;
+        public static final int container=0x7f0b0060;
+        public static final int date=0x7f0b0082;
         public static final int date_keyboard=0x7f0b001b;
         public static final int date_month_int=0x7f0b001c;
-        public static final int date_picker=0x7f0b0079;
-        public static final int date_picker_day=0x7f0b006d;
-        public static final int date_picker_header=0x7f0b0069;
-        public static final int date_picker_month=0x7f0b006c;
-        public static final int date_picker_month_and_day=0x7f0b006b;
-        public static final int date_picker_year=0x7f0b006e;
-        public static final int date_text=0x7f0b007e;
-        public static final int day_picker_selected_date_layout=0x7f0b006a;
-        public static final int decimal=0x7f0b00ba;
-        public static final int decimal_separator=0x7f0b00b9;
+        public static final int date_picker=0x7f0b007b;
+        public static final int date_picker_day=0x7f0b006f;
+        public static final int date_picker_header=0x7f0b006b;
+        public static final int date_picker_month=0x7f0b006e;
+        public static final int date_picker_month_and_day=0x7f0b006d;
+        public static final int date_picker_year=0x7f0b0070;
+        public static final int date_text=0x7f0b0080;
+        public static final int day_picker_selected_date_layout=0x7f0b006c;
+        public static final int decimal=0x7f0b00c1;
+        public static final int decimal_separator=0x7f0b00c0;
         public static final int default_activity_button=0x7f0b002b;
-        public static final int delete=0x7f0b0082;
+        public static final int delete=0x7f0b0084;
         public static final int dialog=0x7f0b000e;
         public static final int disableHome=0x7f0b0008;
-        public static final int divider=0x7f0b0083;
-        public static final int divider_1=0x7f0b007a;
-        public static final int divider_2=0x7f0b007c;
-        public static final int done=0x7f0b0068;
-        public static final int done_button=0x7f0b00cb;
-        public static final int dp_deadline=0x7f0b0063;
-        public static final int drawer_layout=0x7f0b0056;
+        public static final int divider=0x7f0b0085;
+        public static final int divider_1=0x7f0b007c;
+        public static final int divider_2=0x7f0b007e;
+        public static final int done=0x7f0b006a;
+        public static final int done_button=0x7f0b00d2;
+        public static final int dp_deadline=0x7f0b0065;
+        public static final int drawer_layout=0x7f0b005f;
         public static final int dropdown=0x7f0b000f;
         public static final int edit_query=0x7f0b0033;
-        public static final int elv_announcements=0x7f0b0093;
-        public static final int elv_classes=0x7f0b0091;
-        public static final int elv_lessons=0x7f0b0094;
-        public static final int elv_notes=0x7f0b009c;
-        public static final int elv_tasks=0x7f0b0098;
-        public static final int elv_upcoming=0x7f0b0095;
-        public static final int empty_item=0x7f0b008e;
+        public static final int elv_announcements=0x7f0b0096;
+        public static final int elv_classes=0x7f0b0093;
+        public static final int elv_lessons=0x7f0b0097;
+        public static final int elv_notes=0x7f0b009f;
+        public static final int elv_tasks=0x7f0b009b;
+        public static final int elv_upcoming=0x7f0b0098;
+        public static final int empty_item=0x7f0b0090;
         public static final int end=0x7f0b0013;
-        public static final int endCount=0x7f0b00da;
-        public static final int endDate=0x7f0b00dc;
-        public static final int endGroup=0x7f0b00d8;
-        public static final int endSpinner=0x7f0b00d9;
-        public static final int error=0x7f0b00bd;
-        public static final int et_className=0x7f0b003f;
-        public static final int et_classroom=0x7f0b0040;
-        public static final int et_details=0x7f0b004c;
-        public static final int et_email=0x7f0b0053;
-        public static final int et_name=0x7f0b0060;
-        public static final int et_password=0x7f0b0054;
-        public static final int et_text=0x7f0b005b;
-        public static final int et_title=0x7f0b005a;
+        public static final int endCount=0x7f0b00e1;
+        public static final int endDate=0x7f0b00e3;
+        public static final int endGroup=0x7f0b00df;
+        public static final int endSpinner=0x7f0b00e0;
+        public static final int error=0x7f0b00c4;
+        public static final int et_className=0x7f0b0046;
+        public static final int et_classroom=0x7f0b0047;
+        public static final int et_details=0x7f0b0055;
+        public static final int et_email=0x7f0b005c;
+        public static final int et_name=0x7f0b0062;
+        public static final int et_password=0x7f0b005d;
+        public static final int et_text=0x7f0b0041;
+        public static final int et_title=0x7f0b0040;
         public static final int expand_activities_button=0x7f0b0029;
         public static final int expanded_menu=0x7f0b002f;
-        public static final int expiration_picker=0x7f0b008f;
-        public static final int expiration_seperator=0x7f0b0090;
-        public static final int first=0x7f0b00a9;
-        public static final int fourth=0x7f0b00ac;
-        public static final int freqSpinner=0x7f0b00cc;
-        public static final int header=0x7f0b00ad;
-        public static final int hex_val=0x7f0b0088;
-        public static final int hms_picker=0x7f0b009f;
-        public static final int hms_text=0x7f0b00a0;
+        public static final int expiration_picker=0x7f0b0091;
+        public static final int expiration_seperator=0x7f0b0092;
+        public static final int first=0x7f0b00b0;
+        public static final int fourth=0x7f0b00b3;
+        public static final int freqSpinner=0x7f0b00d3;
+        public static final int header=0x7f0b00b4;
+        public static final int hex_val=0x7f0b008a;
+        public static final int hms_picker=0x7f0b00a6;
+        public static final int hms_text=0x7f0b00a7;
         public static final int home=0x7f0b0014;
         public static final int homeAsUp=0x7f0b0005;
-        public static final int horizontal_scroll_view=0x7f0b00b6;
-        public static final int hour_space=0x7f0b00c0;
-        public static final int hours=0x7f0b00c2;
-        public static final int hours_label=0x7f0b00a2;
-        public static final int hours_ones=0x7f0b00a1;
-        public static final int hours_seperator=0x7f0b00e6;
-        public static final int hours_tens=0x7f0b00e5;
+        public static final int horizontal_scroll_view=0x7f0b00bd;
+        public static final int hour_space=0x7f0b00c7;
+        public static final int hours=0x7f0b00c9;
+        public static final int hours_label=0x7f0b00a9;
+        public static final int hours_ones=0x7f0b00a8;
+        public static final int hours_seperator=0x7f0b00ed;
+        public static final int hours_tens=0x7f0b00ec;
         public static final int icon=0x7f0b002d;
         public static final int ifRoom=0x7f0b000a;
         public static final int image=0x7f0b002a;
-        public static final int imageView1=0x7f0b0052;
-        public static final int img_online=0x7f0b00b0;
-        public static final int interval=0x7f0b00d1;
-        public static final int intervalGroup=0x7f0b00cf;
-        public static final int intervalPostText=0x7f0b00d2;
-        public static final int intervalPreText=0x7f0b00d0;
-        public static final int key_left=0x7f0b00e1;
-        public static final int key_middle=0x7f0b00e2;
-        public static final int key_right=0x7f0b00e3;
-        public static final int keyboard_indicator=0x7f0b0084;
-        public static final int keyboard_pager=0x7f0b0085;
-        public static final int label=0x7f0b00bb;
-        public static final int line=0x7f0b00ca;
+        public static final int imageView1=0x7f0b005b;
+        public static final int img_online=0x7f0b00b7;
+        public static final int interval=0x7f0b00d8;
+        public static final int intervalGroup=0x7f0b00d6;
+        public static final int intervalPostText=0x7f0b00d9;
+        public static final int intervalPreText=0x7f0b00d7;
+        public static final int key_left=0x7f0b00e8;
+        public static final int key_middle=0x7f0b00e9;
+        public static final int key_right=0x7f0b00ea;
+        public static final int keyboard_indicator=0x7f0b0086;
+        public static final int keyboard_pager=0x7f0b0087;
+        public static final int label=0x7f0b00c2;
+        public static final int line=0x7f0b00d1;
         public static final int listMode=0x7f0b0001;
         public static final int list_item=0x7f0b002c;
-        public static final int location=0x7f0b00ea;
+        public static final int location=0x7f0b00f1;
         public static final int middle=0x7f0b0012;
-        public static final int minus_label=0x7f0b00bc;
-        public static final int minutes=0x7f0b00c4;
-        public static final int minutes_label=0x7f0b00a5;
-        public static final int minutes_ones=0x7f0b00a4;
-        public static final int minutes_space=0x7f0b00c3;
-        public static final int minutes_tens=0x7f0b00a3;
-        public static final int month=0x7f0b007f;
-        public static final int monthGroup=0x7f0b00d5;
-        public static final int month_text_view=0x7f0b0076;
-        public static final int months_infinite_pager=0x7f0b0075;
-        public static final int navigation_drawer=0x7f0b0058;
+        public static final int minus_label=0x7f0b00c3;
+        public static final int minutes=0x7f0b00cb;
+        public static final int minutes_label=0x7f0b00ac;
+        public static final int minutes_ones=0x7f0b00ab;
+        public static final int minutes_space=0x7f0b00ca;
+        public static final int minutes_tens=0x7f0b00aa;
+        public static final int month=0x7f0b0081;
+        public static final int monthGroup=0x7f0b00dc;
+        public static final int month_text_view=0x7f0b0078;
+        public static final int months_infinite_pager=0x7f0b0077;
+        public static final int navigation_drawer=0x7f0b0061;
         public static final int never=0x7f0b0009;
-        public static final int new_color_panel=0x7f0b008b;
+        public static final int new_color_panel=0x7f0b008d;
         public static final int none=0x7f0b0010;
         public static final int normal=0x7f0b0000;
-        public static final int number=0x7f0b00b8;
-        public static final int number_picker=0x7f0b00b4;
-        public static final int number_text=0x7f0b00b7;
-        public static final int number_view_container=0x7f0b00b5;
+        public static final int number=0x7f0b00bf;
+        public static final int number_picker=0x7f0b00bb;
+        public static final int number_text=0x7f0b00be;
+        public static final int number_view_container=0x7f0b00bc;
         public static final int numbers_key=0x7f0b001a;
-        public static final int old_color_panel=0x7f0b008a;
-        public static final int options=0x7f0b00ce;
-        public static final int pager=0x7f0b0096;
-        public static final int pager_title_strip=0x7f0b0097;
-        public static final int postEndCount=0x7f0b00db;
+        public static final int old_color_panel=0x7f0b008c;
+        public static final int options=0x7f0b00d5;
+        public static final int pager=0x7f0b0099;
+        public static final int pager_title_strip=0x7f0b009a;
+        public static final int postEndCount=0x7f0b00e2;
         public static final int progress_circular=0x7f0b0018;
         public static final int progress_horizontal=0x7f0b0019;
         public static final int radio=0x7f0b0032;
-        public static final int repeatMonthlyByNthDayOfMonth=0x7f0b00d6;
-        public static final int repeatMonthlyByNthDayOfTheWeek=0x7f0b00d7;
-        public static final int repeat_switch=0x7f0b00cd;
-        public static final int searchBox=0x7f0b00eb;
+        public static final int repeatMonthlyByNthDayOfMonth=0x7f0b00dd;
+        public static final int repeatMonthlyByNthDayOfTheWeek=0x7f0b00de;
+        public static final int repeat_switch=0x7f0b00d4;
+        public static final int searchBox=0x7f0b00f2;
         public static final int search_badge=0x7f0b0035;
         public static final int search_bar=0x7f0b0034;
         public static final int search_button=0x7f0b0036;
@@ -1719,67 +1725,71 @@ containing a value of this type.
         public static final int search_plate=0x7f0b0039;
         public static final int search_src_text=0x7f0b003a;
         public static final int search_voice_btn=0x7f0b003e;
-        public static final int second=0x7f0b00aa;
-        public static final int seconds_label=0x7f0b00a8;
-        public static final int seconds_ones=0x7f0b00a7;
-        public static final int seconds_tens=0x7f0b00a6;
-        public static final int section_label=0x7f0b0099;
-        public static final int separator=0x7f0b00c1;
-        public static final int set_button=0x7f0b007d;
+        public static final int second=0x7f0b00b1;
+        public static final int seconds_label=0x7f0b00af;
+        public static final int seconds_ones=0x7f0b00ae;
+        public static final int seconds_tens=0x7f0b00ad;
+        public static final int section_label=0x7f0b009c;
+        public static final int separator=0x7f0b00c8;
+        public static final int set_button=0x7f0b007f;
         public static final int shortcut=0x7f0b0031;
         public static final int showCustom=0x7f0b0007;
         public static final int showHome=0x7f0b0004;
         public static final int showTitle=0x7f0b0006;
-        public static final int spinner1=0x7f0b0061;
-        public static final int spinner_class=0x7f0b0059;
-        public static final int spinner_dropdown_title=0x7f0b00de;
-        public static final int spinner_item=0x7f0b00dd;
-        public static final int spinner_item_subtitle=0x7f0b00e0;
-        public static final int spinner_item_title=0x7f0b00df;
-        public static final int spinner_type=0x7f0b0062;
+        public static final int spinner_class=0x7f0b003f;
+        public static final int spinner_dropdown_title=0x7f0b00e5;
+        public static final int spinner_item=0x7f0b00e4;
+        public static final int spinner_item_subtitle=0x7f0b00e7;
+        public static final int spinner_item_title=0x7f0b00e6;
+        public static final int spinner_type=0x7f0b0063;
         public static final int split_action_bar=0x7f0b0021;
         public static final int submit_area=0x7f0b003c;
-        public static final int swiping_layout=0x7f0b00ae;
+        public static final int swiping_layout=0x7f0b00b5;
         public static final int tabMode=0x7f0b0002;
-        public static final int text=0x7f0b008c;
-        public static final int text_hex_wrapper=0x7f0b0087;
-        public static final int third=0x7f0b00ab;
-        public static final int time_display=0x7f0b00be;
-        public static final int time_display_background=0x7f0b00c8;
-        public static final int time_offset=0x7f0b00e9;
-        public static final int time_picker=0x7f0b00c9;
-        public static final int time_picker_dialog=0x7f0b00c7;
-        public static final int time_zone=0x7f0b00e8;
-        public static final int timer_time_text=0x7f0b00e4;
-        public static final int timezonelist=0x7f0b00ed;
+        public static final int text=0x7f0b008e;
+        public static final int text_hex_wrapper=0x7f0b0089;
+        public static final int third=0x7f0b00b2;
+        public static final int time_display=0x7f0b00c5;
+        public static final int time_display_background=0x7f0b00cf;
+        public static final int time_offset=0x7f0b00f0;
+        public static final int time_picker=0x7f0b00d0;
+        public static final int time_picker_dialog=0x7f0b00ce;
+        public static final int time_zone=0x7f0b00ef;
+        public static final int timer_time_text=0x7f0b00eb;
+        public static final int timezonelist=0x7f0b00f4;
         public static final int title=0x7f0b002e;
         public static final int top_action_bar=0x7f0b0023;
-        public static final int txt_announcements=0x7f0b0092;
-        public static final int txt_class=0x7f0b005c;
-        public static final int txt_className=0x7f0b004d;
-        public static final int txt_classroom=0x7f0b004e;
-        public static final int txt_date=0x7f0b009b;
-        public static final int txt_dateAdded=0x7f0b005d;
-        public static final int txt_deadline=0x7f0b0065;
-        public static final int txt_description=0x7f0b00b3;
-        public static final int txt_details=0x7f0b0051;
-        public static final int txt_endTime=0x7f0b0050;
-        public static final int txt_hyphen=0x7f0b00b1;
-        public static final int txt_pick=0x7f0b0041;
-        public static final int txt_startTime=0x7f0b004f;
-        public static final int txt_str_classroom=0x7f0b00b2;
-        public static final int txt_text=0x7f0b005f;
-        public static final int txt_title=0x7f0b005e;
-        public static final int txt_type=0x7f0b0064;
-        public static final int undo=0x7f0b008d;
+        public static final int txt_announcements=0x7f0b0095;
+        public static final int txt_class=0x7f0b0042;
+        public static final int txt_className=0x7f0b0056;
+        public static final int txt_classroom=0x7f0b0057;
+        public static final int txt_date=0x7f0b009e;
+        public static final int txt_dateAdded=0x7f0b0043;
+        public static final int txt_deadline=0x7f0b0067;
+        public static final int txt_description=0x7f0b00ba;
+        public static final int txt_details=0x7f0b005a;
+        public static final int txt_email=0x7f0b00a2;
+        public static final int txt_endTime=0x7f0b0059;
+        public static final int txt_end_time=0x7f0b0053;
+        public static final int txt_hyphen=0x7f0b00b8;
+        public static final int txt_name=0x7f0b00a1;
+        public static final int txt_pick=0x7f0b0048;
+        public static final int txt_startTime=0x7f0b0058;
+        public static final int txt_start_time=0x7f0b0051;
+        public static final int txt_str_classroom=0x7f0b00b9;
+        public static final int txt_text=0x7f0b0045;
+        public static final int txt_title=0x7f0b0044;
+        public static final int txt_type=0x7f0b0066;
+        public static final int undo=0x7f0b008f;
         public static final int up=0x7f0b0024;
         public static final int useLogo=0x7f0b0003;
-        public static final int value=0x7f0b00e7;
-        public static final int weekGroup=0x7f0b00d3;
-        public static final int weekGroup2=0x7f0b00d4;
-        public static final int weekday_gridview=0x7f0b0074;
+        public static final int user_info=0x7f0b00a0;
+        public static final int value=0x7f0b00ee;
+        public static final int weekGroup=0x7f0b00da;
+        public static final int weekGroup2=0x7f0b00db;
+        public static final int weekday_gridview=0x7f0b0076;
         public static final int withText=0x7f0b000c;
-        public static final int year_label=0x7f0b0081;
+        public static final int year_label=0x7f0b0083;
     }
     public static final class integer {
         public static final int COLOR_BLACK=0x7f0a0000;
@@ -1833,75 +1843,76 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_announcement_details=0x7f030018;
-        public static final int activity_class_add=0x7f030019;
-        public static final int activity_class_details=0x7f03001a;
-        public static final int activity_login=0x7f03001b;
-        public static final int activity_main=0x7f03001c;
-        public static final int activity_note_add=0x7f03001d;
-        public static final int activity_note_details=0x7f03001e;
-        public static final int activity_register=0x7f03001f;
-        public static final int activity_task_add=0x7f030020;
-        public static final int activity_task_details=0x7f030021;
-        public static final int activity_welcome=0x7f030022;
-        public static final int calendar_date_picker_dialog=0x7f030023;
-        public static final int calendar_date_picker_done_button=0x7f030024;
-        public static final int calendar_date_picker_header_view=0x7f030025;
-        public static final int calendar_date_picker_selected_date=0x7f030026;
-        public static final int calendar_date_picker_view_animator=0x7f030027;
-        public static final int calendar_view=0x7f030028;
-        public static final int calendar_year_label_text_view=0x7f030029;
-        public static final int date_cell=0x7f03002a;
-        public static final int date_grid_fragment=0x7f03002b;
-        public static final int date_picker_dialog=0x7f03002c;
-        public static final int date_picker_view=0x7f03002d;
-        public static final int dialog_color_picker=0x7f03002e;
-        public static final int elv_undo_popup=0x7f03002f;
-        public static final int empty_time_zone_item=0x7f030030;
-        public static final int expiration_picker_dialog=0x7f030031;
-        public static final int expiration_picker_view=0x7f030032;
-        public static final int fragment_classes=0x7f030033;
-        public static final int fragment_dashboard=0x7f030034;
-        public static final int fragment_dayview=0x7f030035;
-        public static final int fragment_dayview_page=0x7f030036;
-        public static final int fragment_main=0x7f030037;
-        public static final int fragment_monthview=0x7f030038;
-        public static final int fragment_navigation_drawer=0x7f030039;
-        public static final int fragment_notes=0x7f03003a;
-        public static final int fragment_settings=0x7f03003b;
-        public static final int fragment_tasks=0x7f03003c;
-        public static final int fragment_tasks_page=0x7f03003d;
-        public static final int hms_picker_dialog=0x7f03003e;
-        public static final int hms_picker_view=0x7f03003f;
-        public static final int keyboard=0x7f030040;
-        public static final int keyboard_right_drawable=0x7f030041;
-        public static final int keyboard_right_drawable_with_header=0x7f030042;
-        public static final int keyboard_text=0x7f030043;
-        public static final int keyboard_text_with_header=0x7f030044;
-        public static final int keyboard_with_header=0x7f030045;
-        public static final int list_item_announcement=0x7f030046;
-        public static final int list_item_lesson=0x7f030047;
-        public static final int list_item_simple=0x7f030048;
-        public static final int list_item_task=0x7f030049;
-        public static final int number_picker_dialog=0x7f03004a;
-        public static final int number_picker_view=0x7f03004b;
-        public static final int radial_time_header_label=0x7f03004c;
-        public static final int radial_time_picker_dialog=0x7f03004d;
-        public static final int recurrencepicker=0x7f03004e;
-        public static final int recurrencepicker_end_text=0x7f03004f;
-        public static final int recurrencepicker_freq_item=0x7f030050;
-        public static final int spinner_dropdown_layout=0x7f030051;
-        public static final int spinner_layout=0x7f030052;
-        public static final int support_simple_spinner_dropdown_item=0x7f030053;
-        public static final int three_keys_view=0x7f030054;
-        public static final int three_keys_view_leftright=0x7f030055;
-        public static final int three_keys_view_right_drawable=0x7f030056;
-        public static final int three_keys_view_text=0x7f030057;
-        public static final int time_picker_dialog=0x7f030058;
-        public static final int time_picker_view=0x7f030059;
-        public static final int time_zone_filter_item=0x7f03005a;
-        public static final int time_zone_item=0x7f03005b;
-        public static final int timezonepickerview=0x7f03005c;
+        public static final int activity_announcement_add_edit=0x7f030018;
+        public static final int activity_announcement_details=0x7f030019;
+        public static final int activity_class_add=0x7f03001a;
+        public static final int activity_class_details=0x7f03001b;
+        public static final int activity_login=0x7f03001c;
+        public static final int activity_main=0x7f03001d;
+        public static final int activity_note_add=0x7f03001e;
+        public static final int activity_note_details=0x7f03001f;
+        public static final int activity_register=0x7f030020;
+        public static final int activity_task_add=0x7f030021;
+        public static final int activity_task_details=0x7f030022;
+        public static final int activity_welcome=0x7f030023;
+        public static final int calendar_date_picker_dialog=0x7f030024;
+        public static final int calendar_date_picker_done_button=0x7f030025;
+        public static final int calendar_date_picker_header_view=0x7f030026;
+        public static final int calendar_date_picker_selected_date=0x7f030027;
+        public static final int calendar_date_picker_view_animator=0x7f030028;
+        public static final int calendar_view=0x7f030029;
+        public static final int calendar_year_label_text_view=0x7f03002a;
+        public static final int date_cell=0x7f03002b;
+        public static final int date_grid_fragment=0x7f03002c;
+        public static final int date_picker_dialog=0x7f03002d;
+        public static final int date_picker_view=0x7f03002e;
+        public static final int dialog_color_picker=0x7f03002f;
+        public static final int elv_undo_popup=0x7f030030;
+        public static final int empty_time_zone_item=0x7f030031;
+        public static final int expiration_picker_dialog=0x7f030032;
+        public static final int expiration_picker_view=0x7f030033;
+        public static final int fragment_classes=0x7f030034;
+        public static final int fragment_dashboard=0x7f030035;
+        public static final int fragment_dayview=0x7f030036;
+        public static final int fragment_dayview_page=0x7f030037;
+        public static final int fragment_main=0x7f030038;
+        public static final int fragment_monthview=0x7f030039;
+        public static final int fragment_navigation_drawer=0x7f03003a;
+        public static final int fragment_notes=0x7f03003b;
+        public static final int fragment_settings=0x7f03003c;
+        public static final int fragment_tasks=0x7f03003d;
+        public static final int fragment_tasks_page=0x7f03003e;
+        public static final int hms_picker_dialog=0x7f03003f;
+        public static final int hms_picker_view=0x7f030040;
+        public static final int keyboard=0x7f030041;
+        public static final int keyboard_right_drawable=0x7f030042;
+        public static final int keyboard_right_drawable_with_header=0x7f030043;
+        public static final int keyboard_text=0x7f030044;
+        public static final int keyboard_text_with_header=0x7f030045;
+        public static final int keyboard_with_header=0x7f030046;
+        public static final int list_item_announcement=0x7f030047;
+        public static final int list_item_lesson=0x7f030048;
+        public static final int list_item_simple=0x7f030049;
+        public static final int list_item_task=0x7f03004a;
+        public static final int number_picker_dialog=0x7f03004b;
+        public static final int number_picker_view=0x7f03004c;
+        public static final int radial_time_header_label=0x7f03004d;
+        public static final int radial_time_picker_dialog=0x7f03004e;
+        public static final int recurrencepicker=0x7f03004f;
+        public static final int recurrencepicker_end_text=0x7f030050;
+        public static final int recurrencepicker_freq_item=0x7f030051;
+        public static final int spinner_dropdown_layout=0x7f030052;
+        public static final int spinner_layout=0x7f030053;
+        public static final int support_simple_spinner_dropdown_item=0x7f030054;
+        public static final int three_keys_view=0x7f030055;
+        public static final int three_keys_view_leftright=0x7f030056;
+        public static final int three_keys_view_right_drawable=0x7f030057;
+        public static final int three_keys_view_text=0x7f030058;
+        public static final int time_picker_dialog=0x7f030059;
+        public static final int time_picker_view=0x7f03005a;
+        public static final int time_zone_filter_item=0x7f03005b;
+        public static final int time_zone_item=0x7f03005c;
+        public static final int timezonepickerview=0x7f03005d;
     }
     public static final class menu {
         public static final int add_menu=0x7f0f0000;
@@ -2017,13 +2028,13 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f08001e;
-        public static final int abr_friday=0x7f0800a9;
-        public static final int abr_monday=0x7f0800a5;
-        public static final int abr_saturday=0x7f0800aa;
-        public static final int abr_sunday=0x7f0800ab;
-        public static final int abr_thursday=0x7f0800a8;
-        public static final int abr_tuesday=0x7f0800a6;
-        public static final int abr_wednesday=0x7f0800a7;
+        public static final int abr_friday=0x7f0800ae;
+        public static final int abr_monday=0x7f0800aa;
+        public static final int abr_saturday=0x7f0800af;
+        public static final int abr_sunday=0x7f0800b0;
+        public static final int abr_thursday=0x7f0800ad;
+        public static final int abr_tuesday=0x7f0800ab;
+        public static final int abr_wednesday=0x7f0800ac;
         /**  Description of the selected marker for accessibility support [CHAR LIMIT = NONE]
  Description of the selected marker for accessibility support [CHAR LIMIT = NONE]
  Description of the selected marker for accessibility support [CHAR LIMIT = NONE]
@@ -2033,23 +2044,25 @@ containing a value of this type.
         public static final int action_main=0x7f08006f;
         public static final int action_settings=0x7f080071;
         public static final int action_tasks=0x7f080070;
-        public static final int add_class=0x7f080075;
+        public static final int add_announcement=0x7f08007a;
+        public static final int add_class=0x7f080079;
         /**  Menu actions 
          */
-        public static final int add_note=0x7f080073;
-        public static final int add_task=0x7f080074;
+        public static final int add_note=0x7f080077;
+        public static final int add_task=0x7f080078;
         public static final int ampm_circle_radius_multiplier=0x7f080023;
         /**  Dashboard Fragment 
          */
-        public static final int announcements=0x7f08008d;
+        public static final int announcements=0x7f080092;
         public static final int app_name=0x7f080007;
+        public static final int change_data=0x7f080074;
         /**  From AOSP 
          */
         public static final int circle_radius_multiplier=0x7f080020;
         public static final int circle_radius_multiplier_24HourMode=0x7f080021;
-        public static final int class_color=0x7f080089;
-        public static final int class_spinner_title=0x7f080085;
-        public static final int classroom=0x7f08008a;
+        public static final int class_color=0x7f08008e;
+        public static final int class_spinner_title=0x7f08008a;
+        public static final int classroom=0x7f08008f;
         public static final int color1_summary=0x7f08000c;
         public static final int color1_title=0x7f08000b;
         public static final int color2_summary=0x7f08000e;
@@ -2058,7 +2071,7 @@ containing a value of this type.
         public static final int color3_title=0x7f08000f;
         public static final int color4_summary=0x7f080012;
         public static final int color4_title=0x7f080011;
-        public static final int create_account=0x7f080092;
+        public static final int create_account=0x7f080097;
         public static final int date_added=0x7f080072;
         public static final int day_c=0x7f080040;
         /**  DO NOT TRANSLATE 
@@ -2095,7 +2108,7 @@ containing a value of this type.
      
          */
         public static final int day_picker_description=0x7f08004a;
-        public static final int delete=0x7f080078;
+        public static final int delete=0x7f08007d;
         /**  Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] 
  Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] 
  Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] 
@@ -2106,7 +2119,7 @@ containing a value of this type.
         /**  Color Picker 
          */
         public static final int dialog_color_picker=0x7f080008;
-        public static final int done=0x7f08009d;
+        public static final int done=0x7f0800a2;
         /**  From AOSP 
  Label for button to confirm chosen date or time [CHAR LIMIT=30] 
  From AOSP 
@@ -2119,14 +2132,14 @@ containing a value of this type.
  Label for button to confirm chosen date or time [CHAR LIMIT=30] 
          */
         public static final int done_label=0x7f080045;
-        public static final int edit=0x7f080077;
+        public static final int edit=0x7f08007c;
         public static final int elv_item_deleted=0x7f080002;
         public static final int elv_n_items_deleted=0x7f080003;
         public static final int elv_n_tasks_deleted=0x7f080005;
         public static final int elv_task_deleted=0x7f080004;
         public static final int elv_undo=0x7f080000;
         public static final int elv_undo_all=0x7f080001;
-        public static final int email=0x7f080096;
+        public static final int email=0x7f08009b;
         /**  Part of a description of an repeating event. This part states the date when a repeating
          event ends. The part before the semi-colon describes how it repeats.
          e.g. Every 2 weeks; until 1/1/2030 [CHAR LIMIT=21] 
@@ -2141,7 +2154,7 @@ containing a value of this type.
          e.g. Every 2 weeks; until 1/1/2030 [CHAR LIMIT=21] 
          */
         public static final int endByDate=0x7f08005c;
-        public static final int end_time=0x7f080088;
+        public static final int end_time=0x7f08008d;
         /**  A label in a multiple-choice list for the specifying that an event
          repeats every weekday (Monday through Friday) 
  A label in a multiple-choice list for the specifying that an event
@@ -2153,11 +2166,11 @@ containing a value of this type.
          */
         public static final int every_weekday=0x7f08005d;
         public static final int expiration_picker_seperator=0x7f08003e;
-        public static final int friday=0x7f0800a2;
+        public static final int friday=0x7f0800a7;
         /**  App 
          */
         public static final int hello=0x7f080006;
-        public static final int hello_world=0x7f0800ad;
+        public static final int hello_world=0x7f0800b2;
         /**  Hint text to encourage the user to enter a country name to find a time zone
      [CHAR LIMIT=25] 
  Hint text to encourage the user to enter a country name to find a time zone
@@ -2200,7 +2213,7 @@ containing a value of this type.
         public static final int hour_picker_description=0x7f080046;
         public static final int hours_label=0x7f08002c;
         public static final int hours_label_description=0x7f08002f;
-        public static final int iama=0x7f08009a;
+        public static final int iama=0x7f08009f;
         /**  Accessibility description for the item that is currently selected. 
  Accessibility description for the item that is currently selected. 
  Accessibility description for the item that is currently selected. 
@@ -2208,15 +2221,15 @@ containing a value of this type.
  Accessibility description for the item that is currently selected. 
          */
         public static final int item_is_selected=0x7f08004e;
-        public static final int list_item_background=0x7f08007f;
-        public static final int login=0x7f080093;
+        public static final int list_item_background=0x7f080084;
+        public static final int login=0x7f080098;
         /**  Login activity 
          */
-        public static final int login_text=0x7f080095;
+        public static final int login_text=0x7f08009a;
         /**  Welcome activity 
          */
-        public static final int logo_description=0x7f080090;
-        public static final int logout=0x7f08007d;
+        public static final int logo_description=0x7f080095;
+        public static final int logout=0x7f080082;
         public static final int max_error=0x7f080043;
         /**  1.3.1 
  1.3.1 
@@ -2257,7 +2270,7 @@ containing a value of this type.
         public static final int minutes_label_description=0x7f080030;
         /**  Days 
          */
-        public static final int monday=0x7f08009e;
+        public static final int monday=0x7f0800a3;
         public static final int month_c=0x7f08003f;
         /**  The common portion of a string describing how often an event repeats,
          example: 'Monthly (on day 2)' 
@@ -2269,9 +2282,10 @@ containing a value of this type.
          example: 'Monthly (on day 2)' 
          */
         public static final int monthly=0x7f08005e;
-        public static final int my_email=0x7f08009b;
-        public static final int my_name=0x7f080099;
-        public static final int my_password=0x7f08009c;
+        public static final int my_email=0x7f0800a0;
+        public static final int my_name=0x7f08009e;
+        public static final int my_password=0x7f0800a1;
+        public static final int name=0x7f080073;
         public static final int navigation_drawer_close=0x7f08006e;
         public static final int navigation_drawer_open=0x7f08006d;
         /**  Item to show when no timezones are found. [CHAR LIMIT=NONE]
@@ -2313,13 +2327,13 @@ containing a value of this type.
                   
          */
         public static final int palestine_display_name=0x7f080065;
-        public static final int password=0x7f080097;
+        public static final int password=0x7f08009c;
         public static final int picker_cancel=0x7f08002a;
         public static final int picker_set=0x7f08002b;
         /**  Preferences 
          */
         public static final int pref_category=0x7f08000a;
-        public static final int preference_file=0x7f0800ac;
+        public static final int preference_file=0x7f0800b1;
         public static final int press_color_to_apply=0x7f080009;
         /**  DO NOT TRANSLATE 
  DO NOT TRANSLATE 
@@ -2358,11 +2372,12 @@ containing a value of this type.
  Repeat an monthly event on the same day of every month [CHAR LIMIT=20] 
          */
         public static final int recurrence_month_pattern_by_day=0x7f080055;
+        public static final int register=0x7f080076;
         /**  Register activity 
          */
-        public static final int register_text=0x7f080098;
-        public static final int sample_long=0x7f08007a;
-        public static final int sample_short=0x7f080079;
+        public static final int register_text=0x7f08009d;
+        public static final int sample_long=0x7f08007f;
+        public static final int sample_short=0x7f08007e;
         /**  DO NOT TRANSLATE 
  DO NOT TRANSLATE 
  DO NOT TRANSLATE 
@@ -2370,15 +2385,15 @@ containing a value of this type.
  DO NOT TRANSLATE 
          */
         public static final int sans_serif=0x7f080053;
-        public static final int saturday=0x7f0800a3;
-        public static final int save=0x7f080076;
+        public static final int saturday=0x7f0800a8;
+        public static final int save=0x7f08007b;
         /**  The button label for saving an event 
  The button label for saving an event 
  The button label for saving an event 
  The button label for saving an event 
          */
         public static final int save_label=0x7f080057;
-        public static final int schedule=0x7f08008b;
+        public static final int schedule=0x7f080090;
         /**  Description of clear icon in the search bar, for accessibility. [CHAR LIMIT=NONE]
  Description of clear icon in the search bar, for accessibility. [CHAR LIMIT=NONE]
  Description of clear icon in the search bar, for accessibility. [CHAR LIMIT=NONE]
@@ -2416,28 +2431,29 @@ containing a value of this type.
          */
         public static final int select_year=0x7f08004d;
         public static final int selection_radius_multiplier=0x7f080022;
-        public static final int set_time=0x7f08008c;
-        public static final int start_time=0x7f080087;
+        public static final int set_time=0x7f080091;
+        public static final int start_time=0x7f08008c;
         /**  AddTask activity 
          */
-        public static final int str_class=0x7f080080;
+        public static final int str_class=0x7f080085;
         /**  AddClass activity 
          */
-        public static final int str_class_name=0x7f080086;
-        public static final int str_dayview=0x7f08007b;
-        public static final int str_deadline=0x7f080082;
-        public static final int str_details=0x7f080084;
-        public static final int str_monthview=0x7f08007c;
-        public static final int str_title=0x7f080083;
-        public static final int str_type=0x7f080081;
-        public static final int stub_img_desc=0x7f08007e;
-        public static final int sunday=0x7f0800a4;
+        public static final int str_class_name=0x7f08008b;
+        public static final int str_dayview=0x7f080080;
+        public static final int str_deadline=0x7f080087;
+        public static final int str_details=0x7f080089;
+        public static final int str_monthview=0x7f080081;
+        public static final int str_title=0x7f080088;
+        public static final int str_type=0x7f080086;
+        public static final int stub_img_desc=0x7f080083;
+        public static final int sunday=0x7f0800a9;
         public static final int switch_off=0x7f080061;
         public static final int switch_on=0x7f080060;
+        public static final int text=0x7f080075;
         public static final int text_size_multiplier_inner=0x7f080028;
         public static final int text_size_multiplier_normal=0x7f080027;
         public static final int text_size_multiplier_outer=0x7f080029;
-        public static final int thursday=0x7f0800a1;
+        public static final int thursday=0x7f0800a6;
         public static final int time_picker_00_label=0x7f080035;
         public static final int time_picker_30_label=0x7f080036;
         public static final int time_picker_ampm_label=0x7f080033;
@@ -2457,28 +2473,29 @@ containing a value of this type.
          */
         public static final int time_separator=0x7f080051;
         public static final int timer_delete=0x7f080032;
-        public static final int title_activity_add_class=0x7f0800af;
-        public static final int title_activity_add_note=0x7f0800ae;
+        public static final int title_activity_add_class=0x7f0800b4;
+        public static final int title_activity_add_note=0x7f0800b3;
         public static final int title_activity_add_task=0x7f080066;
-        public static final int title_activity_announcement_details=0x7f0800b6;
-        public static final int title_activity_class_details=0x7f0800b3;
-        public static final int title_activity_login=0x7f0800b1;
-        public static final int title_activity_note_details=0x7f0800b4;
-        public static final int title_activity_register=0x7f0800b2;
-        public static final int title_activity_task_details=0x7f0800b5;
-        public static final int title_activity_welcome=0x7f0800b0;
+        public static final int title_activity_announcement_add_edit=0x7f0800bc;
+        public static final int title_activity_announcement_details=0x7f0800bb;
+        public static final int title_activity_class_details=0x7f0800b8;
+        public static final int title_activity_login=0x7f0800b6;
+        public static final int title_activity_note_details=0x7f0800b9;
+        public static final int title_activity_register=0x7f0800b7;
+        public static final int title_activity_task_details=0x7f0800ba;
+        public static final int title_activity_welcome=0x7f0800b5;
         public static final int title_calendar=0x7f080068;
         public static final int title_classes=0x7f08006b;
         public static final int title_dashboard=0x7f080067;
         public static final int title_notes=0x7f08006a;
         public static final int title_settings=0x7f08006c;
         public static final int title_tasks=0x7f080069;
-        public static final int todays_lessons=0x7f08008e;
-        public static final int tuesday=0x7f08009f;
-        public static final int upcoming=0x7f08008f;
-        public static final int use_offline=0x7f080094;
-        public static final int wednesday=0x7f0800a0;
-        public static final int welcome_cm=0x7f080091;
+        public static final int todays_lessons=0x7f080093;
+        public static final int tuesday=0x7f0800a4;
+        public static final int upcoming=0x7f080094;
+        public static final int use_offline=0x7f080099;
+        public static final int wednesday=0x7f0800a5;
+        public static final int welcome_cm=0x7f080096;
         public static final int year_c=0x7f080041;
         /** 
         Content description for the year selector in the date picker, which displays

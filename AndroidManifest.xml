@@ -69,6 +69,10 @@
             android:name="com.licenta.classmanager.activities.AnnouncementDetailsActivity"
             android:label="@string/title_activity_announcement_details" >
         </activity>
+        <activity
+            android:name="com.licenta.classmanager.activities.AnnouncementAddActivity"
+            android:label="@string/title_activity_announcement_add_edit" >
+        </activity>
     </application>
 
 </manifest>

@@ -95,7 +95,7 @@ public class NotesListAdapter extends BaseAdapter {
 
         ViewHolder holder;
         if(convertView == null) {
-            convertView = inflater.inflate(R.layout.list_item_simple, parent, false);
+            convertView = inflater.inflate(R.layout.list_item_task, parent, false);
             // Clicking the delete icon, will read the position of the item stored in
             // the tag and delete it from the list. So we don't need to generate a new
             // onClickListener every time the content of this view changes.
@@ -110,8 +110,10 @@ public class NotesListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             assert convertView != null;
             holder.txt_title = (TextView) convertView.findViewById(R.id.txt_title);
-            holder.txt_type = (TextView) convertView.findViewById(R.id.txt_description);
+            holder.txt_type = (TextView) convertView.findViewById(R.id.txt_type);
             holder.class_color = (TextView) convertView.findViewById(R.id.class_color);
+            holder.txt_className = (TextView) convertView.findViewById(R.id.txt_className);
+            
 
             convertView.setTag(holder);
         } else {
@@ -122,12 +124,13 @@ public class NotesListAdapter extends BaseAdapter {
         holder.txt_title.setText(notes.get(position).getTitle());
         holder.txt_type.setText(" ");
         holder.class_color.setBackgroundColor(notes.get(position).getLesson().getColor());
+        holder.txt_className.setText(notes.get(position).getLesson().getName());
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView txt_title, class_color, txt_type;
+        TextView txt_title, class_color, txt_type, txt_className;
         int position;
     }
 

@@ -17,8 +17,10 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.dao.UserDao;
 import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.User;
 
 public class ClassDetailsActivity extends ActionBarActivity {
 
@@ -34,6 +36,8 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	private CheckBox cb_monday, cb_tuesday, cb_wednesday, cb_thursday, cb_friday, cb_saturday, cb_sunday;
 	private Lesson lesson;
 	private int class_position;
+	private UserDao userDao;
+	private User u;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	}
 
 	private void setData() {
+		userDao = new UserDao(this);
+		u = userDao.getUser();
 		Intent intent = new Intent();
 		intent = getIntent();
 		lesson = (Lesson) intent.getSerializableExtra(EXTRA_CLASS);
@@ -123,7 +129,7 @@ public class ClassDetailsActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (lesson.isOffline()) {
+		if (lesson.isOffline() || u.getType()==1) {
 			switch (id) {
 			case R.id.action_edit: {
 				Intent intent = new Intent(this, ClassAddEditActivity.class);

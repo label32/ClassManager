@@ -8,15 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center_horizontal"
-        android:text="@string/register_text"
-        android:textSize="@dimen/register_title" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/my_name"
         android:textSize="@dimen/register_text_size" />
@@ -42,7 +35,7 @@
         android:textSize="@dimen/register_text_size" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spinner_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -87,5 +80,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="@dimen/welcome_buttons_margin"
         android:inputType="textPassword" />
+    
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="@dimen/welcome_button_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/welcome_buttons_margin"
+        android:text="@string/register" />
 
 </LinearLayout>

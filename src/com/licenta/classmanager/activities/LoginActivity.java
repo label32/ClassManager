@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.licenta.classmanager.R;
+import com.licenta.classmanager.dao.UserDao;
 import com.licenta.classmanager.holders.User;
 import com.licenta.classmanager.services.DataService;
 import com.licenta.classmanager.services.JsonParser;
@@ -28,6 +29,7 @@ public class LoginActivity extends Activity {
 	private User u;
 	private JsonParser jparser;
 	private SharedPreferences sharedPref;
+	private UserDao dao;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class LoginActivity extends Activity {
 	public void setData() {
 		dataService = new DataService(this);
 		jparser = new JsonParser(this);
+		dao = new UserDao(this);
 	}
 	
 	public void setActions() {
@@ -59,6 +62,8 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onSuccess(JSONObject result) {
 						u = jparser.getUserFromJSON(result);
+						
+						dao.putUser(u);
 						
 						sharedPref = getSharedPreferences(getString(R.string.preference_file),
 								Context.MODE_PRIVATE);

@@ -14,6 +14,20 @@ public class LinkBuilder {
 	public String login(String email, String password) {
 		return baseURL + "&m=login&email=" + email + "&pass=" + password;
 	}
+	
+	public String register(String email, String password, String name, int type) {
+		String result = baseURL;
+		try {
+			result += "&m=register&type="+type;
+			result += "&email=" + URLEncoder.encode(email, "utf-8");
+			result += "&pass=" + URLEncoder.encode(password, "utf-8" );
+			result += "&name=" + URLEncoder.encode(name, "utf-8");
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	public String getUser(int userid) {
 		return baseURL + "&m=get_user&id=" + userid;
@@ -21,6 +35,18 @@ public class LinkBuilder {
 
 	public String getAnnouncements(int userid) {
 		return baseURL + "&m=get_announcements&userid=" + userid;
+	}
+	
+	public String addAnnouncement(String title, String text, int classid) {
+		String result = baseURL + "&m=add_announcement";
+		try {
+			result += "&classid="+classid;
+			result += "&title=" + URLEncoder.encode(title, "utf-8");
+			result += "&text=" + URLEncoder.encode(text, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	public String getUserClasses(int userid) {

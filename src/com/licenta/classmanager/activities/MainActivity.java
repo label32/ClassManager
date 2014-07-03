@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	public boolean offline;
 	private int user_id;
 	private SharedPreferences sharedPref;
+	private User u;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 	private void loadData() {
 		Intent intent = getIntent();
-		User u = (User) intent.getSerializableExtra(EXTRA_USER);
+		u = (User) intent.getSerializableExtra(EXTRA_USER);
 		if (u != null) {
 			user_id = u.getId();
 		} else {

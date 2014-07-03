@@ -16,23 +16,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.licenta.classmanager.R;
-import com.licenta.classmanager.activities.NoteAddEditActivity;
-import com.licenta.classmanager.activities.TaskAddEditActivity;
+import com.licenta.classmanager.activities.AnnouncementAddActivity;
+import com.licenta.classmanager.activities.AnnouncementDetailsActivity;
+import com.licenta.classmanager.activities.ClassDetailsActivity;
+import com.licenta.classmanager.activities.NoteDetailsActivity;
 import com.licenta.classmanager.adapters.listadapters.AnnouncementsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.LessonsListAdapter;
 import com.licenta.classmanager.adapters.listadapters.TasksListAdapter;
-import com.licenta.classmanager.adapters.listadapters.UpcomingListAdapter;
 import com.licenta.classmanager.dao.AnnouncementsDao;
 import com.licenta.classmanager.dao.ClassesDao;
 import com.licenta.classmanager.dao.TasksDao;
+import com.licenta.classmanager.dao.UserDao;
 import com.licenta.classmanager.holders.Announcement;
 import com.licenta.classmanager.holders.Day;
 import com.licenta.classmanager.holders.Flag;
 import com.licenta.classmanager.holders.Lesson;
+import com.licenta.classmanager.holders.Note;
 import com.licenta.classmanager.holders.Task;
+import com.licenta.classmanager.holders.User;
 import com.licenta.classmanager.services.DataService;
 import com.licenta.classmanager.services.JsonParser;
 import com.licenta.classmanager.services.ServiceCallback;
@@ -52,6 +59,7 @@ public class DashboardFragment extends BaseFragment {
 	private EnhancedListView elv_announcements;
 	private EnhancedListView elv_lessons;
 	private EnhancedListView elv_upcoming;
+	private LinearLayout ann_data;
 	private AnnouncementsListAdapter announcementsAdapter;
 	private LessonsListAdapter lessonsAdapter;
 	private TasksListAdapter upcomingAdapter;
@@ -66,6 +74,8 @@ public class DashboardFragment extends BaseFragment {
 	private ClassesDao classesDao;
 	private TasksDao tasksDao;
 	private LayoutInflater inflater;
+	private UserDao userDao;
+	private User u;
 	public static int userid;
 
 	// public void setArguments(Bundle args) {
@@ -88,6 +98,7 @@ public class DashboardFragment extends BaseFragment {
 		elv_lessons = (EnhancedListView) rootView.findViewById(R.id.elv_lessons);
 		elv_upcoming = (EnhancedListView) rootView.findViewById(R.id.elv_upcoming);
 		txt_announcements = (TextView) rootView.findViewById(R.id.txt_announcements);
+		ann_data = (LinearLayout) rootView.findViewById(R.id.ann_data);
 	}
 
 	public void setData() {
@@ -95,42 +106,61 @@ public class DashboardFragment extends BaseFragment {
 		dataService = new DataService(getActivity());
 		jsonParser = new JsonParser(getActivity());
 		announcements = new ArrayList<Announcement>();
+		userDao = new UserDao(getActivity());
+		
+		u = userDao.getUser();
+		if(u==null) {
+			u = new User(0, 2, "", "", "");
+		}
+		
+		if(u.getType()==1) {
+			ann_data.setVisibility(View.GONE);
+			getLessons();
+			
+		} else {
+			
+			ann_data.setVisibility(View.VISIBLE);
+			dataService.getAnnouncements(userid, new ServiceCallback(getActivity()) {
 
-		dataService.getAnnouncements(userid, new ServiceCallback(getActivity()) {
-
-			@Override
-			public void onSuccess(JSONObject result) {
-				JSONArray json_announcements_data = result.optJSONArray("announcements_data");
-				if (json_announcements_data.length() == 0)
-					return;
-				for (int i = 0; i < json_announcements_data.length(); i++) {
-					JSONObject json_announcement_data = json_announcements_data.optJSONObject(i);
-					Announcement a = jsonParser.getAnnouncementFromJSON(json_announcement_data);
-					announcements.add(a);
-					announcementsDao.putAnnouncement(a);
-				}
-				if (announcements.size() == 0) {
-					txt_announcements.setVisibility(View.GONE);
-				}
-				updateAnnouncementsList();
-				getLessons();
-			}
-
-			@Override
-			public void onOffline() {
-				announcements = announcementsDao.getAnnouncements();
-				int diff = 0;
-				for (int i = 0; i < announcements.size(); i++) {
-					if (announcements.get(i - diff).getFlag() == Flag.DELETED) {
-						announcements.remove(i - diff);
-						diff++;
+				@Override
+				public void onSuccess(JSONObject result) {
+					JSONArray json_announcements_data = result.optJSONArray("announcements_data");
+					if (json_announcements_data.length() == 0)
+						return;
+					for (int i = 0; i < json_announcements_data.length(); i++) {
+						JSONObject json_announcement_data = json_announcements_data.optJSONObject(i);
+						Announcement a = jsonParser.getAnnouncementFromJSON(json_announcement_data);
+						announcements.add(a);
+						announcementsDao.putAnnouncement(a);
 					}
+					if (announcements.size() == 0) {
+						txt_announcements.setVisibility(View.GONE);
+					}
+					updateAnnouncementsList();
+					getLessons();
 				}
-				updateAnnouncementsList();
-				getLessons();
-			}
-		});
 
+				@Override
+				public void onOffline() {
+					announcements = announcementsDao.getAnnouncements();
+					int diff = 0;
+					for (int i = 0; i < announcements.size(); i++) {
+						if (announcements.get(i - diff).getFlag() == Flag.DELETED) {
+							announcements.remove(i - diff);
+							diff++;
+						}
+					}
+					updateAnnouncementsList();
+					getLessons();
+				}
+			});
+
+			
+		}
+		
+		
+
+		
 	}
 
 	public void getLessons() {
@@ -265,6 +295,17 @@ public class DashboardFragment extends BaseFragment {
 	}
 
 	public void setActions() {
+		
+		elv_announcements.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getActivity(), AnnouncementDetailsActivity.class);
+				intent.putExtra(AnnouncementDetailsActivity.EXTRA_ANNOUNCEMENT, announcements.get(position));
+				intent.putExtra(AnnouncementDetailsActivity.EXTRA_ANNOUNCEMENT_POSITION, position);
+				startActivityForResult(intent, ClassDetailsActivity.request_code);
+			}
+		});
+		
 		elv_announcements.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
 			@Override
@@ -312,6 +353,14 @@ public class DashboardFragment extends BaseFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.dashboard, menu);
+		if(u==null) {
+//			u = new User(0, 2, "Profesor", "smth@s.com", "123");
+		}
+		
+		if(u.getType()==2) {
+			MenuItem item = menu.getItem(0);
+			item.setVisible(false);
+		}
 	}
 
 	@Override
@@ -323,16 +372,48 @@ public class DashboardFragment extends BaseFragment {
 //			getActivity().startActivityForResult(addTaskIntent, task_add_request_code);
 //		}
 //			break;
-//		case R.id.action_add_note: {
-//			Intent addNoteIntent = new Intent(getActivity(), NoteAddEditActivity.class);
-//			getActivity().startActivityForResult(addNoteIntent, note_add_request_code);
-//		}
-//			break;
+		case R.id.action_add_announcement: {
+			Intent addAnnouncementIntent = new Intent(getActivity(), AnnouncementAddActivity.class);
+			getActivity().startActivityForResult(addAnnouncementIntent, AnnouncementAddActivity.request_code);
+		}
+			break;
 		case R.id.action_refresh: {
 			setData();			
 		} break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {		
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == AnnouncementAddActivity.request_code) {
+			if(requestCode == Activity.RESULT_OK) {
+				Announcement announcement = (Announcement) data.getSerializableExtra(AnnouncementDetailsActivity.EXTRA_ANNOUNCEMENT);
+				addAnnouncement(announcement);
+			}
+		}
+	}
+	
+	private void addAnnouncement(final Announcement a) {
+		dataService.addAnnouncement(a.getLesson().getId(), a.getTitle(), a.getText(), new ServiceCallback(getActivity()) {
+
+			@Override
+			public void onSuccess(JSONObject result) {
+				a.setId(result.optInt("annid"));
+				announcementsDao.putAnnouncement(a);
+				announcements.add(a);
+				updateAnnouncementsList();
+			}
+
+			@Override
+			public void onOffline() {
+				a.setFlag(Flag.ADDED);
+				announcementsDao.putAnnouncement(a);
+				announcements.add(a);
+				updateAnnouncementsList();
+			}
+		});
 	}
 
 	@Override

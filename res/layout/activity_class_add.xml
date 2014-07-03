@@ -142,53 +142,58 @@
                 android:text="@string/abr_sunday" />
         </LinearLayout>
 
-       
+       <RelativeLayout 
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="10dp" >
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/txt_start_time"
                 android:text="@string/start_time"
                 android:textSize="@dimen/component_header" />
 
              <Button
                      android:id="@+id/btn_start_time"
+                     android:layout_below="@id/txt_start_time"
                      android:layout_width="wrap_content"
+                     android:layout_alignParentLeft="true"
                      android:layout_height="wrap_content"
                      android:text="@string/set_time" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="20dp" >
+
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/txt_end_time"
                 android:text="@string/end_time"
                 android:textSize="@dimen/component_header" />
             
              <Button
                      android:id="@+id/btn_end_time"
                      android:layout_width="wrap_content"
+                     android:layout_below="@id/txt_end_time"
+                     android:layout_alignParentRight="true"
                      android:layout_height="wrap_content"
                      android:text="@string/set_time" />
             
             
             
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="10dp"
             android:paddingBottom="20dp" >
 
             <TextView

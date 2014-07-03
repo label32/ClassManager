@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.licenta.classmanager.MainActivity" >
 
+  	<item 
+        android:id="@+id/action_add_announcement"
+        android:icon="@drawable/ic_action_new"
+        android:title=""
+        app:showAsAction="withText|ifRoom"/>
+    
     <item
         android:id="@+id/action_refresh"
         android:icon="@drawable/ic_action_refresh_light"
         android:title=""
         app:showAsAction="withText|ifRoom"/>
     
-<!--     <item -->
-<!--         android:id="@+id/action_add_note" -->
-<!--         android:title="@string/add_note" -->
-<!--         app:showAsAction="withText|ifRoom"/> -->
+
 
 </menu>

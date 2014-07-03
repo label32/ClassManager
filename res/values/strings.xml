@@ -15,11 +15,16 @@
     <string name="action_tasks">Tasks action</string>
     <string name="action_settings">Settings</string>
     <string name="date_added">Date added</string>
+    <string name="name">Name</string>
+    <string name="change_data">Change data</string>
+    <string name="text">Text</string>
+    <string name="register">Register</string>
 
     <!-- Menu actions -->
     <string name="add_note">Add note</string>
     <string name="add_task">Add task</string>
     <string name="add_class">Add class</string>
+    <string name="add_announcement">Add announcement</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
@@ -89,6 +94,11 @@
     <string name="abr_saturday">Sat</string>
     <string name="abr_sunday">Sun</string>
 
+     <string-array name="user_types">
+        <item>Student</item>
+        <item>Professor</item>
+    </string-array>
+    
     <string-array name="task_types">
         <item>Assignment</item>
         <item>Project</item>
@@ -111,14 +121,15 @@
 
     <string name="preference_file">com.licenta.classmanager.PREFERENCE_FILE</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_add_note">AddNoteActivity</string>
-    <string name="title_activity_add_class">AddClassActivity</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_class_details">ClassDetailsActivity</string>
-    <string name="title_activity_note_details">NoteDetailsActivity</string>
-    <string name="title_activity_task_details">TaskDetailsActivity</string>
-    <string name="title_activity_announcement_details">AnnouncementDetailsActivity</string>
+    <string name="title_activity_add_note">Add Note</string>
+    <string name="title_activity_add_class">Add Class</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_class_details">Class Details</string>
+    <string name="title_activity_note_details">Note Details</string>
+    <string name="title_activity_task_details">Task Details</string>
+    <string name="title_activity_announcement_details">Announcement Details</string>
+    <string name="title_activity_announcement_add_edit">Add Announcement</string>
 
 </resources>

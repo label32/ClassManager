@@ -8,22 +8,22 @@ package net.margaritov.preference.colorpicker;
 
 public final class R {
 	public static final class drawable {
-		public static final int icon = 0x7f020088;
+		public static final int icon = 0x7f020089;
 	}
 	public static final class id {
-		public static final int btn_done = 0x7f0b0089;
-		public static final int color_picker_view = 0x7f0b0086;
-		public static final int hex_val = 0x7f0b0088;
-		public static final int new_color_panel = 0x7f0b008b;
-		public static final int old_color_panel = 0x7f0b008a;
-		public static final int text_hex_wrapper = 0x7f0b0087;
+		public static final int btn_done = 0x7f0b008b;
+		public static final int color_picker_view = 0x7f0b0088;
+		public static final int hex_val = 0x7f0b008a;
+		public static final int new_color_panel = 0x7f0b008d;
+		public static final int old_color_panel = 0x7f0b008c;
+		public static final int text_hex_wrapper = 0x7f0b0089;
 	}
 	public static final class integer {
 		public static final int COLOR_BLACK = 0x7f0a0000;
 		public static final int COLOR_GREEN = 0x7f0a0001;
 	}
 	public static final class layout {
-		public static final int dialog_color_picker = 0x7f03002e;
+		public static final int dialog_color_picker = 0x7f03002f;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f080007;

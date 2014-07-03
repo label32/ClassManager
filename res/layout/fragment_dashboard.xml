@@ -12,6 +12,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.licenta.classmanager.activities.MainActivity$PlaceholderFragment" >
 
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ann_data">
     <TextView
         android:id="@+id/txt_announcements"
         android:layout_width="wrap_content"
@@ -30,6 +34,7 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp" >
     </de.timroes.android.listview.EnhancedListView>
+    </LinearLayout>
 
     
              <TextView

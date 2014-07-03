@@ -24,6 +24,10 @@ public class DataService {
 		net_worker = new NetworkWorker();
 	}
 	
+	public void addAnnouncement(int classid, String title, String text, BaseCallback callback) {
+		net_worker.executeRequest(linkBuilder.addAnnouncement(title, text, classid), callback);
+	}
+	
 	public void getAnnouncements(int userid, BaseCallback callback) {
 		net_worker.executeRequest(linkBuilder.getAnnouncements(userid), callback);
 	}
@@ -232,6 +236,10 @@ public class DataService {
 
 	public void login(String email, String password, BaseCallback callback) {
 		net_worker.executeRequest(linkBuilder.login(email, password), callback);
+	}
+	
+	public void register(String email, String password, String name, int type, BaseCallback callback) {
+		net_worker.executeRequest(linkBuilder.register(email, password, name, type), callback);
 	}
 
 	public void succes(int size, SyncCallback callback) {

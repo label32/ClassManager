@@ -64,7 +64,13 @@ public class WelcomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// check connectivity
+				if(NetworkWorker.checkConnection(WelcomeActivity.this)) {
+					Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+					startActivity(intent);
+					WelcomeActivity.this.finish();
+				} else {
+					Toast.makeText(WelcomeActivity.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 
@@ -75,6 +81,7 @@ public class WelcomeActivity extends Activity {
 				if(NetworkWorker.checkConnection(WelcomeActivity.this)) {
 					Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
 					startActivity(intent);
+					WelcomeActivity.this.finish();
 				} else {
 					Toast.makeText(WelcomeActivity.this, "Please check your internet connection", Toast.LENGTH_LONG).show();
 				}
